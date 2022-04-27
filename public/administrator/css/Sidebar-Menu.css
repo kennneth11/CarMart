@@ -1,0 +1,263 @@
+body {
+  overflow-x: hidden;
+  background: #ededed;
+}
+
+#wrapper {
+  padding-left: 0;
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+
+#wrapper.toggled {
+  padding-left: 250px;
+}
+
+#sidebar-wrapper {
+  z-index: 1000;
+  position: fixed;
+  left: 250px;
+  width: 0;
+  height: 100%;
+  margin-left: -250px;
+  overflow-y: auto;
+  background: #000;
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+
+#wrapper.toggled #sidebar-wrapper {
+  width: 300px;
+}
+
+#page-content-wrapper {
+  width: 100%;
+  position: absolute;
+  padding: 15px;
+}
+
+#wrapper.toggled #page-content-wrapper {
+  position: absolute;
+  margin-right: -250px;
+}
+
+.sidebar-nav {
+  position: absolute;
+  top: 0;
+  width: 250px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.sidebar-nav li {
+  text-indent: 20px;
+  line-height: 40px;
+}
+
+.sidebar-nav li a {
+  display: block;
+  text-decoration: none;
+  color: #ffffff;
+}
+
+.sidebar-nav li a:hover {
+  text-decoration: none;
+  color: #7d7d7d;
+  background: #ffffff
+}
+
+.sidebar-nav li a:active, .sidebar-nav li a:focus {
+  text-decoration: none;
+}
+
+.sidebar-nav > .sidebar-brand {
+  height: 65px;
+  font-size: 18px;
+  line-height: 60px;
+}
+
+.sidebar-nav > .sidebar-brand a {
+  color: #ffffff;
+}
+
+.sidebar-nav > .sidebar-brand a:hover {
+  color: #fff;
+  background: none;
+}
+
+@media (min-width:768px) {
+  #wrapper {
+    padding-left: 250px;
+  }
+}
+
+@media (min-width:768px) {
+  #wrapper.toggled {
+    padding-left: 0;
+  }
+}
+
+@media (min-width:768px) {
+  #sidebar-wrapper {
+    width: 250px;
+  }
+}
+
+@media (min-width:768px) {
+  #wrapper.toggled #sidebar-wrapper {
+    width: 0;
+  }
+}
+
+@media (min-width:768px) {
+  #page-content-wrapper {
+    padding: 20px;
+    position: relative;
+  }
+}
+
+@media (min-width:768px) {
+  #wrapper.toggled #page-content-wrapper {
+    position: relative;
+    margin-right: 0;
+  }
+}
+
+.navbar.navbar-light.navbar-expand-md {
+  padding-left: 0;
+  background: #ffffff;
+  box-shadow: 0px -20px 20px 0px;
+}
+
+#content-container {
+  background: #ededed;
+  padding: 0px 20px 0px 20px;
+}
+
+.side-bar-icons {
+  font-size: 24px;
+  padding-right: 0px;
+}
+
+.icon-container {
+  width: 68px;
+  text-align: center;
+  height: auto;
+  padding-left: 0px;
+  margin-left: -15px;
+}
+
+.navFix {
+  position: fixed;
+  width: 100%;
+}
+
+#sidebar-wrapper {
+  background-color: #308403;
+}
+
+#brand {
+  height: 56px;
+  width: 100%;
+  background: #308403;
+}
+
+#brand img {
+  height: 45px;
+  margin: 0px 7px 0 7px;
+}
+
+#brand a {
+  text-decoration: none;
+}
+
+#brand p {
+  color: rgb(0,0,0);
+  width: 100%;
+  height: 0;
+  text-align: left;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+#profile-details {
+  width: 100%;
+  height: 205px;
+  background: #308403;
+  padding-top: 31px;
+  color: rgb(255,255,255);
+}
+
+#profile-details div{
+  width: 100%;
+}
+
+#profile-details img {
+  height: auto;
+  width: 75px;
+  border: 2px solid rgb(35,35,36) ;
+}
+
+#profile-details p {
+  margin: 0px;
+  font-size: 12px;
+}
+
+
+.icon-container {
+  color: #308403;
+  padding: 0px;
+  text-decoration: none;
+  border: none;
+}
+
+.link-icons {
+  font-size: 33px;
+  padding: 0px 5px 0px 5px;
+}
+
+.link-icons-container{
+  width: 100px;
+  margin: 0px;
+}
+
+.btn.focus, .btn:focus{
+  box-shadow:none;
+}
+
+.nav-drop{
+  background-color: #fff;
+  text-decoration: none;
+  border: 0px;
+  color: #308403;
+  font-weight: bold;
+}
+
+.btn-link:hover {
+  color: #308403;
+  text-decoration: none;
+  border: none;
+}
+
+
+
+.side-container div{
+  width: 100%;
+}
+
+.navbar-dark .navbar-nav .nav-link:focus, .navbar-dark .navbar-nav .nav-link{
+  color: #fff;
+}
+.navbar-dark .navbar-nav .nav-link:focus, .navbar-dark .navbar-nav .nav-link:hover{
+  background-color: #ffffff8e;
+}
+.navbar-dark .navbar-nav .nav-link.active{
+  background-color: #ffffff8e;
+}
+
+
