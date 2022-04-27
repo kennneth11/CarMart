@@ -37,7 +37,7 @@
                         <div class="link-icons-container" style="width: 25%;"><i class="fa fa-home link-icons"></i></div>Dashboard</a>
                         </li>
                         <li class="nav-item" style="width: 100%;"><a class="nav-link d-flex align-items-center" href="" style="width: 100%;padding: 12px;">
-                            <div class="link-icons-container" style="width: 25%;"><i class="fa fa-users link-icons"></i></div>User Management</a>
+                            <div class="link-icons-container" style="width: 25%;"><i class="fa fa-users link-icons"></i></div>Car Managment</a>
                         </li>
                     </ul>
                 </div>
