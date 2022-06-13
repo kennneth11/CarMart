@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CarOptionsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,7 +36,8 @@ Route::group(['middleware' => ['auth']], function() {
 
 //superadministrator
 Route::group(['middleware' => ['auth', 'role:superadministrator']], function() { 
-    
+    Route::get('/CarOptions', 'App\Http\Controllers\CarOptionsController@index')->name('CarOptions');
+    Route::post('CarOptions', [CarOptionsController::class, 'store']);
 });
 
 //seller

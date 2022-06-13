@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('bootstrap/font/font-awesome.min.css') }}">
     <link rel="stylesheet" href="{{ asset('administrator/css/Sidebar-Menu.css') }}">
-    <link rel="stylesheet" href="{{ asset('/dashboard.css') }}">
+    <link rel="stylesheet" href="{{ asset('administrator/css/style.css') }}">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,700,700i,600,600i">
 </head>
 
@@ -33,11 +33,11 @@
             <nav class="navbar navbar-dark navbar-expand side-container" style="padding: 0; margin:0;">
                 <div >
                     <ul class="navbar-nav mr-auto flex-column mr-auto" style="width: 100%;">
-                        <li class="nav-item" style="width: 100%;"><a class="nav-link d-flex align-items-center" href="" style="width: 100%;padding: 12px;">
+                        <li class="nav-item" style="width: 100%;"><a class="nav-link d-flex align-items-center" href="{{ route('dashboard') }}" style="width: 100%;padding: 12px;">
                         <div class="link-icons-container" style="width: 25%;"><i class="fa fa-home link-icons"></i></div>Dashboard</a>
                         </li>
-                        <li class="nav-item" style="width: 100%;"><a class="nav-link d-flex align-items-center" href="" style="width: 100%;padding: 12px;">
-                            <div class="link-icons-container" style="width: 25%;"><i class="fa fa-users link-icons"></i></div>Car Managment</a>
+                        <li class="nav-item" style="width: 100%;"><a class="nav-link d-flex align-items-center" href="{{ route('CarOptions') }}" style="width: 100%;padding: 12px;">
+                            <div class="link-icons-container" style="width: 25%;"><i class="fa fa-tasks link-icons"></i></div>Car Options</a>
                         </li>
                     </ul>
                 </div>
@@ -70,8 +70,9 @@
             </div>
         </nav>
 
-        @yield('content')
 
+        @yield('content')
+    
     </div>
     <script src="{{ asset('js/jquery.min.js') }}"></script>
     <script src="{{ asset('bootstrap/js/bootstrap.min.js') }}"></script>
