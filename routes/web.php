@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CarOptionsController;
-
+use App\Http\Controllers\FrontEndController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,20 +14,20 @@ use App\Http\Controllers\CarOptionsController;
 |
 */
 
-Route::middleware('guest')->group(function () {
-    Route::get('/', function () {
-        return view('welcome');
-    });
+//Route::middleware('guest')->group(function () {
+//    Route::get('/', function () {
+//        return view('welcome');
+//   });
 
 
     //Route::get('/dashboard', function () {
     //    return view('dashboard');
     //})->middleware(['auth'])->name('dashboard');
-});
+//});
 
-
-//both 
-Route::group(['middleware' => ['auth']], function() { 
+Route::get('/', [FrontEndController::class, 'index'])->name('index');
+//both
+Route::group(['middleware' => ['auth']], function() {
     Route::get('/dashboard', 'App\Http\Controllers\DashboardController@index')->name('dashboard');
 });
 
@@ -35,19 +35,19 @@ Route::group(['middleware' => ['auth']], function() {
 
 
 //superadministrator
-Route::group(['middleware' => ['auth', 'role:superadministrator']], function() { 
+Route::group(['middleware' => ['auth', 'role:superadministrator']], function() {
     Route::get('/CarOptions', 'App\Http\Controllers\CarOptionsController@index')->name('CarOptions');
     Route::post('CarOptions', [CarOptionsController::class, 'store']);
 });
 
 //seller
-Route::group(['middleware' => ['auth', 'role:seller']], function() { 
-    
+Route::group(['middleware' => ['auth', 'role:seller']], function() {
+
 });
 
 //customer
-Route::group(['middleware' => ['auth', 'role:customer']], function() { 
-    
+Route::group(['middleware' => ['auth', 'role:customer']], function() {
+
 });
 
 

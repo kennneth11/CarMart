@@ -19,8 +19,7 @@ class DashboardController extends Controller
             return view('Seller/dashboard');
         }
         else if(Auth::user()->hasRole('customer')){
-
-            return view('Customer/dashboard');
+            return view('index');
         }
     }
 }
