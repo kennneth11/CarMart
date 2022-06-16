@@ -2,7 +2,7 @@
 <html >
 
 <head>
-<title>{{config('app.name')}}</title>
+<title>Car Mart</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <meta charset="utf-8">
@@ -10,7 +10,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <meta name="description" content="Portal - Bootstrap 5 Admin Dashboard Template For Developers">
-    <meta name="author" content="Xiaoying Riley at 3rd Wave Media">    
+    <meta name="author" content="Xiaoying Riley at 3rd Wave Media">   
+    <link rel="shortcut icon" href="{{ asset('assets/images/favicon-icon/favicon.png') }}"> 
     
     <!-- FontAwesome JS-->
     <script defer src="{{ asset('assets2/plugins/fontawesome/js/all.min.js') }}"></script>
@@ -43,7 +44,7 @@
                         <div class="app-utilities col-auto">
                                                         
                             <div class="app-utility-item app-user-dropdown dropdown">
-                                <a class="dropdown-toggle" id="user-dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"><img src="{{ asset('assets/images/user.png') }}" alt="user profile"></a>
+                                <a class="dropdown-toggle" id="user-dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"><img src="{{ asset('assets2/images/user.png') }}" alt="user profile"></a>
                                 <ul class="dropdown-menu" aria-labelledby="user-dropdown-toggle">
                                     <li><a class="dropdown-item" href="account.html">Profile</a></li>
                                     <li>
@@ -69,7 +70,7 @@
 		        <a href="#" id="sidepanel-close" class="sidepanel-close d-xl-none">&times;</a>
 
 		        <div class="app-branding">
-		            <a style="text-decoration: none;"class="app-logo" href="{{ route('dashboard') }}"><img class="logo-prio me-2" src="{{ asset('images/prio-logo-black.png') }}" alt="logo"><span class="logo-text">ID System</span></a>
+		            <a style="text-decoration: none;"class="app-logo d-flex justify-content-center" href="{{ route('dashboard') }}"><img class="logo-prio me-2" src="{{ asset('assets/images/CarMartSmallV2.png') }}" alt="logo"></a>
 		        </div><!--//app-branding-->  
 
 			    <nav id="app-nav-main" class="app-nav app-nav-main flex-grow-1">

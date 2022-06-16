@@ -13,10 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('car_models', function (Blueprint $table) {
-            $table->bigIncrements('car_model_id');
-            $table->unsignedBigInteger('car_maker_id');
-            $table->string('car_model_name');
+        Schema::create('car_fuel_types', function (Blueprint $table) {
+            $table->bigIncrements('fuel_type_id');
+            $table->string('fuel_type_name');
             $table->timestamps();
         });
     }
@@ -28,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('car_models');
+        Schema::dropIfExists('car_fuel_types');
     }
 };

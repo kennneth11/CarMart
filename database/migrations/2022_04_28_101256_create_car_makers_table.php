@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('car_makers', function (Blueprint $table) {
             $table->bigIncrements('car_maker_id');
             $table->string('car_maker_name');
+            $table->string('file_path_picture');
             $table->timestamps();
         });
     }

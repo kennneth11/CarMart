@@ -11,6 +11,7 @@ class CarMaker extends Model
 
     protected $fillable = [
         'car_maker_name',
+        'file_path_picture',
     ];
 
 
