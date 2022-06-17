@@ -12,3 +12,26 @@
     color: #fff;
 }
 
+
+.btn-block-color{
+    background: #FA2837;
+    color: #fff;
+}
+
+.btn-block-color:hover{
+    background: #db212d;
+    color: #fff;
+}
+
+.btn-outline-Themecolor{
+    border-color: #FA2837;
+    color: #FA2837;
+    border-width: 1px;
+}
+
+.btn-outline-Themecolor:hover{
+    border-color: #FA2837;
+    color: #fff;
+    border-width: 1px;
+    background-color: #FA2837;
+}
