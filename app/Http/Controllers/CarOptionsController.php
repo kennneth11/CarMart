@@ -45,8 +45,6 @@ class CarOptionsController extends Controller
                 'car_maker_picture1' => ['required'],
             ]);
       
-            
-
             $CarMaker = new CarMaker();
             $CarMaker->car_maker_name = $request->car_maker_name;
 

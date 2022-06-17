@@ -10,7 +10,7 @@
                 <div class="col-6 col-lg-3">
                     <div class="app-card app-card-stat green-border h-100">
                         <div class="app-card-body p-5 p-lg-5">
-                            <h4 class="stats-type mb-1">Total ID's Printed</h4>
+                            <h4 class="stats-type mb-1">Total Users</h4>
                             <div class="stats-figure">12,628</div>
                         </div><!--//app-card-body-->
                         <a class="app-card-link-mask" href="#"></a>
@@ -20,7 +20,7 @@
                 <div class="col-6 col-lg-3">
                     <div class="app-card app-card-stat green-border h-100">
                         <div class="app-card-body p-5 p-lg-5">
-                            <h4 class="stats-type mb-1">PRINTED ID'S - MAY</h4>
+                            <h4 class="stats-type mb-1">cars</h4>
                             <div class="stats-figure">250</div>
                         </div><!--//app-card-body-->
                         <a class="app-card-link-mask" href="#"></a>
@@ -29,7 +29,7 @@
                 <div class="col-6 col-lg-6">
                     <div class="app-card app-card-stat green-border h-100">
                         <div class="app-card-body p-5 p-lg-5">
-                            <h4 class="stats-type mb-1">PENDING TRANSACTIONS</h4>
+                            <h4 class="stats-type mb-1">Total Cars</h4>
                             <div class="stats-figure">654</div>
                         </div><!--//app-card-body-->
                         <a class="app-card-link-mask" href="#"></a>
