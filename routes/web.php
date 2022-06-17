@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CarOptionsController;
 use App\Http\Controllers\FrontEndController;
+use App\Http\Controllers\Customer\ProfileController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -25,32 +26,39 @@ use App\Http\Controllers\FrontEndController;
     //})->middleware(['auth'])->name('dashboard');
 //});
 
+//Visitors Route ---------------Start Line--------------------------------
 Route::get('/', [FrontEndController::class, 'index'])->name('index');
-//both
+Route::get('/about', [FrontEndController::class, 'about'])->name('about');
+//Visitors Route ---------------End Line--------------------------------
+
+
+//both---------------Start Line--------------------------------
 Route::group(['middleware' => ['auth']], function() {
     Route::get('/dashboard', 'App\Http\Controllers\DashboardController@index')->name('dashboard');
+    Route::resource('/profile', ProfileController::class);
 });
+//both---------------End Line--------------------------------
 
 
-
-
-//superadministrator
+//superadministrator ---------------Start Line--------------------------------
 Route::group(['middleware' => ['auth', 'role:superadministrator']], function() {
     Route::get('/CarOptions', 'App\Http\Controllers\CarOptionsController@index')->name('CarOptions');
     Route::post('CarOptions', [CarOptionsController::class, 'store']);
 });
+//superadministrator ---------------End Line--------------------------------
 
-//seller
+
+//seller ---------------Start Line--------------------------------
 Route::group(['middleware' => ['auth', 'role:seller']], function() {
 
 });
+//seller ---------------End Line--------------------------------
 
-//customer
+
+//customer ---------------Start Line--------------------------------
 Route::group(['middleware' => ['auth', 'role:customer']], function() {
 
 });
-
-
-
+//customer ---------------End Line--------------------------------
 
 require __DIR__.'/auth.php';

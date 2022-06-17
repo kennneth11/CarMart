@@ -16,7 +16,7 @@ class DashboardController extends Controller
             return view('Administrator/dashboard',['users'=>$userdata]);
         }
         else if(Auth::user()->hasRole('seller')){
-            return view('Seller/dashboard');
+            return view('index');
         }
         else if(Auth::user()->hasRole('customer')){
             return view('index');

@@ -48,130 +48,117 @@
 <body>
 
 <!--Header-->
-<header class="header_style2 nav-stacked affix-top" data-spy="affix" data-offset-top="1">
-  <!-- Navigation -->
-  <nav id="navigation_bar" class="navbar navbar-default">
-    <div class="container">
-      <div class="navbar-header">
-      	<div class="logo"> <a href="route{{'index'}}"><img src="{{ asset('assets/images/CarMartSmallV2.png') }}" alt="image"/></a> </div>
-        <button id="menu_slide" data-target="#navigation" aria-expanded="false" data-toggle="collapse" class="navbar-toggle collapsed" type="button">
-        	<span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-        </button>
+<header>
+    <div class="default-header">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-3 col-md-2">
+            <div class="logo"> <a href="{{ route('index') }}"><img src="{{ asset('assets/images/CarMartSmallV2.png') }}" alt="image"/></a> </div>
+          </div>
+          <div class="col-sm-9 col-md-10">
+            <div class="header_info">
+              <div class="header_widgets">
+                <div class="circle_icon"> <i class="fa fa-envelope" aria-hidden="true"></i> </div>
+                <p class="uppercase_text">For Support Mail us : </p>
+                <a href="mailto:info@example.com">business.carmart@gmail.com</a> </div>
+              <div class="header_widgets">
+                <div class="circle_icon"> <i class="fa fa-phone" aria-hidden="true"></i> </div>
+                <p class="uppercase_text">Service Helpline Call Us: </p>
+                <a href="tel:61-1234-5678-09">+63-9531548869</a> </div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="collapse navbar-collapse" id="navigation">
-        <ul class="nav navbar-nav">
-          <li><a href="route{{'index'}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Home</a>
-          </li>
-          <li><a href="about-us.html">About Us</a></li>
-          <li class="dropdown"><a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Inventory</a>
-            <ul class="dropdown-menu">
-              <li><a href="listing-grid.html">Grid Style</a></li>
-              <li><a href="listing-classic.html">Classic Style</a></li>
-              <li><a href="listing-detail.html">Detail Page Style 1</a></li>
-              <li><a href="listing-detail-2.html">Detail Page Style 2</a></li>
-            </ul>
-          </li>
-          <li class="dropdown"><a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dealers</a>
-            <ul class="dropdown-menu">
-              <li><a href="dealers-list.html">List View</a></li>
-              <li><a href="dealers-profile.html">Detail Page</a></li>
-            </ul>
-          </li>
-          <li class="dropdown"><a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Pages</a>
-            <ul class="dropdown-menu">
-              <li><a href="services.html">Services</a></li>
-              <li><a href="contact-us.html">Contact Us</a></li>
-              <li><a href="compare.html">Compare Vehicles</a></li>
-              <li><a href="faq.html">FAQ</a></li>
-              <li><a href="404.html">404 Error</a></li>
-              <li><a href="coming-soon.html">Coming Soon</a></li>
-            </ul>
-          </li>
-          <li class="dropdown"><a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">News</a>
-            <ul class="dropdown-menu">
-              <li><a href="blog-left-sidebar.html">Blog Left Sidebar</a></li>
-              <li><a href="blog-right-sidebar.html">Blog Right Sidebar</a></li>
-              <li><a href="blog-detail.html">Blog Detail</a></li>
-            </ul>
-          </li>
-        </ul>
-      </div>
+    </div>
 
-      <div class="header_wrap">
-    @if (Route::has('login'))
-        @auth
-        <div class="user_login">
-          <ul>
-            <li class="dropdown"> <a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user-circle" aria-hidden="true"></i></a>
-              <ul class="dropdown-menu">
-                <li><a href="profile-settings.html">Profile Settings</a></li>
-                <li><a href="my-vehicles.html">My Vehicles</a></li>
-                <li><a href="post-vehicle.html">Post a Vehicle</a></li>
-                <li><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Sign Out</a>
-                <form id="logout-form" method="POST" action="{{ route('logout') }}">
-                    @csrf
-                </form>
+    <!-- Navigation -->
+    <nav id="navigation_bar" class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header">
+          <button id="menu_slide" data-target="#navigation" aria-expanded="false" data-toggle="collapse" class="navbar-toggle collapsed" type="button"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+        </div>
+        <div class="header_wrap">
+         @if (Route::has('login'))
+          @auth
+          <div class="user_login">
+            <ul>
+              <li class="dropdown"> <a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user-circle" aria-hidden="true"></i> {{ Auth::user()->first_name }} {{ Auth::user()->last_name }} <i class="fa fa-angle-down" aria-hidden="true"></i></a>
+                <ul class="dropdown-menu">
+
+
+                <li><a href="{{ route('profile.index')}}">Profile Settings</a></li>
+
+                  @if (Auth::user()->hasRole('seller'))
+                  <li><a href="my-vehicles.html">My Vehicles</a></li>
+                  <li><a href="post-vehicle.html">Post a Vehicle</a></li>
+                  @endif
+                  <li><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Sign Out</a></li>
+                      <form id="logout-form" method="POST" action="{{ route('logout') }}">
+                      @csrf
+                  </form>
+                </ul>
+              </li>
+            </ul>
+          </div>
+          @else
+              <div class="login_btn user_login"> <a href="#loginform" class="btn btn-xs uppercase" data-toggle="modal" data-dismiss="modal">Login / Register</a> </div>
+          @endauth
+          @endif
+          <div class="header_search">
+            <div id="search_toggle"><i class="fa fa-search" aria-hidden="true"></i></div>
+            <form action="#" method="get" id="header-search-form">
+              <input type="text" placeholder="Search..." class="form-control">
+              <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+            </form>
+          </div>
+        </div>
+        <div class="collapse navbar-collapse" id="navigation">
+          <ul class="nav navbar-nav">
+            <li><a href="{{ route('index') }}">Home</a>
+
             </li>
+            <li><a href="{{ route('about') }}">About Us</a></li>
+            <li class="dropdown"><a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Inventory</a>
+              <ul class="dropdown-menu">
+                <li><a href="listing-grid.html">Grid Style</a></li>
+                <li><a href="listing-classic.html">Classic Style</a></li>
+                <li><a href="listing-detail.html">Detail Page Style 1</a></li>
+                <li><a href="listing-detail-2.html">Detail Page Style 2</a></li>
+              </ul>
+            </li>
+            <li class="dropdown"><a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dealers</a>
+              <ul class="dropdown-menu">
+                <li><a href="dealers-list.html">List View</a></li>
+                <li><a href="dealers-profile.html">Detail Page</a></li>
+              </ul>
+            </li>
+            <li class="dropdown"><a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Pages</a>
+              <ul class="dropdown-menu">
+                <li><a href="services.html">Services</a></li>
+                <li><a href="contact-us.html">Contact Us</a></li>
+                <li><a href="compare.html">Compare Vehicles</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+                <li><a href="404.html">404 Error</a></li>
+                <li><a href="coming-soon.html">Coming Soon</a></li>
+              </ul>
+            </li>
+            <li class="dropdown"><a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">News</a>
+              <ul class="dropdown-menu">
+                <li><a href="blog-left-sidebar.html">Blog Left Sidebar</a></li>
+                <li><a href="blog-right-sidebar.html">Blog Right Sidebar</a></li>
+                <li><a href="blog-detail.html">Blog Detail</a></li>
               </ul>
             </li>
           </ul>
         </div>
-        @else
-         <div class="login_btn"> <a href="#loginform" class="btn btn-xs uppercase" data-toggle="modal" data-dismiss="modal">Login / Register</a> </div>
       </div>
-      @endauth
-    @endif
-    </div>
-  </nav>
-  <!-- Navigation end -->
+    </nav>
+    <!-- Navigation end -->
 
-</header>
-<!-- /Header -->
+  </header>
+  <!-- /Header -->
 
-
-<!--Banner-->
-<section id="banner2">
-	<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-	   <!-- Wrapper for slides -->
-	   <div class="carousel-inner">
-       	  <!--item-1-->
-    	  <div class="item active">
-              <img src="assets/images/1920x830.jpg" alt="image">
-              <div class="carousel-caption">
-                <div class="banner_text text-center div_zindex white-text">
-                        <h1>Buy Your New Car Or Used Car. </h1>
-                        <h3>We have more than a thousand cars for you to choose. </h3>
-                        <a href="#" class="btn">Read More</a>
-                    </div>
-              </div>
-          </div>
-
-          <!--item-2-->
-    	  <div class="item">
-              <img src="assets/images/1920x830.jpg" alt="image">
-              <div class="carousel-caption">
-                <div class="banner_text text-center div_zindex white-text">
-                        <h1>Find Your Dream Car.</h1>
-                        <h3>We have more than a thousand cars for you to choose. </h3>
-                        <a href="#" class="btn">Read More</a>
-                    </div>
-              </div>
-          </div>
-	   </div>
-
-          <!-- Controls -->
-          <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
-            <div class="icon-prev"></div>
-          </a>
-          <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
-          	<div class="icon-next"></div>
-          </a>
-    </div>
-</section>
-<!--/Banner-->
+    <!--Insert Banner on the index.blade.php  -->
 
 @yield('content')
 
@@ -201,16 +188,6 @@
     <div class="footer-top">
       <div class="container">
         <div class="row">
-          <div class="col-md-3 col-sm-6">
-            <h6>Top Categores</h6>
-            <ul>
-              <li><a href="#">Car Brand Name</a></li>
-              <li><a href="#">Car Brand Name 2</a></li>
-              <li><a href="#">Car Brand Name 3</a></li>
-              <li><a href="#">Car Brand Name 4</a></li>
-              <li><a href="#">Car Brand Name 5</a></li>
-            </ul>
-          </div>
           <div class="col-md-3 col-sm-6">
             <h6>About Us</h6>
             <ul>
@@ -249,27 +226,8 @@
     <div class="footer-bottom">
       <div class="container">
         <div class="row">
-          <div class="col-md-6 col-md-push-6 text-right">
-            <div class="footer_widget">
-              <p>Download Our APP:</p>
-              <ul>
-                <li><a href="#"><i class="fa fa-android" aria-hidden="true"></i></a></li>
-                <li><a href="#"><i class="fa fa-apple" aria-hidden="true"></i></a></li>
-              </ul>
-            </div>
-            <div class="footer_widget">
-              <p>Connect with Us:</p>
-              <ul>
-                <li><a href="#"><i class="fa fa-facebook-square" aria-hidden="true"></i></a></li>
-                <li><a href="#"><i class="fa fa-twitter-square" aria-hidden="true"></i></a></li>
-                <li><a href="#"><i class="fa fa-linkedin-square" aria-hidden="true"></i></a></li>
-                <li><a href="#"><i class="fa fa-google-plus-square" aria-hidden="true"></i></a></li>
-                <li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-md-6 col-md-pull-6">
-            <p class="copy-right">Copyright &copy; 2019 CarForYou. All Rights Reserved</p>
+          <div class="text-center">
+            <p class="copy-right">Copyright &copy; 2022 CarMart. All Rights Reserved</p>
           </div>
         </div>
       </div>
@@ -280,7 +238,8 @@
   <!--Back to top-->
   <div id="back-top" class="back-top"> <a href="#top"><i class="fa fa-angle-up" aria-hidden="true"></i> </a> </div>
   <!--/Back to top-->
-  @include('layouts.login');
+  @include('layouts.login')
+  @include('layouts.register')
 
 <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
 <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
