@@ -13,6 +13,7 @@ class DashboardController extends Controller
     {
         if(Auth::user()->hasRole('superadministrator')){
             $userdata = User::all();
+
             return view('Administrator/dashboard',['users'=>$userdata]);
         }
         else if(Auth::user()->hasRole('seller')){

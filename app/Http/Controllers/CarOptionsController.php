@@ -44,17 +44,17 @@ class CarOptionsController extends Controller
                 'car_maker_name' => ['required', 'string', 'max:255', 'unique:car_makers'],
                 'car_maker_picture1' => ['required'],
             ]);
-      
+
             $CarMaker = new CarMaker();
             $CarMaker->car_maker_name = $request->car_maker_name;
 
             $idPictureName = $request->car_maker_name.'-picture.png';
             $filePicture = $request->car_maker_picture1;
-            $filePicture->move('Images/brands/', $idPictureName); 
+            $filePicture->move('Images/brands/', $idPictureName);
 
             $CarMaker->file_path_picture = 'Images/brands/'.$idPictureName;
             $CarMaker->save();
-       
+
             return redirect()->route('CarOptions')
                             ->with('success','Car Maker created successfully.');
         }
@@ -66,9 +66,9 @@ class CarOptionsController extends Controller
                 'car_maker_id' =>  ['required'],
                 'car_model_name' => ['required', 'string', 'max:255'],
             ]);
-      
+
             CarModel::create($request->all());
-       
+
             return redirect()->route('CarOptions')
                             ->with('success','Car Model created successfully.');
         }
@@ -79,9 +79,9 @@ class CarOptionsController extends Controller
             $request->validate([
                 'body_type_name' => ['required', 'string', 'max:255'],
             ]);
-      
+
             CarBodyType::create($request->all());
-       
+
             return redirect()->route('CarOptions')
                             ->with('success','Body Type created successfully.');
         }
@@ -92,9 +92,9 @@ class CarOptionsController extends Controller
             $request->validate([
                 'transmission_name' => ['required', 'string', 'max:255'],
             ]);
-      
+
             CarTransmission::create($request->all());
-       
+
             return redirect()->route('CarOptions')
                             ->with('success','Transmission created successfully.');
         }
@@ -105,16 +105,16 @@ class CarOptionsController extends Controller
             $request->validate([
                 'fuel_type_name' => ['required', 'string', 'max:255'],
             ]);
-      
+
             CarFuelType::create($request->all());
-       
+
             return redirect()->route('CarOptions')
                             ->with('success','Fuel Type created successfully.');
         }
 
 
-        
+
     }
 
-   
+
 }

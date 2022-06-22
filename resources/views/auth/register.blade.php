@@ -1,89 +1,77 @@
-<x-guest-layout>
-    <x-auth-card>
-        <x-slot name="logo">
-            <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-            </a>
-        </x-slot>
+<!--Register-Form -->
+<div class="modal fade" id="signupform" tabindex="-1">
+    <div class="modal-dialog modal-dialog-scrollable" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h3 class="modal-title">Sign Up</h3>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="signup_wrap">
+              <div class="col-md-6 col-sm-6">
+                <form method="POST" action="{{ route('register') }}">
+                    @csrf
 
-        <!-- Validation Errors -->
-        <x-auth-validation-errors class="mb-4" :errors="$errors" />
+                <!-- FirstName -->
+                  <div class="form-group">
+                    <input type="text" class="form-control" name="first_name" placeholder="First Name" :value="old('first_name')" required>
+                  </div>
 
-        <form method="POST" action="{{ route('register') }}">
-            @csrf
+                  <!-- LastName -->
+                  <div class="form-group">
+                    <input type="text" class="form-control" name="last_name" placeholder="Last Name" :value="old('last_name')" required >
+                  </div>
 
-            <!-- firstname -->
-            <div>
-                <x-label for="first_name" :value="__('First Name')" />
+                  <!-- Email -->
+                  <div class="form-group">
+                    <input type="email" class="form-control" name="email" placeholder="Email Address" :value="old('email')" required>
+                  </div>
 
-                <x-input id="first_name" class="block mt-1 w-full" type="text" name="first_name" :value="old('first_name')" required autofocus />
+                  <!-- Username -->
+                  <div class="form-group">
+                    <input type="text" class="form-control" name="username" placeholder="Username" :value="old('username')" required>
+                  </div>
+
+                  <!-- Mobile Number -->
+                  <div class="form-group mt-2 d-inline-block">
+                        <input type="tel" class="form-control" name="mobile_num" placeholder="(09051151125) format">
+                  </div>
+
+
+                  <!-- Password -->
+                  <div class="form-group">
+                    <input type="password" class="form-control" name="password" placeholder="Password" required autocomplete="password" >
+                  </div>
+
+                  <!--Confirm Password -->
+                  <div class="form-group">
+                    <input type="password" class="form-control" name="password_confirmation" placeholder="Confirm Password" :value="__('Confirm Password')" required>
+                  </div>
+
+                  <!--Role_ID -->
+                  <div class="form-group">
+                    <label for="role_id"></label>
+                    <select name="role_id" id="role_id" class="form-control" required>
+                        <option value="customer">Customer</option>
+                        <option value="seller">Seller</option>
+                    </select>
+                  </div>
+
+                <!--Submit form -->
+                  <div class="form-group">
+                    <input type="submit" value="Sign Up" class="btn btn-block">
+                  </div>
+                </form>
+              </div>
             </div>
+          </div>
+        </div>
+        <div class="modal-footer text-center">
+          <p>Already got an account? <a href="#loginform" data-toggle="modal" data-dismiss="modal">Login Here</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--/Register-Form -->
 
-            <!-- lastname -->
-            <div>
-                <x-label for="last_name" :value="__('Last Name')" />
-
-                <x-input id="last_name" class="block mt-1 w-full" type="text" name="last_name" :value="old('last_name')" required />
-            </div>
-
-            <!-- Mobile number -->
-            <div>
-                <x-label for="mobile_num" :value="__('Mobile Number')" />
-
-                <x-input id="mobile_num" class="block mt-1 w-full" type="number" name="mobile_num" :value="old('mobile_num')" required />
-            </div>
-
-            <!-- Username -->
-            <div class="mt-4">
-                <x-label for="username" :value="__('Username')" />
-
-                <x-input id="username" class="block mt-1 w-full" type="text" name="username" :value="old('username')" required />
-            </div>
-
-            <!-- Email Address -->
-            <div class="mt-4">
-                <x-label for="email" :value="__('Email')" />
-
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required />
-            </div>
-
-            <!-- Password -->
-            <div class="mt-4">
-                <x-label for="password" :value="__('Password')" />
-
-                <x-input id="password" class="block mt-1 w-full"
-                                type="password"
-                                name="password"
-                                required autocomplete="new-password" />
-            </div>
-
-            <!-- Confirm Password -->
-            <div class="mt-4">
-                <x-label for="password_confirmation" :value="__('Confirm Password')" />
-
-                <x-input id="password_confirmation" class="block mt-1 w-full"
-                                type="password"
-                                name="password_confirmation" required />
-            </div>
-
-            <div class="mt-4">
-                <x-label for="role_id" value="{{ __('Register as:') }}" />
-                <select name="role_id" class="block mt-1 w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
-                    <option value="superadministrator">Administrator</option>
-                    <option value="seller">Seller</option>
-                    <option value="customer">Customer</option>
-                </select>
-            </div>
-
-            <div class="flex items-center justify-end mt-4">
-                <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">
-                    {{ __('Already registered?') }}
-                </a>
-
-                <x-button class="ml-4">
-                    {{ __('Register') }}
-                </x-button>
-            </div>
-        </form>
-    </x-auth-card>
-</x-guest-layout>

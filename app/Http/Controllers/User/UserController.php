@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\Customer;
+namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\User;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
+use App\Models\User;
 
-class ProfileController extends Controller
+
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,8 +17,7 @@ class ProfileController extends Controller
      */
     public function index()
     {
-        $profile = Auth::user();
-        return view('Customer.profile', compact('profile'));
+
     }
 
     /**
@@ -48,10 +47,10 @@ class ProfileController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($user_id)
+    public function show($id)
     {
-        $user_id = Auth::User()->user_id;
-        return view('Customer.profile', compact('profile'));
+        $profile = User::where('id', $id)->first();
+        return view('profile.profile', compact('profile'));
     }
 
     /**
@@ -62,7 +61,8 @@ class ProfileController extends Controller
      */
     public function edit($id)
     {
-        //
+        $profile = User::where('id', $id)->first();
+        return view('profile.updatePassword', compact('profile'));
     }
 
     /**

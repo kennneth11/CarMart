@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CarOptionsController;
 use App\Http\Controllers\FrontEndController;
-use App\Http\Controllers\Customer\ProfileController;
+use App\Http\Controllers\User\UserController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -29,13 +29,14 @@ use App\Http\Controllers\Customer\ProfileController;
 //Visitors Route ---------------Start Line--------------------------------
 Route::get('/', [FrontEndController::class, 'index'])->name('index');
 Route::get('/about', [FrontEndController::class, 'about'])->name('about');
+Route::get('/contact', [FrontEndController::class, 'contact'])->name('contact');
 //Visitors Route ---------------End Line--------------------------------
 
 
 //both---------------Start Line--------------------------------
 Route::group(['middleware' => ['auth']], function() {
     Route::get('/dashboard', 'App\Http\Controllers\DashboardController@index')->name('dashboard');
-    Route::resource('/profile', ProfileController::class);
+    Route::resource('/profile', UserController::class);
 });
 //both---------------End Line--------------------------------
 

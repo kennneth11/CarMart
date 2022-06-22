@@ -118,11 +118,11 @@
       <div class="row">
         <div class="col-md-6 col-sm-6">
           <div class="team_member">
-            <div class="team_img"> <img src="assets/images/700x450.jpg" alt="image">
+            <div class="team_img"> <img src="assets/images/Julius.jpg" alt="image">
               <div class="team_more_info">
                 <div class="info_wrap">
-                  <p><span>Phone:</span> <a href="tel:+61-12134-567-89">+61-12134-567-89</a></p>
-                  <p><span>Email:</span> <a href="mailto:contact@example.com">contact@example.com</a></p>
+                  <p><span>Phone:</span> <a href="tel:+61-12134-567-89">+63-905123456</a></p>
+                  <p><span>Email:</span> <a href="mailto:contact@example.com">juliuskennbalendres@gmail.com</a></p>
                   <ul>
                     <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
                     <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
@@ -140,11 +140,11 @@
         </div>
         <div class="col-md-6 col-sm-6">
           <div class="team_member">
-            <div class="team_img"> <img src="assets/images/700x450.jpg" alt="image">
+            <div class="team_img"> <img src="assets/images/Ryan.jpg" alt="image">
               <div class="team_more_info">
                 <div class="info_wrap">
-                  <p><span>Phone:</span> <a href="tel:+61-12134-567-89">+61-12134-567-89</a></p>
-                  <p><span>Email:</span> <a href="mailto:contact@example.com">contact@example.com</a></p>
+                  <p><span>Phone:</span> <a href="tel:+61-12134-567-89">+63-9531548869</a></p>
+                  <p><span>Email:</span> <a href="mailto:contact@example.com">sioc.ryanjay@gmail.com</a></p>
                   <ul>
                     <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
                     <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>

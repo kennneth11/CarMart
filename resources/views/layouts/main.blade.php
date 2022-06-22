@@ -86,7 +86,7 @@
                 <ul class="dropdown-menu">
 
 
-                <li><a href="{{ route('profile.index')}}">Profile Settings</a></li>
+                <li><a href="{{ route('profile.show', Auth::id()) }}">Profile Settings</a></li>
 
                   @if (Auth::user()->hasRole('seller'))
                   <li><a href="my-vehicles.html">My Vehicles</a></li>
@@ -132,16 +132,7 @@
                 <li><a href="dealers-profile.html">Detail Page</a></li>
               </ul>
             </li>
-            <li class="dropdown"><a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Pages</a>
-              <ul class="dropdown-menu">
-                <li><a href="services.html">Services</a></li>
-                <li><a href="contact-us.html">Contact Us</a></li>
-                <li><a href="compare.html">Compare Vehicles</a></li>
-                <li><a href="faq.html">FAQ</a></li>
-                <li><a href="404.html">404 Error</a></li>
-                <li><a href="coming-soon.html">Coming Soon</a></li>
-              </ul>
-            </li>
+            <li><a href="{{ url('/contact')}}">Contact Us</a>
             <li class="dropdown"><a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">News</a>
               <ul class="dropdown-menu">
                 <li><a href="blog-left-sidebar.html">Blog Left Sidebar</a></li>
@@ -161,27 +152,6 @@
     <!--Insert Banner on the index.blade.php  -->
 
 @yield('content')
-
-<!--Brands-->
-<section class="brand-section gray-bg">
-    <div class="container">
-      <div class="brand-hadding">
-        <h5>Popular Brands</h5>
-      </div>
-      <div class="brand-logo-list">
-        <div id="popular_brands">
-          <div><a href="#"><img src="assets/images/100x60.png" class="img-responsive" alt="image"></a></div>
-          <div><a href="#"><img src="assets/images/100x60.png" class="img-responsive" alt="image"></a></div>
-          <div><a href="#"><img src="assets/images/100x60.png" class="img-responsive" alt="image"></a></div>
-          <div><a href="#"><img src="assets/images/100x60.png" class="img-responsive" alt="image"></a></div>
-          <div><a href="#"><img src="assets/images/100x60.png" class="img-responsive" alt="image"></a></div>
-          <div><a href="#"><img src="assets/images/100x60.png" class="img-responsive" alt="image"></a></div>
-          <div><a href="#"><img src="assets/images/100x60.png" class="img-responsive" alt="image"></a></div>
-        </div>
-      </div>
-    </div>
-  </section>
-  <!-- /Brands-->
 
   <!--Footer -->
   <footer>
@@ -249,6 +219,37 @@
 <!--Slider-JS-->
 <script src="{{ asset('assets/js/slick.min.js') }}"></script>
 <script src="{{ asset('assets/js/owl.carousel.min.js') }}"></script>
+
+
+<script src="{{ asset('assets/js/jquery.ph-locations.js') }}"></script>
+
+<script type="text/javascript">
+        var my_handlers = {
+
+            fill_cities: function(){
+
+                var province_code = $(this).val();
+                $('#city').ph_locations( 'fetch_list', [{"province_code": 1013}]);
+            },
+
+            fill_barangays: function(){
+
+                var city_code = $(this).val();
+                $('#barangay').ph_locations('fetch_list', [{"city_code": city_code}]);
+            }
+            };
+
+            $(function(){
+
+            $('#city').on('change', my_handlers.fill_barangays);
+
+            $('#city').ph_locations({'location_type': 'cities'});
+            $('#barangay').ph_locations({'location_type': 'barangays'});
+
+            $('#city').ph_locations('fetch_list', [{"province_code": 1013}]);
+            });
+</script>
+
 
 </body>
 </html>
