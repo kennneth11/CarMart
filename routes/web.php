@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CarOptionsController;
 use App\Http\Controllers\FrontEndController;
 use App\Http\Controllers\User\UserController;
+use App\Http\Controllers\EmailController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -29,7 +30,7 @@ use App\Http\Controllers\User\UserController;
 //Visitors Route ---------------Start Line--------------------------------
 Route::get('/', [FrontEndController::class, 'index'])->name('index');
 Route::get('/about', [FrontEndController::class, 'about'])->name('about');
-Route::get('/contact', [FrontEndController::class, 'contact'])->name('contact');
+Route::get('/email', [EmailController::class, 'create']);
 //Visitors Route ---------------End Line--------------------------------
 
 
@@ -37,6 +38,7 @@ Route::get('/contact', [FrontEndController::class, 'contact'])->name('contact');
 Route::group(['middleware' => ['auth']], function() {
     Route::get('/dashboard', 'App\Http\Controllers\DashboardController@index')->name('dashboard');
     Route::resource('/profile', UserController::class);
+    Route::post('/email', [EmailController::class, 'sendEmail'])->name('send.email');
 });
 //both---------------End Line--------------------------------
 

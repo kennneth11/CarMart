@@ -46,7 +46,7 @@
 
                   <!--city-->
                   <div class="form-group">
-                    <label for="city">City</label>
+                    <label for="city">City/Municipality</label>
                     <select name="city" id="city" class="form-control">
                         <option value="">Please select a city</option>
                     </select>
