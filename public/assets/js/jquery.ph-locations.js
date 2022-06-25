@@ -16,7 +16,9 @@
                 location_type : "city", // what data this control supposed to display? regions, provinces, cities or barangays?,
 				api_base_url: 'https://ph-locations-api.buonzz.com/',
 				order: "name asc",
-				filter: {}
+				filter: {
+                    options: 'string'
+                }
             };
 
 		// plugin constructor
@@ -72,7 +74,6 @@
 					shtml +=  params.data[i].name ;
 					shtml += '</option>';
 				}
-
 				return shtml
 			}
 

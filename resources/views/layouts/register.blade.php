@@ -1,5 +1,4 @@
 <!--Register-Form -->
-
 <div class="modal fade" id="signupform" tabindex="-1">
     <div class="modal-dialog modal-dialog-scrollable" role="document">
       <div class="modal-content">
@@ -41,7 +40,7 @@
                   <!-- Mobile Number -->
                   <div class="form-group">
                         <label for="mobile_num">Phone number</label>
-                        <input type="tel" class="form-control" name="mobile_num" placeholder="Ex. 09051151125" :value="old('mobile_num')">
+                        <input type="text" maxlength = "11" class="form-control" name="mobile_num" placeholder="Ex. 09051151125" onkeyup="numberformat(this);" :value="old('mobile_num')">
                   </div>
 
                   <!--city-->
@@ -103,3 +102,10 @@
     </div>
   </div>
   <!--/Register-Form -->
+
+  <script type="text/javascript">
+    function numberformat(input){
+        var num = /[^0-9]/gi;
+        input.value = input.value.replace(num,"");
+    }
+  </script>
