@@ -3646,8 +3646,6 @@ table.info-tabel tr td {
   width: 28%;
 }
 .upload_newlogo {
-  background-color: rgba(0, 0, 0, 0.8);
-  background-image: url("../images/change_logo.png");
   background-position: center center;
   background-repeat: no-repeat;
   height: 100%;

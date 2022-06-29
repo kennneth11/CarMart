@@ -42,6 +42,7 @@ class RegisteredUserController extends Controller
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
             'city' => ['required', 'string', 'max:255'],
             'barangay' => ['required', 'string', 'max:255'],
+            'avatar' => ['sometimes','image', 'mimes:jpg,jpeg,bmp,svg,png', 'max:5000'],
         ]);
 
         $user = User::create([

@@ -46,16 +46,13 @@
                   <!--city-->
                   <div class="form-group">
                     <label for="city">City/Municipality</label>
-                    <select name="city" id="city" class="form-control">
-                        <option value="">Please select a city</option>
+                    <input type="hidden"  name="city"/>
+                    <select id="city" class="form-control">
                     </select>
-
-
                   <!--Baranggay-->
-
                     <label for="barangay">Barangay</label>
-                    <select name="barangay" id="barangay" class="form-control">
-
+                    <input type="hidden"  name="barangay"/>
+                    <select id="barangay" class="form-control">
                     </select>
                   </div>
 
@@ -103,9 +100,30 @@
   </div>
   <!--/Register-Form -->
 
+  <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
   <script type="text/javascript">
     function numberformat(input){
         var num = /[^0-9]/gi;
         input.value = input.value.replace(num,"");
     }
+    //function city(val){
+      // var select_city = $('#city option:selected').text();
+      //console.log(val);
+    //}
+    //$(function(){
+
+
+    //});
+
+    $('#city').change(function(){
+         var select_city = $('#city :selected').text();
+        $('input[name=city]').val(select_city);
+    });
+
+    $('#barangay').change(function(){
+         var select_barangay = $('#barangay :selected').text();
+        $('input[name=barangay]').val(select_barangay);
+    });
+
+    //
   </script>

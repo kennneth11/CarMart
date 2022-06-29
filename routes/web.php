@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CarOptionsController;
 use App\Http\Controllers\FrontEndController;
 use App\Http\Controllers\User\UserController;
+use App\Http\Controllers\User\AvatarController;
 use App\Http\Controllers\EmailController;
 /*
 |--------------------------------------------------------------------------
@@ -39,6 +40,9 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('/dashboard', 'App\Http\Controllers\DashboardController@index')->name('dashboard');
     Route::resource('/profile', UserController::class);
     Route::post('/email', [EmailController::class, 'sendEmail'])->name('send.email');
+    Route::get('/index', 'App\Http\Controllers\User\AvatarController@index')->name('upload.home');
+    Route::post('/upload', 'App\Http\Controllers\User\AvatarController@upload')->name('upload.avatar');
+
 });
 //both---------------End Line--------------------------------
 

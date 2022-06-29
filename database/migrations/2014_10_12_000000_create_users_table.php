@@ -20,8 +20,8 @@ return new class extends Migration
             $table->string('username');
             $table->string('mobile_num')->nullable();
             $table->string('email')->unique();
+            $table->string('avatar')->default('/userProfiles/profile.png');
             $table->timestamp('email_verified_at')->nullable();
-            $table->timestamp('date_joined')->nullable();
             $table->string('city');
             $table->string('barangay');
             $table->text('purok');
