@@ -14,7 +14,7 @@
                 <!--First Name-->
                 <div class="form-group">
                     <label class="control-label">First Name</label>
-                    <input type="text" name="first_name" class="form-control @error('first_name') is-invalid @enderror" value="{{ Auth::user()->first_name }}" name="first_name">
+                    <input type="text" name="first_name" class="form-control @error('first_name') is-invalid @enderror" value="{{ Auth::user()->first_name }}">
                         @error('first_name')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -24,7 +24,7 @@
                <!--Last Name-->
                 <div class="form-group">
                     <label class="control-label">Last Name</label>
-                    <input type="text" name="last_name" class="form-control @error('last_name') is-invalid @enderror" value="{{ Auth::user()->last_name }}" name="last_name">
+                    <input type="text" name="last_name" class="form-control @error('last_name') is-invalid @enderror" value="{{ Auth::user()->last_name }}">
                         @error('last_name')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -34,7 +34,7 @@
                <!--Username-->
                 <div class="form-group">
                     <label class="control-label">Username</label>
-                    <input type="text" name="username" class="form-control @error('username') is-invalid @enderror" value="{{ Auth::user()->username }}" name="username">
+                    <input type="text" name="username" class="form-control @error('username') is-invalid @enderror" value="{{ Auth::user()->username }}">
                         @error('username')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -44,7 +44,7 @@
                <!--Email-->
                 <div class="form-group">
                     <label class="control-label">Email Address</label>
-                    <input type="text" name="email" class="form-control @error('email') is-invalid @enderror" value="{{ Auth::user()->email }}" name="email">
+                    <input type="text" name="email" class="form-control @error('email') is-invalid @enderror" value="{{ Auth::user()->email }}">
                         @error('email')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -54,8 +54,8 @@
                <!--Phone Number-->
                 <div class="form-group">
                     <label class="control-label">Phone Number</label>
-                    <input type="text" name="mobile_num" class="form-control @error('mobile_num') is-invalid @enderror" onkeyup="numberformat(this);" value="{{ Auth::user()->mobile_num }}" name="mobile_num">
-                        @error('email')
+                    <input type="text" name="mobile_num" class="form-control @error('mobile_num') is-invalid @enderror" onkeyup="numberformat(this);" value="{{ Auth::user()->mobile_num }}">
+                        @error('mobile_num')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>

@@ -6,6 +6,7 @@ use App\Http\Controllers\FrontEndController;
 use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\User\AvatarController;
 use App\Http\Controllers\EmailController;
+use App\Http\Controllers\User\MoreSettingController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -42,6 +43,8 @@ Route::group(['middleware' => ['auth']], function() {
     Route::post('/email', [EmailController::class, 'sendEmail'])->name('send.email');
     Route::get('/index', 'App\Http\Controllers\User\AvatarController@index')->name('upload.home');
     Route::post('/upload', 'App\Http\Controllers\User\AvatarController@upload')->name('upload.avatar');
+    Route::get('/changePassword', 'App\Http\Controllers\User\MoreSettingController@changePassword')->name('changePassword');
+    Route::post('/updatePassword', 'App\Http\Controllers\User\MoreSettingController@updatePassword')->name('updatePassword');
 
 });
 //both---------------End Line--------------------------------

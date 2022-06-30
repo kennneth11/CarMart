@@ -75,6 +75,14 @@ class UserController extends Controller
      */
     public function update(Request $request)
     {
+        $this->validate($request,[
+            'first_name' => [ 'string', ],
+            'last_name' => [ 'string', ],
+            'mobile_num' => ['string'],
+            'username' => ['string'],
+            'email' => ['string', 'email'],
+        ]);
+
         $user_id = Auth::user()->id;
         $user = User::findOrFail($user_id);
 

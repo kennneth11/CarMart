@@ -43,7 +43,7 @@ class AvatarController extends Controller
 
         $user->save();
         Alert::success('Success', 'You\'ve Successfully Updated Profile Picture');
-        return redirect()->back();
-           //->with('success', 'Successfully updated profile picture');
+        return redirect()->back()
+           ->with('success', 'Successfully updated profile picture');
     }
 }
