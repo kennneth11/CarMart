@@ -5,7 +5,7 @@
 <section class="user_profile inner_pages">
     <div class="container">
       <div class="user_profile_info gray-bg padding_4x4_40">
-            <div class="upload_user_logo"> <img src="{{ asset(Auth::user()->avatar) }}" alt="image">
+            <div class="upload_user_logo"> <img src="{{ asset('userProfiles/'.Auth::user()->avatar) }}" alt="image">
             <div class="upload_newlogo">
                 <input name="avatar" type="file">
             </div>

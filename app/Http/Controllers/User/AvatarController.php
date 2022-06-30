@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use RealRashid\SweetAlert\Facades\Alert;
+use File;
 
 class AvatarController extends Controller
 {
@@ -22,19 +24,26 @@ class AvatarController extends Controller
 
     public function upload(Request $request)
     {
-        $request->validate([
-            'avatar' => ['required','image', 'mimes:jpg,jpeg,bmp,svg,png', 'max:5000'],
-        ]);
 
-        $user = Auth::user();
-        $avataruploaded = $request->file('avatar');
-        $avatarname = $user->id.'_avatar'.time(). '.'. $avataruploaded->getClientOriginalExtension();
-        $avatarpath = public_path('/userProfiles/');
-        $avataruploaded->move($avatarpath, $avatarname);
-        $user->$avataruploaded = $avatarname;
+        $user_id = Auth::user()->id;
+        $user = User::findOrFail($user_id);
+
+        if($request->hasfile('avatar')){
+            $destination = 'userProfiles/'.$user->avatar;
+            if(File::exists($destination)){
+                File::delete($destination);
+            }
+
+            $file = $request->file('avatar');
+            $extension = $file->getClientOriginalExtension();
+            $filename = $user_id. '_avatar'.time(). '.' . $extension;
+            $file->move('userProfiles/', $filename);
+            $user->avatar = $filename;
+        }
+
         $user->save();
-
-        return redirect()->back()
-            ->with('success', 'Successfully updated profile picture');
+        Alert::success('Success', 'You\'ve Successfully Updated Profile Picture');
+        return redirect()->back();
+           //->with('success', 'Successfully updated profile picture');
     }
 }

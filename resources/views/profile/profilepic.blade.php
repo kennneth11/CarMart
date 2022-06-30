@@ -2,16 +2,16 @@
 
 @section('contentNav')
           <div class="profile_wrap">
-            <form action="{{route('upload.avatar')}}" method="POST">
+            <form action="{{route('upload.avatar')}}" method="POST" enctype="multipart/form-data">
                 @csrf
             <h5 class="uppercase underline">Update Profile Picture</h5>
 
                <!--Specific address-->
                <div class="form-group">
                 <label class="control-label">Upload new image</label>
-                <input type="file" name="avatar" class="form-control @error('fullname') is-invalid @enderror">
-                    @error('password')
-                        <span class="invalid-feedback" role="alert">
+                <input type="file" name="avatar" class="form-control @error('avatar') is-invalid @enderror">
+                    @error('avatar')
+                        <span class="invalid-feedback" role="alert" style="color: red;">
                             <strong>{{ $message }}</strong>
                         </span>
                     @enderror
