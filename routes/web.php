@@ -4,6 +4,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CarOptionsController;
 use App\Http\Controllers\FrontEndController;
 use App\Http\Controllers\User\UserController;
+use App\Http\Controllers\User\AvatarController;
+use App\Http\Controllers\EmailController;
+use App\Http\Controllers\User\MoreSettingController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -29,8 +32,12 @@ use App\Http\Controllers\User\UserController;
 //Visitors Route ---------------Start Line--------------------------------
 Route::get('/', [FrontEndController::class, 'index'])->name('index');
 Route::get('/about', [FrontEndController::class, 'about'])->name('about');
+<<<<<<< HEAD
 Route::get('/contact', [FrontEndController::class, 'contact'])->name('contact');
 
+=======
+Route::get('/email', [EmailController::class, 'create']);
+>>>>>>> 6d84ae2d252de98d8d32a2017eea266b82e73735
 //Visitors Route ---------------End Line--------------------------------
 
 
@@ -38,6 +45,12 @@ Route::get('/contact', [FrontEndController::class, 'contact'])->name('contact');
 Route::group(['middleware' => ['auth']], function() {
     Route::get('/dashboard', 'App\Http\Controllers\DashboardController@index')->name('dashboard');
     Route::resource('/profile', UserController::class);
+    Route::post('/email', [EmailController::class, 'sendEmail'])->name('send.email');
+    Route::get('/index', 'App\Http\Controllers\User\AvatarController@index')->name('upload.home');
+    Route::post('/upload', 'App\Http\Controllers\User\AvatarController@upload')->name('upload.avatar');
+    Route::get('/changePassword', 'App\Http\Controllers\User\MoreSettingController@changePassword')->name('changePassword');
+    Route::post('/updatePassword', 'App\Http\Controllers\User\MoreSettingController@updatePassword')->name('updatePassword');
+
 });
 //both---------------End Line--------------------------------
 

@@ -1,68 +1,45 @@
-@extends('layouts.main')
+@extends('layouts.profile-sidebar')
 
-@section('content')
+@section('contentNav')
 <!--Profile-setting-->
-<section class="user_profile inner_pages">
-    <div class="container">
-      <div class="user_profile_info gray-bg padding_4x4_40">
-        <div class="upload_user_logo"> <img src="assets/images/222x172.jpg" alt="image">
-          <div class="upload_newlogo">
-            <input name="upload" type="file">
-          </div>
-        </div>
-        <div class="dealer_info">
-          <h5>Autospot Used Cars Center </h5>
-          <p>P.1225 N Broadway Ave <br>
-            Oklahoma City, OK  1234-5678-090</p>
-        </div>
-      </div>
-      <div class="row">
-        <!--Sidebar separate file-->
-
-        <div class="col-md-3 col-sm-3">
-            <div class="profile_nav">
-            <ul>
-                <li><a href="{{ route('profile.show', Auth::id()) }}">Profile Settings</a></li>
-                @if (Auth::user()->hasRole('seller'))
-                <li><a href="my-vehicles.html">My Vehicles</a></li>
-                <li><a href="post-vehicle.html">Post a Vehicles</a></li>
-                @endif
-                <li class="active"><a href="">Update Password</a></li>
-                <li><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Sign Out</a></li>
-                    <form id="logout-form" method="POST" action="{{ route('logout') }}">
-                        @csrf
-                    </form>
-            </ul>
-            </div>
-        </div>
 
         <div class="col-md-6 col-sm-8">
           <div class="profile_wrap">
-            <h5 class="uppercase underline">General Settings</h5>
+            <h5 class="uppercase underline">Update Password</h5>
 
-            <form action="{{ route('profile.update', $profile->id) }}" method="GET">
+            <form action="{{route('updatePassword')}}" method="POST">
                @csrf
-              <div class="form-group">
-                <label class="control-label">Current Password</label>
-                <input type="password" name="current-password" class="form-control" required>
-              </div>
-              <div class="form-group">
-                <label class="control-label">New Password</label>
-                <input type="password" name="password" class="form-control">
-
-              </div>
-              <div class="form-group">
-                <label class="control-label">Confirm Password</label>
-                <input type="password" name="password-confirmation" class="form-control" required>
-
-              <div class="form-group">
+                <div class="form-group">
+                    <label class="control-label">Current Password</label>
+                    <input type="password" name="current_password" class="form-control @error('current_password') is-invalid @enderror" :value="old('current_password') required>
+                        @error('current_password')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                </div>
+                <div class="form-group">
+                    <label class="control-label">New Password</label>
+                    <input type="password" name="new_password" class="form-control @error('new_password') is-invalid @enderror" :value="old('new_password')>
+                        @error('new_password')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Confirm Password</label>
+                    <input type="password" name="password_confirmation" class="form-control @error('password_confirmation') is-invalid @enderror" :value="old('password_confirmation') required>
+                        @error('password_confirmation')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                <div class="form-group">
                 <button type="submit" class="btn">Update Password<span class="angle_arrow"><i class="fa fa-angle-right" aria-hidden="true"></i></span></button>
               </div>
             </form>
           </div>
         </div>
-      </div>
-    </div>
-  </section>
   <!--/Profile-setting-->
 @endsection

@@ -26,22 +26,48 @@
         <div class="col-md-6">
           <h3>Get in touch using the form below</h3>
           <div class="contact_form gray-bg">
-            <form action="#" method="get">
+            <form action="{{ route('send.email') }}" method="POST">
+                @csrf
+                    @if(session()->has('message'))
+                        <div class="alert alert-success">
+                        {{ session()->get('message') }}
+                     @endif
               <div class="form-group">
                 <label class="control-label">Full Name <span>*</span></label>
-                <input type="text" class="form-control white_bg" id="fullname">
+                <input type="text" class="form-control @error('fullname') is-invalid @enderror" name="fullname" id="fullname">
+                    @error('fullname')
+                        <span class="text-danger"> {{ $message }} </span>
+                    @enderror
               </div>
               <div class="form-group">
                 <label class="control-label">Email Address <span>*</span></label>
-                <input type="email" class="form-control white_bg" id="emailaddress">
+                <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" id="email">
+                    @error('email')
+                        <span class="text-danger"> {{ $message }} </span>
+                    @enderror
               </div>
               <div class="form-group">
                 <label class="control-label">Phone Number <span>*</span></label>
-                <input type="text" class="form-control white_bg" id="phonenumber">
+                <input type="text" class="form-control @error('phone') is-invalid @enderror" name="phone" id="phone">
+                    @error('phone')
+                        <span class="text-danger"> {{ $message }} </span>
+                    @enderror
               </div>
+
+              <div class="form-group">
+                <label class="control-label">Subject <span>*</span></label>
+                <input type="text" class="form-control @error('subject') is-invalid @enderror" name="subject" >
+                    @error('message')
+                        <span class="text-danger"> {{ $message }} </span>
+                    @enderror
+              </div>
+
               <div class="form-group">
                 <label class="control-label">Message <span>*</span></label>
-                <textarea class="form-control white_bg" rows="4"></textarea>
+                <textarea class="form-control @error('content') is-invalid @enderror" name="content" rows="4"></textarea>
+                    @error('content')
+                        <span class="text-danger"> {{ $message }} </span>
+                    @enderror
               </div>
               <div class="form-group">
                 <button class="btn" type="submit">Send Message <span class="angle_arrow"><i class="fa fa-angle-right" aria-hidden="true"></i></span></button>
@@ -55,15 +81,15 @@
             <ul>
               <li>
                 <div class="icon_wrap"><i class="fa fa-map-marker" aria-hidden="true"></i></div>
-                <div class="contact_info_m">PO Box 1025MNO Collins Street West Victoria 8007 Australia</div>
+                <div class="contact_info_m">Valencia City, Bukidnon</div>
               </li>
               <li>
                 <div class="icon_wrap"><i class="fa fa-phone" aria-hidden="true"></i></div>
-                <div class="contact_info_m"><a href="tel:61-1234-567-90">+61-123-456-789</a></div>
+                <div class="contact_info_m"><a href="tel:61-1234-567-90">+63-9531548869</a></div>
               </li>
               <li>
                 <div class="icon_wrap"><i class="fa fa-envelope-o" aria-hidden="true"></i></div>
-                <div class="contact_info_m"><a href="mailto:contact@exampleurl.com">contact@exampleurl.com</a></div>
+                <div class="contact_info_m"><a href="mailto:contact@exampleurl.com">carmartbuk.business@gmail.com</a></div>
               </li>
             </ul>
             <div class="map_wrap">

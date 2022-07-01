@@ -1,5 +1,4 @@
 <!--Register-Form -->
-
 <div class="modal fade" id="signupform" tabindex="-1">
     <div class="modal-dialog modal-dialog-scrollable" role="document">
       <div class="modal-content">
@@ -41,22 +40,19 @@
                   <!-- Mobile Number -->
                   <div class="form-group">
                         <label for="mobile_num">Phone number</label>
-                        <input type="tel" class="form-control" name="mobile_num" placeholder="Ex. 09051151125" :value="old('mobile_num')">
+                        <input type="text" maxlength = "11" class="form-control" name="mobile_num" placeholder="Ex. 09051151125" onkeyup="numberformat(this);" :value="old('mobile_num')">
                   </div>
 
                   <!--city-->
                   <div class="form-group">
-                    <label for="city">City</label>
-                    <select name="city" id="city" class="form-control">
-                        <option value="">Please select a city</option>
+                    <label for="city">City/Municipality</label>
+                    <input type="hidden"  name="city"/>
+                    <select id="city" class="form-control">
                     </select>
-
-
                   <!--Baranggay-->
-
                     <label for="barangay">Barangay</label>
-                    <select name="barangay" id="barangay" class="form-control">
-
+                    <input type="hidden"  name="barangay"/>
+                    <select id="barangay" class="form-control">
                     </select>
                   </div>
 
@@ -103,3 +99,31 @@
     </div>
   </div>
   <!--/Register-Form -->
+
+  <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
+  <script type="text/javascript">
+    function numberformat(input){
+        var num = /[^0-9]/gi;
+        input.value = input.value.replace(num,"");
+    }
+    //function city(val){
+      // var select_city = $('#city option:selected').text();
+      //console.log(val);
+    //}
+    //$(function(){
+
+
+    //});
+
+    $('#city').change(function(){
+         var select_city = $('#city :selected').text();
+        $('input[name=city]').val(select_city);
+    });
+
+    $('#barangay').change(function(){
+         var select_barangay = $('#barangay :selected').text();
+        $('input[name=barangay]').val(select_barangay);
+    });
+
+    //
+  </script>

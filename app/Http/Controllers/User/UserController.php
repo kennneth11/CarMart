@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use RealRashid\SweetAlert\Facades\Alert;
 
 
 class UserController extends Controller
@@ -72,9 +73,30 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $this->validate($request,[
+            'first_name' => [ 'string', ],
+            'last_name' => [ 'string', ],
+            'mobile_num' => ['string'],
+            'username' => ['string'],
+            'email' => ['string', 'email'],
+        ]);
+
+        $user_id = Auth::user()->id;
+        $user = User::findOrFail($user_id);
+
+        $user->first_name = $request->input('first_name');
+        $user->last_name = $request->input('last_name');
+        $user->username = $request->input('username');
+        $user->email = $request->input('email');
+        $user->mobile_num = $request->input('mobile_num');
+        $user->save();
+        Alert::success('Success', 'You\'ve Successfully Updated Profile');
+
+        return redirect()->back();
+            //->with('success', 'Successfully updated profile');
+
     }
 
     /**

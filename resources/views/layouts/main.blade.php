@@ -45,6 +45,7 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
 </head>
+
 <body>
 
 <!--Header-->
@@ -132,7 +133,7 @@
                 <li><a href="dealers-profile.html">Detail Page</a></li>
               </ul>
             </li>
-            <li><a href="{{ url('/contact')}}">Contact Us</a>
+            <li><a href="{{ url('email') }}">Contact Us</a>
             <li class="dropdown"><a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">News</a>
               <ul class="dropdown-menu">
                 <li><a href="blog-left-sidebar.html">Blog Left Sidebar</a></li>
@@ -208,8 +209,18 @@
   <!--Back to top-->
   <div id="back-top" class="back-top"> <a href="#top"><i class="fa fa-angle-up" aria-hidden="true"></i> </a> </div>
   <!--/Back to top-->
+
+  <!--Sweet Alert Inclusion-->
+  @include('sweetalert::alert')
+  <!--/Sweet Alert Inclusion-->
+
+  <!--Login Modal-->
   @include('layouts.login')
+  <!--/Login Modal-->
+
+  <!--Register Modal-->
   @include('layouts.register')
+  <!--/Register Modal-->
 
 <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
 <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
