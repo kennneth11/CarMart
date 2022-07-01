@@ -22,11 +22,9 @@
         <div class="col-md-3 col-sm-3">
             <div class="profile_nav">
             <ul>
-<<<<<<< HEAD
-                <li class="@if(str_contains(URL::current(), 'profile')) active @endif "><a href="{{ route('profile.show', Auth::id()) }}">Profile Settings</a></li>
-=======
+
                 <li class="@if(str_contains(URL::current(),'profile/')) active @endif"><a href="{{ route('profile.show', Auth::id()) }}">General Settings</a></li>
->>>>>>> 6d84ae2d252de98d8d32a2017eea266b82e73735
+
                 @if (Auth::user()->hasRole('seller'))
                 <li class="@if(str_contains(URL::current(), 'My-Cars')) active @endif "><a href="{{ route('My-Cars') }}">My Vehicles</a></li>
                 <li class="@if(str_contains(URL::current(), 'Post-Car')) active @endif "><a href="{{ route('Post-Car') }}">Post a Vehicles</a></li>
