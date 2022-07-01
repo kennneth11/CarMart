@@ -77,7 +77,7 @@
                 </select>
 <<<<<<< HEAD
               </div>
-              
+
 =======
                     @error('city')
                         <span class="invalid-feedback" role="alert">
