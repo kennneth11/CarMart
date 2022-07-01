@@ -89,8 +89,8 @@
                 <li><a href="{{ route('profile.show', Auth::id()) }}">Profile Settings</a></li>
 
                   @if (Auth::user()->hasRole('seller'))
-                  <li><a href="my-vehicles.html">My Vehicles</a></li>
-                  <li><a href="post-vehicle.html">Post a Vehicle</a></li>
+                  <li><a href="{{ route('My-Cars') }}">My Vehicles</a></li>
+                  <li><a href="{{ route('Post-Car') }}">Post a Vehicle</a></li>
                   @endif
                   <li><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Sign Out</a></li>
                       <form id="logout-form" method="POST" action="{{ route('logout') }}">

@@ -68,7 +68,7 @@
 				var shtml = "";
 
 				for(var i=0; i<params.data.length;i++){
-					shtml += '<option value="' + params.data[i].id + '">';
+					shtml += '<option id="' +  params.data[i].id + '" value="' + params.data[i].id + '">';
 					shtml +=  params.data[i].name ;
 					shtml += '</option>';
 				}

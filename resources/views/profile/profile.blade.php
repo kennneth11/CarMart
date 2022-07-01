@@ -36,12 +36,15 @@
                     <h6>Update Address</h6>
               </div>
                <!--City-->
+               <div id="myCity">{{ Auth::user()->city}}</div>
+
               <div class="form-group">
                 <label class="control-label">City</label>
                 <select name="city" id="city" class="form-control" >
                     <option value="{{ Auth::user()->city}}" selected></option>
                 </select>
               </div>
+              
                <!--Barangay-->
               <div class="form-group">
                 <label class="control-label">Barangay</label>

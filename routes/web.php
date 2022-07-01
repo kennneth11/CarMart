@@ -30,6 +30,7 @@ use App\Http\Controllers\User\UserController;
 Route::get('/', [FrontEndController::class, 'index'])->name('index');
 Route::get('/about', [FrontEndController::class, 'about'])->name('about');
 Route::get('/contact', [FrontEndController::class, 'contact'])->name('contact');
+
 //Visitors Route ---------------End Line--------------------------------
 
 
@@ -51,7 +52,8 @@ Route::group(['middleware' => ['auth', 'role:superadministrator']], function() {
 
 //seller ---------------Start Line--------------------------------
 Route::group(['middleware' => ['auth', 'role:seller']], function() {
-
+    Route::get('/My-Cars', 'App\Http\Controllers\CarController@viewMyCar')->name('My-Cars');
+    Route::get('/Post-Car', 'App\Http\Controllers\CarController@viewPostCar')->name('Post-Car');
 });
 //seller ---------------End Line--------------------------------
 
