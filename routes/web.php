@@ -32,12 +32,8 @@ use App\Http\Controllers\User\MoreSettingController;
 //Visitors Route ---------------Start Line--------------------------------
 Route::get('/', [FrontEndController::class, 'index'])->name('index');
 Route::get('/about', [FrontEndController::class, 'about'])->name('about');
-<<<<<<< HEAD
 Route::get('/contact', [FrontEndController::class, 'contact'])->name('contact');
 
-=======
-Route::get('/email', [EmailController::class, 'create']);
->>>>>>> 6d84ae2d252de98d8d32a2017eea266b82e73735
 //Visitors Route ---------------End Line--------------------------------
 
 
