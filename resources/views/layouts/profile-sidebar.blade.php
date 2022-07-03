@@ -11,7 +11,7 @@
             </div>
             </div>
         <div class="dealer_info">
-          <h5>{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</h5>
+          <h5>{{ Auth::user()->first_name }} {{ Auth::user()->last_name}}</h5>
           <p>{{ Auth::user()->purok }}</p><br>
           <p>{{ Auth::user()->city }}</p>{{ Auth::user()->barangay }}
         </div>
