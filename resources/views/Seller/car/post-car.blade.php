@@ -3,186 +3,162 @@
 @section('contentNav')
         <div class="profile_wrap">
             <h5 class="uppercase underline">Post a New Vehicle</h5>
-            <form action="#" method="get">
+            <form method="POST" action="{{ route('Stor-Car') }}" enctype="multipart/form-data">
+                @csrf
                 <div class="form-group">
-                <label class="control-label">Vehicles Title</label>
-                <input class="form-control white_bg" id="VehiclesTitle" type="text">
-                </div>
-                <div class="form-group">
-                <label class="control-label">Select Make</label>
-                <div class="select">
-                    <select class="form-control white_bg">
-                    <option>Select Brand</option>
-                    <option>Brand 1</option>
-                    <option>Brand 2</option>
-                    <option>Brand 3</option>
-                    <option>Brand 4</option>
-                    </select>
-                </div>
-                </div>
-                <div class="form-group">
-                <label class="control-label">Model</label>
-                <div class="select">
-                    <select class="form-control white_bg">
-                    <option>Select Model</option>
-                    <option>Model 2</option>
-                    <option>Model 3</option>
-                    <option>Model 4</option>
-                    </select>
-                </div>
-                </div>
-                <div class="form-group">
-                <label class="control-label">Vehicles Version</label>
-                <div class="select">
-                    <select class="form-control white_bg">
-                    <option>Version</option>
-                    <option>Version 1.1</option>
-                    <option>Version 1.2</option>
-                    </select>
-                </div>
-                </div>
-                <div class="form-group">
-                <label class="control-label">Vehicle Overview  Description</label>
-                <textarea class="form-control white_bg" rows="4"></textarea>
-                </div>
-                <div class="form-group">
-                <label class="control-label">Price ($)</label>
-                <input class="form-control white_bg" id="Price" type="text">
-                </div>
-                <div class="form-group">
-                <label class="control-label">Upload Images  ( size = 900 x 560 )</label>
-                <div class="vehicle_images">
-                    <div><img src="assets/images/900x560.jpg" alt="image"></div>
-                    <div><img src="assets/images/900x560.jpg" alt="image"></div>
-                    <div class="upload_more_img">
-                    <input name="upload" type="file">
+                    <label class="control-label">Select Maker</label>
+                    <div class="select">
+                        <select name="car_maker_id" onchange="getMaker(this)" class="form-control white_bg" required>
+                            <option >Select Brand</option>
+                            @foreach($carMakers as $carMaker)
+                                <option value="{{$carMaker->car_maker_id}}">{{ ucfirst($carMaker->car_maker_name)}}</option>
+                            @endforeach
+                        </select>
                     </div>
                 </div>
+                <div class="form-group">
+                    <label class="control-label">Model</label>
+                    <div class="select">
+                        <select name="car_model_id"  class="form-control white_bg" required>
+                            <option>Select Model</option>
+                            @foreach($carModels as $carModel)
+                                <option style="display:none" class="model-options {{$carModel->car_maker_id}}" value="{{$carModel->car_model_id}}">{{ ucfirst($carModel->car_model_name) }}</option>
+                            @endforeach
+                        </select>
+                    </div>
                 </div>
+            
+                <div class="form-group">
+                    <label class="control-label">Vehicle Overview  Description</label>
+                    <textarea name="description" class="form-control white_bg" rows="4"></textarea>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Price (₱)</label>
+                    <input name="price" class="form-control white_bg" id="price" type="number" required>
+                </div>
+
+
+
+                <div class="form-group">
+                    <label class="control-label">Upload Images  ( size = 900 x 560 )</label>
+                    <div class="vehicle_images">
+                        <div><img src="assets/images/900x560.jpg" alt="image"></div>
+                        <div><img src="assets/images/900x560.jpg" alt="image"></div>
+                        <div class="upload_more_img">
+                        <input name="image[]" multiple="multiple"type="file" required>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
                 <div class="gray-bg field-title">
-                <h6>Basic Info</h6>
+                    <h6>Basic Info</h6>
                 </div>
+
                 <div class="form-group">
-                <label class="control-label">Model Year</label>
-                <input class="form-control white_bg" id="year" type="text">
+                    <label class="control-label">Mileage</label>
+                    <input name="millage" class="form-control white_bg" id="mileage" type="number" required>
                 </div>
+
                 <div class="form-group">
-                <label class="control-label">No. of Owners</label>
-                <input class="form-control white_bg" id="owners" type="text">
+                    <label class="control-label">Model Year</label>
+                    <div class="select">
+                        <select name="year_manufactured" class="form-control white_bg" required>
+                            <option>Select Model Year</option>
+                            @foreach(range(date("Y"), 1940, -1) as $year_number)
+                                <option  value="{{$year_number}}">{{ $year_number }}</option>
+                            @endforeach
+                        </select>
+                    </div>
                 </div>
+
                 <div class="form-group">
-                <label class="control-label">KMs Driven</label>
-                <input class="form-control white_bg" id="kws" type="text">
+                    <label class="control-label">Fuel Type</label>
+                    <div class="select">
+                        <select name="fuel_type_id" class="form-control white_bg" required>
+                            <option>Select Fuel Type</option>
+                            @foreach($carFuelTypes as $carFuelType)
+                                <option  value="{{$carFuelType->fuel_type_id}}">{{ ucfirst($carFuelType->fuel_type_name) }}</option>
+                            @endforeach
+                        </select>
+                    </div>
                 </div>
+
                 <div class="form-group">
-                <label class="control-label">Fuel Type</label>
-                <input class="form-control white_bg" id="fuel" type="text">
+                    <label class="control-label">Transmission</label>
+                    <div class="select">
+                        <select name="transmission_id" class="form-control white_bg" required>
+                            <option>Select Transmission</option>
+                            @foreach($carTransmissions as $carTransmission)
+                                <option  value="{{$carTransmission->transmission_id}}">{{ ucfirst($carTransmission->transmission_name) }}</option>
+                            @endforeach
+                        </select>
+                    </div>
                 </div>
+
+                <div class="form-group">
+                    <label class="control-label">Body Type</label>
+                    <div class="select">
+                        <select name="body_type_id" class="form-control white_bg" required>
+                            <option>Select Body Type</option>
+                            @foreach($carBodyTypes as $carBodyType)
+                                <option  value="{{$carBodyType->body_type_id}}">{{ ucfirst($carBodyType->body_type_name) }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+
+                
+              
+       
                 <div class="gray-bg field-title">
-                <h6>Technical Specification</h6>
-                </div>
-                <div class="form-group">
-                <label class="control-label">Engine Type</label>
-                <input class="form-control white_bg" id="engien" type="text">
-                </div>
-                <div class="form-group">
-                <label class="control-label">Engine Description</label>
-                <input class="form-control white_bg" id="engien-description" type="text">
-                </div>
-                <div class="form-group">
-                <label class="control-label">No. of Cylinders</label>
-                <input class="form-control white_bg" id="cylinders" type="text">
-                </div>
-                <div class="form-group">
-                <label class="control-label">Mileage-City</label>
-                <input class="form-control white_bg" id="mileage" type="text">
-                </div>
-                <div class="form-group">
-                <label class="control-label">Mileage-Highway</label>
-                <input class="form-control white_bg" id="mileage-h" type="text">
-                </div>
-                <div class="form-group">
-                <label class="control-label">Fuel Tank Capacity</label>
-                <input class="form-control white_bg" id="capacity" type="text">
-                </div>
-                <div class="form-group">
-                <label class="control-label">Seating Capacity</label>
-                <input class="form-control white_bg" id="s-capacity" type="text">
-                </div>
-                <div class="form-group">
-                <label class="control-label">Transmission Type</label>
-                <input class="form-control white_bg" id="Transmission" type="text">
-                </div>
-                <div class="gray-bg field-title">
-                <h6>Accessories</h6>
+                    <h6>Accessories</h6>
                 </div>
                 <div class="vehicle_accessories">
 
                 <div class="form-group checkbox col-md-6 accessories_list">
-                    <input id="air_conditioner" type="checkbox">
-                    <label for="air_conditioner">Air Conditioner</label>
+                    <input name="air_condition" id="air_conditioner" type="checkbox">
+                    <label  for="air_conditioner">Air Condition</label>
                 </div>
                 <div class="form-group checkbox col-md-6 accessories_list">
-                    <input id="door" type="checkbox">
-                    <label for="door">Power Door Locks</label>
+                    <input name="power_steering" id="steering" type="checkbox">
+                    <label   for="steering">Power Steering</label>
                 </div>
                 <div class="form-group checkbox col-md-6 accessories_list">
-                    <input id="antiLock" type="checkbox">
-                    <label for="antiLock">AntiLock Braking System</label>
+                    <input name="driver_airbag" id="airbag" type="checkbox">
+                    <label   for="airbag">Driver Airbag</label>
                 </div>
                 <div class="form-group checkbox col-md-6 accessories_list">
-                    <input id="brake" type="checkbox">
-                    <label for="brake">Brake Assist</label>
+                    <input  name="power_window" id="windows" type="checkbox">
+                    <label   for="windows">Power Windows</label>
                 </div>
                 <div class="form-group checkbox col-md-6 accessories_list">
-                    <input id="steering" type="checkbox">
-                    <label for="steering">Power Steering</label>
+                    <input name="passenger_airbag" id="passenger_airbag" type="checkbox">
+                    <label   for="passenger_airbag">Passenger Airbag</label>
                 </div>
                 <div class="form-group checkbox col-md-6 accessories_list">
-                    <input id="airbag" type="checkbox">
-                    <label for="airbag">Driver Airbag</label>
-                </div>
-                <div class="form-group checkbox col-md-6 accessories_list">
-                    <input id="windows" type="checkbox">
-                    <label for="windows">Power Windows</label>
-                </div>
-                <div class="form-group checkbox col-md-6 accessories_list">
-                    <input id="passenger_airbag" type="checkbox">
-                    <label for="passenger_airbag">Passenger Airbag</label>
-                </div>
-                <div class="form-group checkbox col-md-6 accessories_list">
-                    <input id="player" type="checkbox">
+                    <input name="cd_player"  id="player" type="checkbox">
                     <label for="player">CD Player</label>
                 </div>
                 <div class="form-group checkbox col-md-6 accessories_list">
-                    <input id="sensor" type="checkbox">
-                    <label for="sensor">Crash Sensor</label>
+                    <input name="leather_seats" id="seats" type="checkbox">
+                    <label   for="seats">Leather Seats</label>
                 </div>
                 <div class="form-group checkbox col-md-6 accessories_list">
-                    <input id="seats" type="checkbox">
-                    <label for="seats">Leather Seats</label>
-                </div>
-                <div class="form-group checkbox col-md-6 accessories_list">
-                    <input id="engine_warning" type="checkbox">
-                    <label for="engine_warning">Engine Check Warning</label>
-                </div>
-                <div class="form-group checkbox col-md-6 accessories_list">
-                    <input id="locking" type="checkbox">
-                    <label for="locking">Central Locking</label>
-                </div>
-                <div class="form-group checkbox col-md-6 accessories_list">
-                    <input id="headlamps" type="checkbox">
-                    <label for="headlamps">Automatic Headlamps</label>
+                    <input  name="central_locking" id="locking" type="checkbox">
+                    <label  for="locking">Central Locking</label>
                 </div>
                 
                 </div>
                 <div class="vehicle_type">
                 <div class="form-group radio col-md-6 accessories_list">
-                    <input type="radio" name="vehicle_type" value="radio" id="newcar">
-                    <label for="newcar">New Car</label>
+                    <input type="radio" name="New_car" value="NewCar" id="newcar" required>
+                    <label  for="newcar">New Car</label>
                 </div>
                 <div class="form-group radio col-md-6 accessories_list">
-                    <input type="radio" name="vehicle_type" value="radio" id="usedcar">
+                    <input type="radio" name="New_car" value="UsedCar" id="usedcar">
                     <label for="usedcar">Used Car</label>
                 </div>
                 </div>

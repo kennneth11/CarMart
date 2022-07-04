@@ -12,6 +12,7 @@
 <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}" type="text/css">
 <!--Custome Style -->
 <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}" type="text/css">
+<link rel="stylesheet" href="{{ asset('css/seller.css') }}" type="text/css">
 <!--OWL Carousel slider-->
 <link rel="stylesheet" href="{{ asset('assets/css/owl.carousel.css') }}" type="text/css">
 <link rel="stylesheet" href="{{ asset('assets/css/owl.transitions.css') }}" type="text/css">
@@ -228,11 +229,16 @@
 <!--bootstrap-slider-JS-->
 <script src="{{ asset('assets/js/bootstrap-slider.min.js') }}"></script>
 <!--Slider-JS-->
+<script src="{{ asset('js/posting-car.js') }}"></script>
+
 <script src="{{ asset('assets/js/slick.min.js') }}"></script>
 <script src="{{ asset('assets/js/owl.carousel.min.js') }}"></script>
 
 
 <script src="{{ asset('assets/js/jquery.ph-locations.js') }}"></script>
+
+
+
 
 <script type="text/javascript">
         var my_handlers = {
