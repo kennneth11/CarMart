@@ -30,6 +30,7 @@
                 <li class="@if(str_contains(URL::current(), 'Post-Car')) active @endif "><a href="{{ route('Post-Car') }}">Post a Vehicles</a></li>
                 @endif
                 <li class="@if(str_contains(URL::current(),'changePassword')) active @endif"><a href="{{ route('changePassword')}} ">Update Password</a></li>
+                <li class="@if(str_contains(URL::current(),'changeAddress')) active @endif"><a href="{{ route('changeAddress')}} ">Update Address</a></li>
                 <li class="@if(str_contains(URL::current(),'index')) active @endif"><a href="{{ route('upload.home') }}">Update Profile Picture</a></li>
                 <li><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Sign Out</a></li>
                     <form id="logout-form" method="POST" action="{{ route('logout') }}">

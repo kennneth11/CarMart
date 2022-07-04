@@ -47,4 +47,8 @@ class MoreSettingController extends Controller
 
     }
 
+    public function changeAddress(){
+        $user = Auth::user();
+        return view('profile.updateAddress', compact('user'));
+    }
 }

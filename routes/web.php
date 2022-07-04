@@ -46,7 +46,7 @@ Route::group(['middleware' => ['auth']], function() {
     Route::post('/upload', 'App\Http\Controllers\User\AvatarController@upload')->name('upload.avatar');
     Route::get('/changePassword', 'App\Http\Controllers\User\MoreSettingController@changePassword')->name('changePassword');
     Route::post('/updatePassword', 'App\Http\Controllers\User\MoreSettingController@updatePassword')->name('updatePassword');
-
+    Route::get('/changeAddress', 'App\Http\Controllers\User\MoreSettingController@changeAddress')->name('changeAddress');
 });
 //both---------------End Line--------------------------------
 
