@@ -80,7 +80,6 @@
                     <select name="role_id" id="role_id" class="form-control" required>
                         <option value="customer">Customer</option>
                         <option value="seller">Seller</option>
-                        <option value="superadministrator">Admin</option>
                     </select>
                   </div>
 
