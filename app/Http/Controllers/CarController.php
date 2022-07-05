@@ -18,7 +18,7 @@ class CarController extends Controller
 {
     public function viewMyCar()
     {
-        
+
         $myCars = Car::join('car_makers', 'car_makers.car_maker_id', '=', 'cars.car_maker_id')
             ->join('car_models', 'car_models.car_model_id', '=', 'cars.car_model_id')
             ->join('car_body_types', 'car_body_types.body_type_id', '=', 'cars.body_type_id')
@@ -26,7 +26,7 @@ class CarController extends Controller
             ->join('car_fuel_types', 'car_fuel_types.fuel_type_id', '=', 'cars.fuel_type_id')
             ->where('seller_id', '=', Auth::user()->id)
             ->get();
-        
+
 
         return view('Seller/car/my-cars')
             ->with(['myCars'=>$myCars]);
@@ -39,7 +39,7 @@ class CarController extends Controller
         $carBodyTypeData = CarBodyType::get();
         $carFuelTypeData = CarFuelType::get();
         $carTransmissionData = CarTransmission::get();
-        
+
         return view('Seller/car/post-car')
             ->with(['carModels'=>$carModelData])
             ->with(['carBodyTypes'=>$carBodyTypeData])
@@ -50,9 +50,6 @@ class CarController extends Controller
 
     public function store(Request $request)
     {
-
-    
-
 
         $car = new Car();
         $car->car_maker_id = $request->car_maker_id;
@@ -69,7 +66,7 @@ class CarController extends Controller
         $car->year_manufactured = $request->year_manufactured;
         $car->status = "Active";
 
-        
+
 
         if( $request->has('air_condition') ){
             $car->air_condition = true;
@@ -123,7 +120,7 @@ class CarController extends Controller
                 $car_images->save();
             }
         }
-        
+
         Alert::success('Successfully Posted a Car','Welcome to CART MART BUKIDNON');
         return redirect()->route('Post-Car');
     }
