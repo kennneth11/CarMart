@@ -15,6 +15,8 @@ return new class extends Migration
     {
         Schema::create('car_images', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('car_id');
+            $table->string('file_path');
             $table->timestamps();
         });
     }

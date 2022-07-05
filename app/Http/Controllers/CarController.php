@@ -9,16 +9,27 @@ use App\Models\CarBodyType;
 use App\Models\CarTransmission;
 use App\Models\CarFuelType;
 use App\Models\Car;
+use App\Models\CarImage;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class CarController extends Controller
 {
     public function viewMyCar()
     {
         
+        $myCars = Car::join('car_makers', 'car_makers.car_maker_id', '=', 'cars.car_maker_id')
+            ->join('car_models', 'car_models.car_model_id', '=', 'cars.car_model_id')
+            ->join('car_body_types', 'car_body_types.body_type_id', '=', 'cars.body_type_id')
+            ->join('car_transmissions', 'car_transmissions.transmission_id', '=', 'cars.transmission_id')
+            ->join('car_fuel_types', 'car_fuel_types.fuel_type_id', '=', 'cars.fuel_type_id')
+            ->where('seller_id', '=', Auth::user()->id)
+            ->get();
+        
 
-        return view('Seller/car/my-cars');
+        return view('Seller/car/my-cars')
+            ->with(['myCars'=>$myCars]);
     }
 
     public function viewPostCar()
@@ -39,6 +50,10 @@ class CarController extends Controller
 
     public function store(Request $request)
     {
+
+    
+
+
         $car = new Car();
         $car->car_maker_id = $request->car_maker_id;
         $car->car_model_id = $request->car_model_id;
@@ -53,6 +68,8 @@ class CarController extends Controller
         $car->description = $request->description;
         $car->year_manufactured = $request->year_manufactured;
         $car->status = "Active";
+
+        
 
         if( $request->has('air_condition') ){
             $car->air_condition = true;
@@ -84,8 +101,31 @@ class CarController extends Controller
         }$car->New_car = 0;
 
         $car->save();
+        $images = $request->file('image');
 
-        return redirect()->route('dashboard');
+        $insertedId = $car->id;
+
+        $num = 1;
+        if($request->hasFile('image'))
+        {
+            foreach($images as $image)
+            {
+                $car_images = new CarImage();
+
+                $file = $image;
+                $extension = $file->getClientOriginalExtension();
+                $filename = $insertedId. '-Car'.time() . $num++ . '.' . $extension;
+                $file->move('CarsImages/', $filename);
+
+                $car_images->car_id = $insertedId;
+                $car_images->file_path = $filename;
+
+                $car_images->save();
+            }
+        }
+        
+        Alert::success('Successfully Posted a Car','Welcome to CART MART BUKIDNON');
+        return redirect()->route('Post-Car');
     }
 
 

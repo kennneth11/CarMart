@@ -7,5 +7,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class CarImage extends Model
 {
-    use HasFactory;
+    protected $table = 'car_images';
 }
