@@ -1,7 +1,7 @@
 @extends('layouts.profile-sidebar')
 
 @section('contentNav')
-<!--Profile-setting-->
+<!--Update Password-setting-->
 
         <div class="col-md-6 col-sm-8">
           <div class="profile_wrap">
@@ -41,5 +41,5 @@
             </form>
           </div>
         </div>
-  <!--/Profile-setting-->
+  <!--/Update Password-setting-->
 @endsection
