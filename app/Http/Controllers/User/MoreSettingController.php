@@ -51,4 +51,25 @@ class MoreSettingController extends Controller
         $user = Auth::user();
         return view('profile.updateAddress', compact('user'));
     }
+
+    public function updateAddress(Request $request){
+        $user_id = Auth::user()->id;
+        $user = User::findOrFail($user_id);
+
+        if($user->city == $request->input('city')){
+            $user->barangay = $request->input('barangay');
+            $user->purok = $request->input('purok');
+            $user->save();
+            Alert::success('Success', 'You\'ve Successfully Updated Profile');
+            return redirect()->back();
+        }
+        elseif($user->city != $request->input('city')){
+            $user->city = $request->input('city');
+            $user->barangay = $request->input('barangay');
+            $user->purok = $request->input('purok');
+            $user->save();
+            Alert::success('Success', 'You\'ve Successfully Updated Profile');
+            return redirect()->back();
+        }
+    }
 }

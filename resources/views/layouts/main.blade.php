@@ -10,7 +10,7 @@
 <!--Bootstrap -->
 
 <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}" type="text/css">
-<!--Custome Style -->
+<!--Custom Style -->
 <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}" type="text/css">
 <link rel="stylesheet" href="{{ asset('css/seller.css') }}" type="text/css">
 <!--OWL Carousel slider-->

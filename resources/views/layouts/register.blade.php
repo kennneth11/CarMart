@@ -14,34 +14,59 @@
                     @csrf
 
                 <!-- FirstName -->
-                  <div class="form-group">
-                    <label for="first_name">First Name</label>
-                    <input type="text" class="form-control" name="first_name" placeholder="First Name" :value="old('first_name')" required>
-                  </div>
+                    <div class="form-group">
+                        <label for="first_name">First Name</label>
+                        <input type="text" class="form-control @error('first_name') is-invalid @enderror" name="first_name" placeholder="First Name" :value="old('first_name')" required>
+                            @error('first_name')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                    </div>
 
                   <!-- LastName -->
-                  <div class="form-group">
-                    <label for="last_name">Last Name</label>
-                    <input type="text" class="form-control" name="last_name" placeholder="Last Name" :value="old('last_name')" required >
-                  </div>
+                    <div class="form-group">
+                        <label for="last_name">Last Name</label>
+                        <input type="text" class="form-control @error('last_name') is-invalid @enderror" name="last_name" placeholder="Last Name" :value="old('last_name')" required >
+                            @error('last_name')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                    </div>
 
                   <!-- Email -->
-                  <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" class="form-control" name="email" placeholder="Email Address" :value="old('email')" required>
-                  </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" placeholder="Email Address" :value="old('email')" required>
+                            @error('email')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                    </div>
 
                   <!-- Username -->
-                  <div class="form-group">
-                    <label for="username">Username</label>
-                    <input type="text" class="form-control" name="username" placeholder="Username" :value="old('username')" required>
-                  </div>
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input type="text" class="form-control @error('username') is-invalid @enderror" name="username" placeholder="Username" :value="old('username')" required>
+                            @error('username')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                    </div>
 
                   <!-- Mobile Number -->
-                  <div class="form-group">
+                    <div class="form-group">
                         <label for="mobile_num">Phone number</label>
-                        <input type="text" maxlength = "11" class="form-control" name="mobile_num" placeholder="Ex. 09051151125" onkeyup="numberformat(this);" :value="old('mobile_num')">
-                  </div>
+                        <input type="text" maxlength = "11" class="form-control @error('mobile_num') is-invalid @enderror" name="mobile_num" placeholder="Ex. 09051151125" onkeyup="numberformat(this);" :value="old('mobile_num')">
+                            @error('mobile_num')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                    </div>
 
                   <!--city-->
                   <div class="form-group">
@@ -57,16 +82,26 @@
                   </div>
 
                   <!-- Purok -->
-                  <div class="form-group mt-2 d-inline-block">
-                    <label for="purok">Specific Address</label>
-                    <input type="text" class="form-control" name="purok" placeholder="Example: Purok 17 Hagkol" :value="old('purok')">
-                  </div>
+                    <div class="form-group mt-2 d-inline-block">
+                        <label for="purok">Specific Address</label>
+                        <input type="text" class="form-control @error('purok') is-invalid @enderror" name="purok" placeholder="Example: Purok 17 Hagkol" :value="old('purok')">
+                            @error('purok')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                    </div>
 
                   <!-- Password -->
-                  <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" class="form-control" name="password" placeholder="Password" required autocomplete="password" :value="old('password')">
-                  </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder="Password" required autocomplete="password" :value="old('password')">
+                            @error('password')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                    </div>
 
                   <!--Confirm Password -->
                   <div class="form-group">
