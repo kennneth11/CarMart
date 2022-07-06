@@ -33,7 +33,6 @@ use App\Http\Controllers\User\MoreSettingController;
 Route::get('/', [FrontEndController::class, 'index'])->name('index');
 Route::get('/about', [FrontEndController::class, 'about'])->name('about');
 Route::get('/contact', [FrontEndController::class, 'contact'])->name('contact');
-
 //Visitors Route ---------------End Line--------------------------------
 
 
@@ -72,6 +71,7 @@ Route::group(['middleware' => ['auth', 'role:seller']], function() {
 
 //customer ---------------Start Line--------------------------------
 Route::group(['middleware' => ['auth', 'role:customer']], function() {
+
 
 });
 //customer ---------------End Line--------------------------------

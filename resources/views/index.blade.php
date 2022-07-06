@@ -69,276 +69,36 @@
                 </div>
               </div>
           </div>
-          <div class="result-sorting-wrapper">
-            <div class="sorting-count">
-              <p>1 - 12 <span>of 50 Results for your search.</span></p>
-            </div>
-            <div class="result-sorting-by">
-              <p>Sort by:</p>
-              <form action="#" method="post">
-                <div class="form-group select sorting-select">
-                  <select class="form-control ">
-                    <option>Price (low to high)</option>
-                    <option>Price (high to low)</option>
-                    <option>Newest Items</option>
-                  </select>
-                </div>
-              </form>
-            </div>
-          </div>
+
+
           <div class="row">
+            <!--Start Card-->
+            @foreach($cars as $car)
             <div class="col-md-4 grid_listing">
               <div class="product-listing-m gray-bg">
-                <div class="product-listing-img"> <a href="#"><img src="assets/images/600x380.jpg" class="img-responsive" alt="image" /> </a>
+                <div class="product-listing-img"> <a href="#"><img src="{{ asset('CarsImages/'.$car->car_image) }}" class="img-responsive" alt="image" /> </a>
                   <div class="label_icon">New</div>
                   <div class="compare_item">
 
                   </div>
                 </div>
                 <div class="product-listing-content">
-                  <h5><a href="#">Car Name</a></h5>
-                  <p class="list-price">₱89,000</p>
-                  <div class="car-location"><span><i class="fa fa-map-marker" aria-hidden="true"></i> Colorado, USA</span></div>
+                  <h5><a href="#">{{  ucfirst($car->car_maker_name) .' '.ucfirst($car->car_model_name)}}</a></h5>
+                  <p class="list-price">{{$car->price}}</p>
+                  <div class="car-location"><span><i class="fa fa-map-marker" aria-hidden="true"></i>{{$car->city. ', ' . $car->barangay}}</span></div>
                   <ul class="features_list">
                     <li><i class="fa fa-road" aria-hidden="true"></i>35,000 km</li>
-                    <li><i class="fa fa-tachometer" aria-hidden="true"></i>30.000 miles</li>
-                    <li><i class="fa fa-calendar" aria-hidden="true"></i>2005 model</li>
-                    <li><i class="fa fa-car" aria-hidden="true"></i>Diesel</li>
+                    <li><i class="fa fa-tachometer" aria-hidden="true"></i>{{$car->millage}}</li>
+                    <li><i class="fa fa-calendar" aria-hidden="true"></i>{{$car->year_manufactured}} model</li>
+                    <li><i class="fa fa-car" aria-hidden="true"></i>{{$car->fuel_type_name}}</li>
                   </ul>
                 </div>
               </div>
             </div>
-            <div class="col-md-4 grid_listing">
-              <div class="product-listing-m gray-bg">
-                <div class="product-listing-img"> <a href="#"><img src="assets/images/600x380.jpg" class="img-responsive" alt="image" /> </a>
-                  <div class="label_icon">Used</div>
-                  <div class="compare_item">
+            @endforeach
+            <!--End Card-->
 
-                  </div>
-                </div>
-                <div class="product-listing-content">
-                  <h5><a href="#">Car Name</a></h5>
-                  <p class="list-price">₱89,000</p>
-                  <div class="car-location"><span><i class="fa fa-map-marker" aria-hidden="true"></i> Colorado, USA</span></div>
-                  <ul class="features_list">
-                    <li><i class="fa fa-road" aria-hidden="true"></i>35,000 km</li>
-                    <li><i class="fa fa-tachometer" aria-hidden="true"></i>30.000 miles</li>
-                    <li><i class="fa fa-calendar" aria-hidden="true"></i>2005 model</li>
-                    <li><i class="fa fa-car" aria-hidden="true"></i>Diesel</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-4 grid_listing">
-              <div class="product-listing-m gray-bg">
-                <div class="product-listing-img"> <a href="#"><img src="assets/images/600x380.jpg" class="img-responsive" alt="image" /> </a>
-                  <div class="label_icon">New</div>
-                  <div class="compare_item">
 
-                  </div>
-                </div>
-                <div class="product-listing-content">
-                  <h5><a href="#">Car Name</a></h5>
-                  <p class="list-price">₱89,000</p>
-                  <div class="car-location"><span><i class="fa fa-map-marker" aria-hidden="true"></i> Colorado, USA</span></div>
-                  <ul class="features_list">
-                    <li><i class="fa fa-road" aria-hidden="true"></i>35,000 km</li>
-                    <li><i class="fa fa-tachometer" aria-hidden="true"></i>30.000 miles</li>
-                    <li><i class="fa fa-calendar" aria-hidden="true"></i>2005 model</li>
-                    <li><i class="fa fa-car" aria-hidden="true"></i>Diesel</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-4 grid_listing">
-              <div class="product-listing-m gray-bg">
-                <div class="product-listing-img"> <a href="#"><img src="assets/images/600x380.jpg" class="img-responsive" alt="image" /> </a>
-                  <div class="label_icon">New</div>
-                  <div class="compare_item">
-
-                  </div>
-                </div>
-                <div class="product-listing-content">
-                  <h5><a href="#">Car Name</a></h5>
-                  <p class="list-price">₱89,000</p>
-                  <div class="car-location"><span><i class="fa fa-map-marker" aria-hidden="true"></i> Colorado, USA</span></div>
-                  <ul class="features_list">
-                    <li><i class="fa fa-road" aria-hidden="true"></i>35,000 km</li>
-                    <li><i class="fa fa-tachometer" aria-hidden="true"></i>30.000 miles</li>
-                    <li><i class="fa fa-calendar" aria-hidden="true"></i>2005 model</li>
-                    <li><i class="fa fa-car" aria-hidden="true"></i>Diesel</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-4 grid_listing">
-              <div class="product-listing-m gray-bg">
-                <div class="product-listing-img"> <a href="#"><img src="assets/images/600x380.jpg" class="img-responsive" alt="image" /> </a>
-                  <div class="label_icon">New</div>
-                  <div class="compare_item">
-
-                  </div>
-                </div>
-                <div class="product-listing-content">
-                  <h5><a href="#">Car Name</a></h5>
-                  <p class="list-price">₱89,000</p>
-                  <div class="car-location"><span><i class="fa fa-map-marker" aria-hidden="true"></i> Colorado, USA</span></div>
-                  <ul class="features_list">
-                    <li><i class="fa fa-road" aria-hidden="true"></i>35,000 km</li>
-                    <li><i class="fa fa-tachometer" aria-hidden="true"></i>30.000 miles</li>
-                    <li><i class="fa fa-calendar" aria-hidden="true"></i>2005 model</li>
-                    <li><i class="fa fa-car" aria-hidden="true"></i>Diesel</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-4 grid_listing">
-              <div class="product-listing-m gray-bg">
-                <div class="product-listing-img"> <a href="#"><img src="assets/images/600x380.jpg" class="img-responsive" alt="image" /> </a>
-                  <div class="label_icon">Used</div>
-                  <div class="compare_item">
-
-                  </div>
-                </div>
-                <div class="product-listing-content">
-                  <h5><a href="#">Car Name</a></h5>
-                  <p class="list-price">₱89,000</p>
-                  <div class="car-location"><span><i class="fa fa-map-marker" aria-hidden="true"></i> Colorado, USA</span></div>
-                  <ul class="features_list">
-                    <li><i class="fa fa-road" aria-hidden="true"></i>35,000 km</li>
-                    <li><i class="fa fa-tachometer" aria-hidden="true"></i>30.000 miles</li>
-                    <li><i class="fa fa-calendar" aria-hidden="true"></i>2005 model</li>
-                    <li><i class="fa fa-car" aria-hidden="true"></i>Diesel</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-4 grid_listing">
-              <div class="product-listing-m gray-bg">
-                <div class="product-listing-img"> <a href="#"><img src="assets/images/600x380.jpg" class="img-responsive" alt="image" /> </a>
-                  <div class="label_icon">Used</div>
-                  <div class="compare_item">
-
-                  </div>
-                </div>
-                <div class="product-listing-content">
-                  <h5><a href="#">Car Name</a></h5>
-                  <p class="list-price">₱89,000</p>
-                  <div class="car-location"><span><i class="fa fa-map-marker" aria-hidden="true"></i> Colorado, USA</span></div>
-                  <ul class="features_list">
-                    <li><i class="fa fa-road" aria-hidden="true"></i>35,000 km</li>
-                    <li><i class="fa fa-tachometer" aria-hidden="true"></i>30.000 miles</li>
-                    <li><i class="fa fa-calendar" aria-hidden="true"></i>2005 model</li>
-                    <li><i class="fa fa-car" aria-hidden="true"></i>Diesel</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-4 grid_listing">
-              <div class="product-listing-m gray-bg">
-                <div class="product-listing-img"> <a href="#"><img src="assets/images/600x380.jpg" class="img-responsive" alt="image" /> </a>
-                  <div class="label_icon">New</div>
-                  <div class="compare_item">
-
-                  </div>
-                </div>
-                <div class="product-listing-content">
-                  <h5><a href="#">Car Name</a></h5>
-                  <p class="list-price">₱89,000</p>
-                  <div class="car-location"><span><i class="fa fa-map-marker" aria-hidden="true"></i> Colorado, USA</span></div>
-                  <ul class="features_list">
-                    <li><i class="fa fa-road" aria-hidden="true"></i>35,000 km</li>
-                    <li><i class="fa fa-tachometer" aria-hidden="true"></i>30.000 miles</li>
-                    <li><i class="fa fa-calendar" aria-hidden="true"></i>2005 model</li>
-                    <li><i class="fa fa-car" aria-hidden="true"></i>Diesel</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-4 grid_listing">
-              <div class="product-listing-m gray-bg">
-                <div class="product-listing-img"> <a href="#"><img src="assets/images/600x380.jpg" class="img-responsive" alt="image" /> </a>
-                  <div class="label_icon">Used</div>
-                  <div class="compare_item">
-
-                  </div>
-                </div>
-                <div class="product-listing-content">
-                  <h5><a href="#">Car Name</a></h5>
-                  <p class="list-price">₱89,000</p>
-                  <div class="car-location"><span><i class="fa fa-map-marker" aria-hidden="true"></i> Colorado, USA</span></div>
-                  <ul class="features_list">
-                    <li><i class="fa fa-road" aria-hidden="true"></i>35,000 km</li>
-                    <li><i class="fa fa-tachometer" aria-hidden="true"></i>30.000 miles</li>
-                    <li><i class="fa fa-calendar" aria-hidden="true"></i>2005 model</li>
-                    <li><i class="fa fa-car" aria-hidden="true"></i>Diesel</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-4 grid_listing">
-              <div class="product-listing-m gray-bg">
-                <div class="product-listing-img"> <a href="#"><img src="assets/images/600x380.jpg" class="img-responsive" alt="image" /> </a>
-                  <div class="label_icon">Used</div>
-                  <div class="compare_item">
-
-                  </div>
-                </div>
-                <div class="product-listing-content">
-                  <h5><a href="#">Car Name</a></h5>
-                  <p class="list-price">₱89,000</p>
-                  <div class="car-location"><span><i class="fa fa-map-marker" aria-hidden="true"></i> Colorado, USA</span></div>
-                  <ul class="features_list">
-                    <li><i class="fa fa-road" aria-hidden="true"></i>35,000 km</li>
-                    <li><i class="fa fa-tachometer" aria-hidden="true"></i>30.000 miles</li>
-                    <li><i class="fa fa-calendar" aria-hidden="true"></i>2005 model</li>
-                    <li><i class="fa fa-car" aria-hidden="true"></i>Diesel</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-4 grid_listing">
-              <div class="product-listing-m gray-bg">
-                <div class="product-listing-img"> <a href="#"><img src="assets/images/600x380.jpg" class="img-responsive" alt="image" /> </a>
-                  <div class="label_icon">New</div>
-                  <div class="compare_item">
-
-                  </div>
-                </div>
-                <div class="product-listing-content">
-                  <h5><a href="#">Car Name</a></h5>
-                  <p class="list-price">₱89,000</p>
-                  <div class="car-location"><span><i class="fa fa-map-marker" aria-hidden="true"></i> Colorado, USA</span></div>
-                  <ul class="features_list">
-                    <li><i class="fa fa-road" aria-hidden="true"></i>35,000 km</li>
-                    <li><i class="fa fa-tachometer" aria-hidden="true"></i>30.000 miles</li>
-                    <li><i class="fa fa-calendar" aria-hidden="true"></i>2005 model</li>
-                    <li><i class="fa fa-car" aria-hidden="true"></i>Diesel</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-4 grid_listing">
-              <div class="product-listing-m gray-bg">
-                <div class="product-listing-img"> <a href="#"><img src="assets/images/600x380.jpg" class="img-responsive" alt="image" /> </a>
-                  <div class="label_icon">Used</div>
-                  <div class="compare_item">
-
-                  </div>
-                </div>
-                <div class="product-listing-content">
-                  <h5><a href="#">Car Name</a></h5>
-                  <p class="list-price">₱89,000</p>
-                  <div class="car-location"><span><i class="fa fa-map-marker" aria-hidden="true"></i> Colorado, USA</span></div>
-                  <ul class="features_list">
-                    <li><i class="fa fa-road" aria-hidden="true"></i>35,000 km</li>
-                    <li><i class="fa fa-tachometer" aria-hidden="true"></i>30.000 miles</li>
-                    <li><i class="fa fa-calendar" aria-hidden="true"></i>2005 model</li>
-                    <li><i class="fa fa-car" aria-hidden="true"></i>Diesel</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
           </div>
           <div class="pagination">
             <ul>

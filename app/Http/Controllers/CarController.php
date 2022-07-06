@@ -33,7 +33,7 @@ class CarController extends Controller
             $image = CarImage::where('car_id', '=', $carID)->orderBy('car_id', 'ASC')->first();
             $myCar->car_image = $image->file_path;
         }
-        
+
         $MyCarsCount = $myCars->count();
 
         return view('Seller/car/my-cars')
@@ -49,7 +49,7 @@ class CarController extends Controller
 
 
         foreach($images as $image){
-            
+
 
             if(File::exists(public_path('CarsImages/'.$image->file_path))){
                 File::delete(public_path('CarsImages/'.$image->file_path));
@@ -60,7 +60,7 @@ class CarController extends Controller
 
         Alert::success('Successfully Deleted The Car','Welcome to CART MART BUKIDNON');
         return redirect()->route('My-Cars');
-        
+
     }
 
 

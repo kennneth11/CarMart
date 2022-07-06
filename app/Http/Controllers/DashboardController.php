@@ -17,10 +17,10 @@ class DashboardController extends Controller
             return view('Administrator/dashboard',['users'=>$userdata]);
         }
         else if(Auth::user()->hasRole('seller')){
-            return view('index');
+            return redirect()->route('index');
         }
         else if(Auth::user()->hasRole('customer')){
-            return view('index');
+            return redirect()->route('index');
         }
     }
 }
