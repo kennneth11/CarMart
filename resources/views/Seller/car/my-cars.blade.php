@@ -15,7 +15,9 @@
                 <li class="deactive_vehicle">
                 @endif
                 
-                    <div class="vehicle_img"> <a href="#"><img src="{{ asset('CarsImages/'.$myCar->car_image) }}" alt="image"></a> </div>
+                    <div class="vehicle_img embed-responsive embed-responsive-4by3">
+                        <a href="#"><img src="{{ asset('CarsImages/'.$myCar->car_image) }}" alt="image"></a>
+                    </div>
                     <div class="vehicle_title">
                     <h6><a href="#">{{  ucfirst($myCar->car_maker_name) .' '.ucfirst($myCar->car_model_name) .' '.  $myCar->year_manufactured}}</a></h6>
                     </div>
