@@ -65,6 +65,7 @@ Route::group(['middleware' => ['auth', 'role:seller']], function() {
     Route::get('/My-Cars', 'App\Http\Controllers\CarController@viewMyCar')->name('My-Cars');
     Route::get('/Post-Car', 'App\Http\Controllers\CarController@viewPostCar')->name('Post-Car');
     Route::post('/Post-Car', 'App\Http\Controllers\CarController@store')->name('Stor-Car');
+    Route::get('/My-Car{key}', 'App\Http\Controllers\CarController@destroy')->name('Destroy-Car');
 });
 //seller ---------------End Line--------------------------------
 

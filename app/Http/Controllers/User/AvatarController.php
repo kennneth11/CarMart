@@ -29,6 +29,7 @@ class AvatarController extends Controller
         $user = User::findOrFail($user_id);
 
         if($request->hasfile('avatar')){
+            
             $destination = 'userProfiles/'.$user->avatar;
             if(File::exists($destination)){
                 File::delete($destination);
