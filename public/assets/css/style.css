@@ -2393,6 +2393,9 @@ form .slider.slider-horizontal {
   position:relative;
   overflow:hidden;
 }
+.embed-responsive .product-listing-img {
+    object-fit: cover;
+}
 .product-listing-content {
   float: left;
   padding:20px 15px 20px 30px;
