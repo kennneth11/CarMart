@@ -41,12 +41,10 @@
 
 
                 <div class="form-group">
-                    <label class="control-label">Upload Images  ( size = 900 x 560 )</label>
+                    <label class="control-label">Upload Images  </label>
                     <div id="preview" class="vehicle_images">
-                        <div><img src="assets/images/900x560.jpg" alt="image"></div>
-                        <div><img src="assets/images/900x560.jpg" alt="image"></div>
                         <div class="upload_more_img">
-                        <input id="file-input" name="image[]" multiple="multiple" type="file" required>
+                            <input id="file-input" name="image[]" multiple="multiple" type="file" required>
                         </div>
                     </div>
                 </div>
