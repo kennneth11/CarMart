@@ -15,7 +15,7 @@
                 <li class="deactive_vehicle">
                 @endif
                 
-                    <div class="vehicle_img embed-responsive embed-responsive-4by3">
+                    <div class="vehicle_img wrapper seller-car-img">
                         <a href="#"><img src="{{ asset('CarsImages/'.$myCar->car_image) }}" alt="image"></a>
                     </div>
                     <div class="vehicle_title">
