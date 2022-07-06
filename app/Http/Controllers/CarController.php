@@ -72,7 +72,7 @@ class CarController extends Controller
         $carBodyTypeData = CarBodyType::get();
         $carFuelTypeData = CarFuelType::get();
         $carTransmissionData = CarTransmission::get();
-        
+
         return view('Seller/car/post-car')
             ->with(['carModels'=>$carModelData])
             ->with(['carBodyTypes'=>$carBodyTypeData])
@@ -98,7 +98,7 @@ class CarController extends Controller
         $car->year_manufactured = $request->year_manufactured;
         $car->status = "Active";
 
-        
+
 
         if( $request->has('air_condition') ){
             $car->air_condition = true;
@@ -152,7 +152,7 @@ class CarController extends Controller
                 $car_images->save();
             }
         }
-        
+
         Alert::success('Successfully Posted a Car','Welcome to CART MART BUKIDNON');
         return redirect()->route('Post-Car');
     }
