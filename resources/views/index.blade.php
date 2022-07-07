@@ -77,16 +77,20 @@
             <div class="col-md-4 grid_listing">
               <div class="product-listing-m gray-bg">
                 {{-- embed-responsive --}}
-                <div class="product-listing-img embed-responsive embed-responsive-4by3 "> <a href="#"><img src="{{ asset('CarsImages/'.$car->car_image) }}" class="img-responsive" alt="image" /> </a>
-                <div class="label_icon">New</div>
+                <div class="product-listing-img embed-responsive embed-responsive-4by3 "> <a href="{{ route('Car',$car->car_id) }}"><img src="{{ asset('CarsImages/'.$car->car_image) }}" class="img-responsive" alt="image" /> </a>
+                @if($car->New_car)
+                    <div class="label_icon">New</div>
+                @else
+                    <div class="label_icon">Used</div>
+                @endif
                 <div class="compare_item">
 
                   </div>
                 </div>
                 <div class="product-listing-content">
-                  <h5><a href="#">{{  ucfirst($car->car_maker_name) .' '.ucfirst($car->car_model_name)}}</a></h5>
-                  <p class="list-price"><strong>₱</strong>{{$car->price}}</p>
-                  <div class="car-location"><span><i class="fa fa-map-marker" aria-hidden="true"></i>{{$car->city. ', ' . $car->barangay}}</span></div>
+                  <h5><a href="{{ route('Car',$car->car_id) }}">{{  ucfirst($car->car_maker_name) .' '.ucfirst($car->car_model_name)}}</a></h5>
+                  <p class="list-price"><strong>₱</strong>{{$car->price}}</p></br>
+                  <div style="float:none;margin:0;" class="car-location"><span><i class="fa fa-map-marker" aria-hidden="true"></i>{{$car->city. ', ' . $car->barangay}}</span></div>
                   <ul class="features_list">
                     <li><i class="fa fa-road" aria-hidden="true"></i>35,000 km</li>
                     <li><i class="fa fa-tachometer" aria-hidden="true"></i>{{$car->millage}}</li>

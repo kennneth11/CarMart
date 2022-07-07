@@ -20,9 +20,55 @@ input[type=number] {
   object-fit: cover;
 }
 
-
-
 .seller-car-img{
   width: 30%;
   height: 100px;
 }
+
+
+
+.brand{
+  display: inline-block;
+  height: 70px;
+  width: 100px;
+
+}
+
+.brand img {
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+}
+
+
+.nav-img-custom{
+  display: inline-block;
+  height: 500px;
+  width: 500px;
+
+}
+
+.nav-img-custom img {
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+}
+
+
+.slected-img-custom{
+  display: inline-block;
+  height: 500px;
+  width: 100%;
+
+}
+
+
+.slected-img-custom img {
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+}
+
+
+
+

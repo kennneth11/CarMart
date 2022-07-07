@@ -110,8 +110,9 @@ $(function(e) {
 	  fade: true,
 	  asNavFor: '#listing_images_slider_nav'
 	});
+	
 	$('#listing_images_slider_nav').slick({
-	  slidesToShow: 4,
+	  slidesToShow: 3,
 	  slidesToScroll: 1,
 	  asNavFor: '#listing_images_slider',
 	  dots: false,
