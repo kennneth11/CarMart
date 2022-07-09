@@ -33,6 +33,7 @@ use App\Http\Controllers\User\MoreSettingController;
 Route::get('/', [FrontEndController::class, 'index'])->name('index');
 Route::get('/about', [FrontEndController::class, 'about'])->name('about');
 Route::get('/contact', [FrontEndController::class, 'contact'])->name('contact');
+Route::get('/Car{key}', 'App\Http\Controllers\CarController@viewCar')->name('Car');
 //Visitors Route ---------------End Line--------------------------------
 
 
@@ -47,6 +48,8 @@ Route::group(['middleware' => ['auth']], function() {
     Route::post('/updatePassword', 'App\Http\Controllers\User\MoreSettingController@updatePassword')->name('updatePassword');
     Route::get('/changeAddress', 'App\Http\Controllers\User\MoreSettingController@changeAddress')->name('changeAddress');
     Route::post('/updateAddress', 'App\Http\Controllers\User\MoreSettingController@updateAddress')->name('updateAddress');
+
+    
 });
 //both---------------End Line--------------------------------
 
