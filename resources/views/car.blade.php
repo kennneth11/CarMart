@@ -3,10 +3,11 @@
 
 @section('content')
 <!-- Listing-detail-header -->
-<section class="listing_detail_header">
+<section id="carBanner" class="listing_detail_header">
   <div class="container">
     <div class="listing_detail_head white-text div_zindex row">
       <div class="col-md-9">
+        <img style="display:none;" id="backgroundCar" src="{{ asset('CarsImages/'.$imageBanner->file_path) }}">
         <h2>{{ ucfirst($myCar->car_maker_name) . ' ' . ucfirst($myCar->car_model_name) }}</h2>
         <div class="car-location"><span><i class="fa fa-map-marker" aria-hidden="true"></i> {{ $myCar->city . ', ' . $myCar->barangay . ', ' . $myCar->purok}} </span></div>
         <div class="add_compare">
@@ -30,6 +31,8 @@
   <div class="dark-overlay"></div>
 </section>
 <!-- /Listing-detail-header -->
+
+
 
 <!-- <section class="listing_other_info secondary-bg">
   <div class="container">
@@ -118,24 +121,24 @@
     <div class="row">
       <div class="col-md-9">
         <div class="listing_images">
-          <div id="listing_images_slider" class="listing_images_slider">
+          <div id="listing_images_slider" class="sidebar_widget listing_images_slider">
 
-            <div class="slected-img-custom"><img src="{{ asset('CarsImages/'.$imageBanner->file_path) }}"></div>
+          
             <!-- <div><img src="assets/images/900x560.jpg" alt="image"></div> -->
 
             @foreach($images as $image)
-                <div  class="slected-img-custom"><img src="{{ asset('CarsImages/'.$image->file_path) }}" alt="image"></div>
+                <div id="my-img1" class="slected-img-custom my-img"><img src="{{ asset('CarsImages/'.$image->file_path) }}" alt="image"></div>
             @endforeach
 
             
           </div>
           <div id="listing_images_slider_nav" class="listing_images_slider_nav">
 
-            <div class="nav-img-custom"><img src="{{ asset('CarsImages/'.$imageBanner->file_path) }}"></div>
+          
             <!-- <div><img src="assets/images/900x560.jpg" alt="image"></div> -->
 
             @foreach($images as $image)
-                <div class="nav-img-custom"><img src="{{ asset('CarsImages/'.$image->file_path) }}" alt="image"></div>
+                <div class="nav-img-custom img-nav-selector"><img src="{{ asset('CarsImages/'.$image->file_path) }}" alt="image"></div>
             @endforeach
 
 
@@ -167,12 +170,18 @@
               <h5>{{ $myCar->body_type_name }}</h5>
               <p>Car Type</p>
             </li>
-            <li> <i class="fa fa-user-plus" aria-hidden="true"></i>
-              <h5>5</h5>
-              <p>Seats</p>
+            <li> <i class="fa fa-files-o" aria-hidden="true"></i>
+              @if($myCar->New_car)
+                <h5>Brand New</h5>
+              @else
+                <h5>Used</h5>
+              @endif
+              <p>Car</p>
             </li>
           </ul>
         </div>
+
+        
         <div class="listing_more_info">
           <div class="listing_detail_wrap"> 
             <!-- Nav tabs -->
@@ -269,6 +278,7 @@
             </div>
           </div>       
         </div>
+
       </div>
       
       <!--Side-Bar-->
@@ -278,7 +288,7 @@
           <div class="widget_heading">
             <h5><i class="fa fa-address-card-o" aria-hidden="true"></i> Dealer Contact </h5>
           </div>
-          <div class="dealer_detail"> <img src="{{ asset('userProfiles/'. $myCar->avatar) }}" alt="image">
+          <div class="dealer_detail "> <img src="{{ asset('userProfiles/'. $myCar->avatar) }}" alt="image">
             <p><span>Name:</span> {{ $myCar->first_name . ' '  . $myCar->last_name}}</p>
             <p><span>Email:</span> {{$myCar->email}}</p>
             <p><span>Phone:</span> {{$myCar->mobile_num}}</p>
@@ -331,8 +341,8 @@
                 </div>
                 <div class="product-listing-content">
                 <h5><a href="{{ route('Car',$car->car_id) }}">{{  ucfirst($car->car_maker_name) .' '.ucfirst($car->car_model_name)}}</a></h5>
-                <p class="list-price"><strong>₱</strong>{{$car->price}}</p></br>
-                  <div style="float:none;margin:0;" class="car-location"><span><i class="fa fa-map-marker" aria-hidden="true"></i>{{$car->city. ', ' . $car->barangay}}</span></div>
+                <p class="list-price"><strong>₱</strong>{{$car->price}}</p>
+                  <div  class="car-location"><span><i class="fa fa-map-marker" aria-hidden="true"></i>{{$car->city }}</span></div>
                 <ul class="features_list">
                     <li><i class="fa fa-road" aria-hidden="true"></i>35,000 km</li>
                     <li><i class="fa fa-tachometer" aria-hidden="true"></i>{{$car->millage}}</li>
@@ -345,7 +355,7 @@
             @endforeach
         
         </div>
-    </div>
+      </div>
     <!--/Similar-Cars--> 
     
   </div>

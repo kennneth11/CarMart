@@ -2809,7 +2809,6 @@ table.info-tabel tr td {
 
 
 .listing_detail_header {
-  background: rgba(0, 0, 0, 0) url("../images/1920x830.jpg") no-repeat fixed center center / cover ;
   padding: 80px 0;
   position: relative;
 }
