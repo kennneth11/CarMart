@@ -3,11 +3,11 @@
 
 @section('content')
 <!-- Listing-detail-header -->
-<section id="carBanner" class="listing_detail_header">
+<section id="Banner-page" class="listing_detail_header">
   <div class="container">
     <div class="listing_detail_head white-text div_zindex row">
       <div class="col-md-9">
-        <img style="display:none;" id="backgroundCar" src="{{ asset('CarsImages/'.$imageBanner->file_path) }}">
+        <img style="display:none;" id="banner-source" src="{{ asset('CarsImages/'.$imageBanner->file_path) }}">
         <h2>{{ ucfirst($myCar->car_maker_name) . ' ' . ucfirst($myCar->car_model_name) }}</h2>
         <div class="car-location"><span><i class="fa fa-map-marker" aria-hidden="true"></i> {{ $myCar->city . ', ' . $myCar->barangay . ', ' . $myCar->purok}} </span></div>
         <div class="add_compare">
@@ -148,8 +148,8 @@
 
         
 
-        <div class="main_features">
-          <ul>
+        <div  class="main_features  ">
+          <ul >
             <li> <i class="fa fa-tachometer" aria-hidden="true"></i>
               <h5>{{ $myCar->millage }}</h5>
               <p>Total Millage</p>
@@ -292,7 +292,7 @@
             <p><span>Name:</span> {{ $myCar->first_name . ' '  . $myCar->last_name}}</p>
             <p><span>Email:</span> {{$myCar->email}}</p>
             <p><span>Phone:</span> {{$myCar->mobile_num}}</p>
-            <a href="#" class="btn btn-xs">View Profile</a> </div>
+            <a href="{{ route('dealer',$myCar->seller_id) }}" class="btn btn-xs">View Profile</a> </div>
         </div>
         @endif
 
@@ -335,9 +335,7 @@
                 @else
                     <div class="label_icon">Used</div>
                 @endif
-                <div class="compare_item">
-                    
-                </div>
+                
                 </div>
                 <div class="product-listing-content">
                 <h5><a href="{{ route('Car',$car->car_id) }}">{{  ucfirst($car->car_maker_name) .' '.ucfirst($car->car_model_name)}}</a></h5>

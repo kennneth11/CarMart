@@ -172,15 +172,17 @@ class CarController extends Controller
         $images = CarImage::where('car_id', '=', $request->key)->orderBy('car_id', 'ASC')->get();
 
         $cars = Car::join('car_makers', 'car_makers.car_maker_id', '=', 'cars.car_maker_id')
-         ->join('car_models', 'car_models.car_model_id', '=', 'cars.car_model_id')
-         ->join('car_body_types', 'car_body_types.body_type_id', '=', 'cars.body_type_id')
-         ->join('car_transmissions', 'car_transmissions.transmission_id', '=', 'cars.transmission_id')
-         ->join('car_fuel_types', 'car_fuel_types.fuel_type_id', '=', 'cars.fuel_type_id')
-         ->join('users','users.id', '=', 'cars.seller_id')
-         ->where('status', '=', 'Active')
-         ->orderBy('car_id', 'ASC')
-         ->take(4)
-         ->get();
+            ->join('car_models', 'car_models.car_model_id', '=', 'cars.car_model_id')
+            ->join('car_body_types', 'car_body_types.body_type_id', '=', 'cars.body_type_id')
+            ->join('car_transmissions', 'car_transmissions.transmission_id', '=', 'cars.transmission_id')
+            ->join('car_fuel_types', 'car_fuel_types.fuel_type_id', '=', 'cars.fuel_type_id')
+            ->join('users','users.id', '=', 'cars.seller_id')
+            ->where('status', '=', 'Active')
+            ->where('car_models.car_model_id','=', $myCar->car_model_id)
+            ->orWhere('car_makers.car_maker_id','=', $myCar->car_maker_id)
+            ->orWhere('users.id','=', $myCar->seller_id)
+            ->take(4)
+            ->get();
 
         foreach($cars as $car){
             if(str_contains($car->city, 'CITY')){

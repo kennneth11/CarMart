@@ -31,14 +31,47 @@ input[type=number] {
   display: inline-block;
   height: 70px;
   width: 100%;
-  
-
 }
 
 .brand img {
   height: 100%;
   width: 100%;
   object-fit: contain;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.sellerProfile{
+  display: inline-block;
+  width: 100%;
+  height: 10vh;
+}
+
+@media only screen and (min-width: 768px) {
+  .sellerProfile{
+    display: inline-block;
+    width: 100%;
+    height: 15vh;
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  .sellerProfile{
+    display: inline-block;
+    width: 100%;
+    height: 20vh;
+  }
+}
+
+.sellerProfile img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.margin_auto{
   margin-left: auto;
   margin-right: auto;
 }
@@ -64,6 +97,9 @@ input[type=number] {
   width: 100%;
   object-fit: contain;
 }
+
+
+
 
 
 

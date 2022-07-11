@@ -17,12 +17,12 @@
 
 
     $(window).on('load', function() {
-        var pic = document.getElementById("backgroundCar").src
-        document.getElementById("carBanner").style.background = "rgba(0, 0, 0, 0) url("+pic +") no-repeat fixed center center / cover" ;
+        var pic = document.getElementById("banner-source").src;
+        document.getElementById("Banner-page").style.background = "rgba(0, 0, 0, 0) url("+pic +") no-repeat fixed center center / cover" ;
+        
     });
 
     $(window).on('load', function() {
-
         var cust = document.getElementsByClassName("my-img");
         for(i=0; i<cust.length; i++) {
             cust[i].style.height = "50vh";

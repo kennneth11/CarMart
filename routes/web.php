@@ -34,6 +34,8 @@ Route::get('/', [FrontEndController::class, 'index'])->name('index');
 Route::get('/about', [FrontEndController::class, 'about'])->name('about');
 Route::get('/contact', [FrontEndController::class, 'contact'])->name('contact');
 Route::get('/Car{key}', 'App\Http\Controllers\CarController@viewCar')->name('Car');
+
+Route::get('/seller', 'App\Http\Controllers\User\SellerUserController@viewSellers')->name('sellers');
 //Visitors Route ---------------End Line--------------------------------
 
 
@@ -49,6 +51,7 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('/changeAddress', 'App\Http\Controllers\User\MoreSettingController@changeAddress')->name('changeAddress');
     Route::post('/updateAddress', 'App\Http\Controllers\User\MoreSettingController@updateAddress')->name('updateAddress');
 
+    Route::get('/dealer{key}', 'App\Http\Controllers\User\SellerUserController@viewSeller')->name('dealer');
     
 });
 //both---------------End Line--------------------------------
