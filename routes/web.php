@@ -32,10 +32,14 @@ use App\Http\Controllers\User\MoreSettingController;
 //Visitors Route ---------------Start Line--------------------------------
 Route::get('/', [FrontEndController::class, 'index'])->name('index');
 Route::get('/about', [FrontEndController::class, 'about'])->name('about');
-Route::get('/contact', [FrontEndController::class, 'contact'])->name('contact');
+Route::get('/contact', [EmailController::class, 'create'])->name('contact');
 Route::get('/Car{key}', 'App\Http\Controllers\CarController@viewCar')->name('Car');
+<<<<<<< HEAD
+Route::get('/searchCar', [FrontEndController::class, 'searchCar'])->name('searchCar');
+=======
 
 Route::get('/seller', 'App\Http\Controllers\User\SellerUserController@viewSellers')->name('sellers');
+>>>>>>> 64442a5c314c02887f14c6808a8507c1d3183e95
 //Visitors Route ---------------End Line--------------------------------
 
 
@@ -50,9 +54,12 @@ Route::group(['middleware' => ['auth']], function() {
     Route::post('/updatePassword', 'App\Http\Controllers\User\MoreSettingController@updatePassword')->name('updatePassword');
     Route::get('/changeAddress', 'App\Http\Controllers\User\MoreSettingController@changeAddress')->name('changeAddress');
     Route::post('/updateAddress', 'App\Http\Controllers\User\MoreSettingController@updateAddress')->name('updateAddress');
+<<<<<<< HEAD
+=======
 
     Route::get('/dealer{key}', 'App\Http\Controllers\User\SellerUserController@viewSeller')->name('dealer');
     
+>>>>>>> 64442a5c314c02887f14c6808a8507c1d3183e95
 });
 //both---------------End Line--------------------------------
 

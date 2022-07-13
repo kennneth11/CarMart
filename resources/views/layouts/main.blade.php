@@ -108,8 +108,8 @@
           @endif
           <div class="header_search">
             <div id="search_toggle"><i class="fa fa-search" aria-hidden="true"></i></div>
-            <form action="#" method="get" id="header-search-form">
-              <input type="text" placeholder="Search..." class="form-control">
+            <form action="{{route('searchCar')}}" method="GET" id="header-search-form">
+              <input type="text" placeholder="Search..." class="form-control" name="carSearch">
               <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
             </form>
           </div>
@@ -129,9 +129,19 @@
                 <li><a href="listing-detail-2.html">Detail Page Style 2</a></li>
               </ul>
             </li>
+<<<<<<< HEAD
+            <li class="dropdown"><a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dealers</a>
+              <ul class="dropdown-menu">
+                <li><a href="dealers-list.html">List View</a></li>
+                <li><a href="dealers-profile.html">Detail Page</a></li>
+              </ul>
+            </li>
+            <li><a href="{{ url('contact') }}">Contact Us</a>
+=======
             <li><a href="{{ route('sellers') }}">Seller</a></li>
 
             <li><a href="{{ url('email') }}">Contact Us</a>
+>>>>>>> 64442a5c314c02887f14c6808a8507c1d3183e95
             <li class="dropdown"><a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">News</a>
               <ul class="dropdown-menu">
                 <li><a href="blog-left-sidebar.html">Blog Left Sidebar</a></li>

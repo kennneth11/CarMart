@@ -27,7 +27,7 @@
                         </select>
                     </div>
                 </div>
-            
+
                 <div class="form-group">
                     <label class="control-label">Vehicle Overview  Description</label>
                     <textarea name="description" class="form-control white_bg" rows="4"></textarea>
@@ -109,9 +109,9 @@
                     </div>
                 </div>
 
-                
-              
-       
+
+
+
                 <div class="gray-bg field-title">
                     <h6>Accessories</h6>
                 </div>
@@ -149,7 +149,7 @@
                     <input  name="central_locking" id="locking" type="checkbox">
                     <label  for="locking">Central Locking</label>
                 </div>
-                
+
                 </div>
                 <div class="vehicle_type">
                 <div class="form-group radio col-md-6 accessories_list">

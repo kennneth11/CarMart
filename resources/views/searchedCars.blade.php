@@ -72,6 +72,7 @@
 
 
           <div class="row">
+
             <!--Start Card-->
             @foreach($cars as $car)
             <div class="col-md-4 grid_listing">
@@ -89,8 +90,8 @@
                 </div>
                 <div class="product-listing-content">
                   <h5><a href="{{ route('Car',$car->car_id) }}">{{  ucfirst($car->car_maker_name) .' '.ucfirst($car->car_model_name)}}</a></h5>
-                  <p class="list-price"><strong>₱</strong>{{$car->price}}</p>
-                  <div  class="car-location"><span><i class="fa fa-map-marker" aria-hidden="true"></i>{{ str_replace("(Capital)", "",$car->city) }}</span></div>
+                  <p class="list-price"><strong>₱</strong>{{$car->price}}</p></br>
+                  <div style="float:none;margin:0;" class="car-location"><span><i class="fa fa-map-marker" aria-hidden="true"></i>{{$car->city. ', ' . $car->barangay}}</span></div>
                   <ul class="features_list">
                     <li><i class="fa fa-road" aria-hidden="true"></i>35,000 km</li>
                     <li><i class="fa fa-tachometer" aria-hidden="true"></i>{{$car->millage}}</li>
@@ -102,8 +103,6 @@
             </div>
             @endforeach
             <!--End Card-->
-
-
 
           </div>
           <div class="pagination">
