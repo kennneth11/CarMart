@@ -59,7 +59,7 @@
           <h5 class="gray-bg info_title"> About Autospot Used Cars Center</h5>
           <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. </p>
           <div class="dealer_map">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d26361315.424069386!2d-113.75658747371207!3d36.241096924675375!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x54eab584e432360b%3A0x1c3bb99243deb742!2sUnited+States!5e0!3m2!1sen!2sin!4v1483614660041" width="100%" frameborder="0" style="border:0" allowfullscreen></iframe>
+            <iframe src="https://maps.google.com/maps?q=bukidnon&t=&z=9&ie=UTF8&iwloc=&output=embed" width="100%" frameborder="0" style="border:0" allowfullscreen></iframe>
           </div>
           <div class="dealer_listings">
             <h6>Inventorys Listing By {{$seller->first_name . ' ' .$seller->last_name}}</h6>

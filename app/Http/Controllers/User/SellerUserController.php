@@ -63,9 +63,10 @@ class SellerUserController extends Controller
             $sellerCars = Car::where('seller_id','=', $seller->id)->count();
             $seller->num_car = $sellerCars;
         }
-
+        $brands = CarMaker::take(7)->get();
 
         return view('sellers')
+            ->with(['brands'=>$brands])
             ->with(['sellers'=>$sellers]);
     }
 }

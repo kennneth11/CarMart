@@ -359,6 +359,7 @@
   </div>
 </section>
 <!--/Listing-detail--> 
+
 <!--Brands-->
 <section class="brand-section gray-bg">
   <div class="container">

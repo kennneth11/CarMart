@@ -74,22 +74,20 @@
 
 <!--Brands-->
 <section class="brand-section gray-bg">
-    <div class="container">
-        <div class="brand-hadding">
-        <h5>Popular Brands</h5>
-        </div>
-        <div class="brand-logo-list">
-        <div id="popular_brands">
-            <div><a href="#"><img src="assets/images/100x60.png" class="img-responsive" alt="image"></a></div>
-            <div><a href="#"><img src="assets/images/100x60.png" class="img-responsive" alt="image"></a></div>
-            <div><a href="#"><img src="assets/images/100x60.png" class="img-responsive" alt="image"></a></div>
-            <div><a href="#"><img src="assets/images/100x60.png" class="img-responsive" alt="image"></a></div>
-            <div><a href="#"><img src="assets/images/100x60.png" class="img-responsive" alt="image"></a></div>
-            <div><a href="#"><img src="assets/images/100x60.png" class="img-responsive" alt="image"></a></div>
-            <div><a href="#"><img src="assets/images/100x60.png" class="img-responsive" alt="image"></a></div>
-        </div>
-        </div>
+  <div class="container">
+    <div class="brand-hadding">
+      <h5>Popular Brands</h5>
     </div>
+    <div class="brand-logo-list">
+      <div id="popular_brands">
+        @foreach($brands as $brand)
+            <div class="brand"><a href="#"><img src="{{ asset($brand->file_path_picture) }}" class="img-responsive" alt="image"></a></div>
+        @endforeach
+            
+        
+      </div>
+    </div>
+  </div>
 </section>
 <!-- /Brands--> 
 @endsection
