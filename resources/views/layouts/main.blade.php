@@ -91,8 +91,6 @@
             <ul>
               <li class="dropdown"> <a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user-circle" aria-hidden="true"></i> {{ Auth::user()->first_name }} {{ Auth::user()->last_name }} <i class="fa fa-angle-down" aria-hidden="true"></i></a>
                 <ul class="dropdown-menu">
-
-
                 <li><a href="{{ route('profile.show', Auth::id()) }}">Profile Settings</a></li>
 
                   @if (Auth::user()->hasRole('seller'))
@@ -114,7 +112,7 @@
           <div class="header_search">
             <div id="search_toggle"><i class="fa fa-search" aria-hidden="true"></i></div>
             <form action="{{route('searchCar')}}" method="GET" id="header-search-form">
-              <input type="text" placeholder="Search..." class="form-control" name="carSearch">
+              <input type="text" placeholder="Search..." class="form-control" name="search">
               <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
             </form>
           </div>
@@ -137,7 +135,6 @@
                 <li><a href="blog-detail.html">Blog Detail</a></li>
               </ul>
             </li>
-
           </ul>
         </div>
       </div>
@@ -229,37 +226,31 @@
 
 <script src="{{ asset('assets/js/slick.min.js') }}"></script>
 <script src="{{ asset('assets/js/owl.carousel.min.js') }}"></script>
-
-
 <script src="{{ asset('assets/js/jquery.ph-locations.js') }}"></script>
-
-
-
 
 <script type="text/javascript">
         var my_handlers = {
+                fill_cities: function(){
 
-            fill_cities: function(){
+                    var province_code = $(this).val();
+                    $('#city').ph_locations( 'fetch_list', [{"province_code": 1013}]);
+                },
 
-                var province_code = $(this).val();
-                $('#city').ph_locations( 'fetch_list', [{"province_code": 1013}]);
-            },
+                fill_barangays: function(){
 
-            fill_barangays: function(){
-
-                var city_code = $(this).val();
-                $('#barangay').ph_locations('fetch_list', [{"city_code": city_code}]);
-            }
+                    var city_code = $(this).val();
+                    $('#barangay').ph_locations('fetch_list', [{"city_code": city_code}]);
+                }
             };
 
             $(function(){
 
-            $('#city').on('change', my_handlers.fill_barangays);
+                $('#city').on('change', my_handlers.fill_barangays);
 
-            $('#city').ph_locations({'location_type': 'cities'});
-            $('#barangay').ph_locations({'location_type': 'barangays'});
+                $('#city').ph_locations({'location_type': 'cities'});
+                $('#barangay').ph_locations({'location_type': 'barangays'});
 
-            $('#city').ph_locations('fetch_list', [{"province_code": 1013}]);
+                $('#city').ph_locations('fetch_list', [{"province_code": 1013}]);
             });
 </script>
 

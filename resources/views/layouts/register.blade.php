@@ -72,13 +72,11 @@
                   <div class="form-group">
                     <label for="city">City/Municipality</label>
                     <input type="hidden"  name="city"/>
-                    <select id="city" class="form-control">
-                    </select>
+                    <select id="city" class="form-control"></select>
                   <!--Baranggay-->
                     <label for="barangay">Barangay</label>
                     <input type="hidden"  name="barangay"/>
-                    <select id="barangay" class="form-control">
-                    </select>
+                    <select id="barangay" class="form-control"></select>
                   </div>
 
                   <!-- Purok -->
@@ -141,14 +139,6 @@
         var num = /[^0-9]/gi;
         input.value = input.value.replace(num,"");
     }
-    //function city(val){
-      // var select_city = $('#city option:selected').text();
-      //console.log(val);
-    //}
-    //$(function(){
-
-
-    //});
 
     $('#city').change(function(){
          var select_city = $('#city :selected').text();
@@ -159,6 +149,4 @@
          var select_barangay = $('#barangay :selected').text();
         $('input[name=barangay]').val(select_barangay);
     });
-
-    //
   </script>

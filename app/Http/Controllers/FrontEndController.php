@@ -33,6 +33,7 @@ class FrontEndController extends Controller
          ->where('status', '=', 'Active')
          ->orderBy('car_id', 'ASC')
          ->get();
+        //  dd($cars);
 
          foreach($cars as $car){
             if(str_contains($car->city, 'CITY')){
@@ -74,41 +75,67 @@ class FrontEndController extends Controller
         $carFuelTypeData = CarFuelType::get();
         $carTransmissionData = CarTransmission::get();
 
-        $r = $request->input('carSearch');
-        $cars = Car::where('status', '=', 'Active')
-        ->join('car_makers', 'car_makers.car_maker_id', '=', 'cars.car_maker_id')
-        ->join('car_models', 'car_models.car_model_id', '=', 'cars.car_model_id')
-        ->join('car_body_types', 'car_body_types.body_type_id', '=', 'cars.body_type_id')
-        ->join('car_transmissions', 'car_transmissions.transmission_id', '=', 'cars.transmission_id')
-        ->join('car_fuel_types', 'car_fuel_types.fuel_type_id', '=', 'cars.fuel_type_id')
-        ->join('cars', 'car_id', '=', 'cars.car_id')
-        ->join('users','users.id', '=', 'cars.seller_id')
-        ->select('car_body_types.body_type_name', 'car_fuel_types.fuel_type_name',
-        'car_makers.car_maker_name', 'car_models.car_model_name', 'car_transmissions.transmission_name',
-        'cars.year_manufactured', 'users.city', 'cars.New_car')
-        ->where('city', 'LIKE', "%.$r.%")
-        ->orWhere('body_type_name', 'LIKE', "%.$r.%")
-        ->orWhere('fuel_type_name', 'LIKE', "%.$r.%")
-        ->orWhere('transmission_name', 'LIKE', "%.$r.%")
-        ->orWhere('year_manufactured', 'LIKE', "%.$r.%")
-        ->orWhere('car_maker_name', 'LIKE', "%.$r.%")
-        ->orWhere('car_model_name', 'LIKE', "%.$r.%")
-        ->orWhere('New_car', 'LIKE', "%.$r.%")
-        ->orWhere('city', 'LIKE', "%.$r.%");
+        $r = $request->search;
+        $city = $request->city;
+        $brand = $request->brand;
+        $transmission = $request->transmission;
+        $fuel = $request->fuel;
+        $model = $request->model;
+        $year = $request->year_model;
+        $type = $request->New_car;
 
-         foreach($cars as $car){
-         $carID = $car->car_id;
+        if($r){
+            $cars = Car::where('status', '=', 'Active')
+            ->join('car_makers', 'car_makers.car_maker_id', '=', 'cars.car_maker_id')
+            ->join('car_models', 'car_models.car_model_id', '=', 'cars.car_model_id')
+            ->join('car_body_types', 'car_body_types.body_type_id', '=', 'cars.body_type_id')
+            ->join('car_transmissions', 'car_transmissions.transmission_id', '=', 'cars.transmission_id')
+            ->join('car_fuel_types', 'car_fuel_types.fuel_type_id', '=', 'cars.fuel_type_id')
+            ->join('users','users.id', '=', 'cars.seller_id')
+            // ->select('car_makers.car_maker_name', 'car_models.car_model_name', 'car_transmissions.transmission_name',
+            // 'car_fuel_types.fuel_type_name',)
+            ->orWhere('car_makers.car_maker_name', 'LIKE', "%{$r}%")
+            ->orWhere('car_models.car_model_name', 'LIKE', "%{$r}%")->get();
+            // dd($cars);
+        }
+        else{
+
+            $cars = Car::where('status', '=', 'Active')
+            ->join('car_makers', 'car_makers.car_maker_id', '=', 'cars.car_maker_id')
+            ->join('car_models', 'car_models.car_model_id', '=', 'cars.car_model_id')
+            ->join('car_body_types', 'car_body_types.body_type_id', '=', 'cars.body_type_id')
+            ->join('car_transmissions', 'car_transmissions.transmission_id', '=', 'cars.transmission_id')
+            ->join('car_fuel_types', 'car_fuel_types.fuel_type_id', '=', 'cars.fuel_type_id')
+            ->join('users','users.id', '=', 'cars.seller_id')
+            // ->select('car_makers.car_maker_name', 'car_models.car_model_name', 'car_transmissions.transmission_name',
+            // 'car_fuel_types.fuel_type_name',)
+            ->orWhere('car_makers.car_maker_name', 'LIKE', "%{$brand}%")
+            ->orWhere('car_models.car_model_name', 'LIKE', "%{$model}%")
+            ->orWhere('users.city', 'LIKE', "%{$city}%")
+            ->orWhere('car_fuel_types.fuel_type_name', 'LIKE', "%{$fuel}%")
+            ->orWhere('car_transmissions.transmission_name', 'LIKE', "%{$transmission}%")
+            ->orWhere('cars.year_manufactured', 'LIKE', "%{$year}%")
+            ->orWhere('cars.New_car', 'LIKE', "%{$type}%");
+            dd($cars);
+        }
+
+
+        foreach($cars as $car){
+        $carID = $car->car_id;
              $image = CarImage::where('car_id', '=', $carID)->orderBy('car_id', 'ASC')->first();
              $car->car_image = $image->file_path;
          }
 
         return view('searchedCars')
             ->with(['cars'=>$cars])
+            ->with(['search'=>$r])
             ->with(['carModels'=>$carModelData])
             ->with(['carBodyTypes'=>$carBodyTypeData])
             ->with(['carFuelTypes'=>$carFuelTypeData])
             ->with(['carTransmissions'=>$carTransmissionData])
             ->with(['carMakers'=>$carMakerData]);
     }
+
+
 
 }
