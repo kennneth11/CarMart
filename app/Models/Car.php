@@ -31,4 +31,19 @@ class Car extends Model
         'passenger_airbag',
         'New_car',
     ];
+
+    public function transmission()
+    {
+        return $this->hasOne(CarTransmission::class, 'transmission_id', 'transmission_id');
+    }
+
+    public function carImage()
+    {
+        return $this->hasMany(CarImage::class);
+    }
+    public function carTransmission()
+    {
+        return $this->hasOne(CarTransmission::class, 'transmission_id', 'id');
+    }
+
 }

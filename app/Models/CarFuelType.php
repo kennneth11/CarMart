@@ -12,4 +12,6 @@ class CarFuelType extends Model
     protected $fillable = [
         'fuel_type_name',
     ];
+
+
 }

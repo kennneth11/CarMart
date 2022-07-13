@@ -86,8 +86,6 @@
             <ul>
               <li class="dropdown"> <a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user-circle" aria-hidden="true"></i> {{ Auth::user()->first_name }} {{ Auth::user()->last_name }} <i class="fa fa-angle-down" aria-hidden="true"></i></a>
                 <ul class="dropdown-menu">
-
-
                 <li><a href="{{ route('profile.show', Auth::id()) }}">Profile Settings</a></li>
 
                   @if (Auth::user()->hasRole('seller'))
@@ -109,7 +107,7 @@
           <div class="header_search">
             <div id="search_toggle"><i class="fa fa-search" aria-hidden="true"></i></div>
             <form action="{{route('searchCar')}}" method="GET" id="header-search-form">
-              <input type="text" placeholder="Search..." class="form-control" name="carSearch">
+              <input type="text" placeholder="Search..." class="form-control" name="search">
               <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
             </form>
           </div>
@@ -120,28 +118,9 @@
 
             </li>
             <li><a href="{{ route('about') }}">About Us</a></li>
-
-            <li class="dropdown"><a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Inventory</a>
-              <ul class="dropdown-menu">
-                <li><a href="listing-grid.html">Grid Style</a></li>
-                <li><a href="listing-classic.html">Classic Style</a></li>
-                <li><a href="listing-detail.html">Detail Page Style 1</a></li>
-                <li><a href="listing-detail-2.html">Detail Page Style 2</a></li>
-              </ul>
-            </li>
-<<<<<<< HEAD
-            <li class="dropdown"><a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dealers</a>
-              <ul class="dropdown-menu">
-                <li><a href="dealers-list.html">List View</a></li>
-                <li><a href="dealers-profile.html">Detail Page</a></li>
-              </ul>
-            </li>
             <li><a href="{{ url('contact') }}">Contact Us</a>
-=======
             <li><a href="{{ route('sellers') }}">Seller</a></li>
-
             <li><a href="{{ url('email') }}">Contact Us</a>
->>>>>>> 64442a5c314c02887f14c6808a8507c1d3183e95
             <li class="dropdown"><a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">News</a>
               <ul class="dropdown-menu">
                 <li><a href="blog-left-sidebar.html">Blog Left Sidebar</a></li>
@@ -149,7 +128,6 @@
                 <li><a href="blog-detail.html">Blog Detail</a></li>
               </ul>
             </li>
-
           </ul>
         </div>
       </div>
@@ -241,37 +219,31 @@
 
 <script src="{{ asset('assets/js/slick.min.js') }}"></script>
 <script src="{{ asset('assets/js/owl.carousel.min.js') }}"></script>
-
-
 <script src="{{ asset('assets/js/jquery.ph-locations.js') }}"></script>
-
-
-
 
 <script type="text/javascript">
         var my_handlers = {
+                fill_cities: function(){
 
-            fill_cities: function(){
+                    var province_code = $(this).val();
+                    $('#city').ph_locations( 'fetch_list', [{"province_code": 1013}]);
+                },
 
-                var province_code = $(this).val();
-                $('#city').ph_locations( 'fetch_list', [{"province_code": 1013}]);
-            },
+                fill_barangays: function(){
 
-            fill_barangays: function(){
-
-                var city_code = $(this).val();
-                $('#barangay').ph_locations('fetch_list', [{"city_code": city_code}]);
-            }
+                    var city_code = $(this).val();
+                    $('#barangay').ph_locations('fetch_list', [{"city_code": city_code}]);
+                }
             };
 
             $(function(){
 
-            $('#city').on('change', my_handlers.fill_barangays);
+                $('#city').on('change', my_handlers.fill_barangays);
 
-            $('#city').ph_locations({'location_type': 'cities'});
-            $('#barangay').ph_locations({'location_type': 'barangays'});
+                $('#city').ph_locations({'location_type': 'cities'});
+                $('#barangay').ph_locations({'location_type': 'barangays'});
 
-            $('#city').ph_locations('fetch_list', [{"province_code": 1013}]);
+                $('#city').ph_locations('fetch_list', [{"province_code": 1013}]);
             });
 </script>
 

@@ -124,7 +124,7 @@
               <h5><i class="fa fa-filter" aria-hidden="true"></i> Find Your Dream Car </h5>
             </div>
             <div class="sidebar_filter">
-              <form action="#" method="get">
+              <form action="{{route('searchCar')}}" method="get">
                 <div class="form-group select">
                   <select class="form-control" name="city" id="city">
                     <option>Select Location</option>
@@ -173,8 +173,8 @@
                 <div class="form-group select">
                   <select class="form-control"  name="New_car">
                     <option>Type of Car </option>
-                    <option value="NewCar">Brand New Car</option>
-                    <option value="UsedCar">Used Car</option>
+                    <option value="1">Brand New Car</option>
+                    <option value="0">Used Car</option>
                   </select>
                 </div>
                 <div class="form-group">

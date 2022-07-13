@@ -14,8 +14,9 @@ class CarModel extends Model
         'car_model_name',
     ];
 
-
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
 }
