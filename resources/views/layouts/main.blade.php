@@ -108,8 +108,8 @@
           @endif
           <div class="header_search">
             <div id="search_toggle"><i class="fa fa-search" aria-hidden="true"></i></div>
-            <form action="#" method="get" id="header-search-form">
-              <input type="text" placeholder="Search..." class="form-control">
+            <form action="{{route('searchCar')}}" method="GET" id="header-search-form">
+              <input type="text" placeholder="Search..." class="form-control" name="carSearch">
               <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
             </form>
           </div>
@@ -134,7 +134,7 @@
                 <li><a href="dealers-profile.html">Detail Page</a></li>
               </ul>
             </li>
-            <li><a href="{{ url('email') }}">Contact Us</a>
+            <li><a href="{{ url('contact') }}">Contact Us</a>
             <li class="dropdown"><a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">News</a>
               <ul class="dropdown-menu">
                 <li><a href="blog-left-sidebar.html">Blog Left Sidebar</a></li>

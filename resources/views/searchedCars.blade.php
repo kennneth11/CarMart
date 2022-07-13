@@ -72,6 +72,7 @@
 
 
           <div class="row">
+
             <!--Start Card-->
             @foreach($cars as $car)
             <div class="col-md-4 grid_listing">
@@ -102,8 +103,6 @@
             </div>
             @endforeach
             <!--End Card-->
-
-
 
           </div>
           <div class="pagination">
