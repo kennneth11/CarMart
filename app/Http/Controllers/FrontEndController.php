@@ -35,6 +35,19 @@ class FrontEndController extends Controller
          ->get();
 
          foreach($cars as $car){
+            if(str_contains($car->city, 'CITY')){
+                $new = str_replace("CITY OF", '', $car->city) ;
+                $new =str_replace(" (Capital)", '', $new) ;
+                $car->city = $new . " CITY";
+            }
+
+            if(str_contains($car->city, 'MALAYBALAY')){
+                $car->city = ltrim($car->city, $car->city[0]);
+            }
+
+        }
+
+         foreach($cars as $car){
          $carID = $car->car_id;
              $image = CarImage::where('car_id', '=', $carID)->orderBy('car_id', 'ASC')->first();
              $car->car_image = $image->file_path;

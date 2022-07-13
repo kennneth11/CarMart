@@ -120,6 +120,7 @@
 
             </li>
             <li><a href="{{ route('about') }}">About Us</a></li>
+
             <li class="dropdown"><a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Inventory</a>
               <ul class="dropdown-menu">
                 <li><a href="listing-grid.html">Grid Style</a></li>
@@ -128,6 +129,7 @@
                 <li><a href="listing-detail-2.html">Detail Page Style 2</a></li>
               </ul>
             </li>
+<<<<<<< HEAD
             <li class="dropdown"><a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dealers</a>
               <ul class="dropdown-menu">
                 <li><a href="dealers-list.html">List View</a></li>
@@ -135,6 +137,11 @@
               </ul>
             </li>
             <li><a href="{{ url('contact') }}">Contact Us</a>
+=======
+            <li><a href="{{ route('sellers') }}">Seller</a></li>
+
+            <li><a href="{{ url('email') }}">Contact Us</a>
+>>>>>>> 64442a5c314c02887f14c6808a8507c1d3183e95
             <li class="dropdown"><a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">News</a>
               <ul class="dropdown-menu">
                 <li><a href="blog-left-sidebar.html">Blog Left Sidebar</a></li>

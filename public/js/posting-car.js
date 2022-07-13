@@ -13,6 +13,28 @@
     }
 
 
+        // "rgba(0, 0, 0, 0) url('../images/1920x830.jpg') no-repeat fixed center center / cover" ;
+
+
+    $(window).on('load', function() {
+        var pic = document.getElementById("banner-source").src;
+        document.getElementById("Banner-page").style.background = "rgba(0, 0, 0, 0) url("+pic +") no-repeat fixed center center / cover" ;
+        
+    });
+
+    $(window).on('load', function() {
+        var cust = document.getElementsByClassName("my-img");
+        for(i=0; i<cust.length; i++) {
+            cust[i].style.height = "50vh";
+        }
+
+        var cust1 = document.getElementsByClassName("img-nav-selector");
+        for(i=0; i<cust1.length; i++) {
+            cust1[i].style.height = "7vh";
+        }
+    });
+
+
     function previewImages() {
         var preview = document.querySelector('#preview');
 
@@ -60,5 +82,10 @@
             reader.readAsDataURL(file);
         }
     }
+
+    // rgba(0, 0, 0, 0) url("../images/1920x830.jpg") no-repeat fixed center center / cover ;
   
   document.querySelector('#file-input').addEventListener("change", previewImages);
+
+
+    
