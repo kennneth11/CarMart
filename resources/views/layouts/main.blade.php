@@ -51,27 +51,32 @@
 
 <!--Header-->
 <header>
-    <div class="default-header">
-      <div class="container">
-        <div class="row">
-          <div class="col-sm-3 col-md-2">
-            <div class="logo"> <a href="{{ route('index') }}"><img src="{{ asset('assets/images/CarMartSmallV2.png') }}" alt="image"/></a> </div>
-          </div>
-          <div class="col-sm-9 col-md-10">
-            <div class="header_info">
-              <div class="header_widgets">
-                <div class="circle_icon"> <i class="fa fa-envelope" aria-hidden="true"></i> </div>
-                <p class="uppercase_text">For Support Mail us : </p>
-                <a href="mailto:info@example.com">business.carmart@gmail.com</a> </div>
-              <div class="header_widgets">
-                <div class="circle_icon"> <i class="fa fa-phone" aria-hidden="true"></i> </div>
-                <p class="uppercase_text">Service Helpline Call Us: </p>
-                <a href="tel:61-1234-5678-09">+63-9531548869</a> </div>
+  <div class="default-header">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-3 col-md-2">
+          <div class="logo"> <a href="{{ route('index') }}"><img src="{{ asset('assets/images/CarMartSmallV2.png') }}" alt="image"/></a> </div>
+        </div>
+        <div class="col-sm-9 col-md-10">
+
+          <div class="header_info">
+            <div class="header_widgets">
+              <div class="circle_icon"> <i class="fa fa-envelope" aria-hidden="true"></i> </div>
+              <p class="uppercase_text">For Support Mail us : </p>
+              <a href="mailto:info@example.com">business.carmart@gmail.com</a>
+            </div>
+
+            <div class="header_widgets">
+              <div class="circle_icon"> <i class="fa fa-phone" aria-hidden="true"></i> </div>
+              <p class="uppercase_text">Service Helpline Call Us: </p>
+              <a href="tel:61-1234-5678-09">+63-9531548869</a>
             </div>
           </div>
+
         </div>
       </div>
     </div>
+  </div>
 
     <!-- Navigation -->
     <nav id="navigation_bar" class="navbar navbar-default">
@@ -121,27 +126,10 @@
             </li>
             <li><a href="{{ route('about') }}">About Us</a></li>
 
-            <li class="dropdown"><a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Inventory</a>
-              <ul class="dropdown-menu">
-                <li><a href="listing-grid.html">Grid Style</a></li>
-                <li><a href="listing-classic.html">Classic Style</a></li>
-                <li><a href="listing-detail.html">Detail Page Style 1</a></li>
-                <li><a href="listing-detail-2.html">Detail Page Style 2</a></li>
-              </ul>
-            </li>
-<<<<<<< HEAD
-            <li class="dropdown"><a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dealers</a>
-              <ul class="dropdown-menu">
-                <li><a href="dealers-list.html">List View</a></li>
-                <li><a href="dealers-profile.html">Detail Page</a></li>
-              </ul>
-            </li>
-            <li><a href="{{ url('contact') }}">Contact Us</a>
-=======
             <li><a href="{{ route('sellers') }}">Seller</a></li>
 
-            <li><a href="{{ url('email') }}">Contact Us</a>
->>>>>>> 64442a5c314c02887f14c6808a8507c1d3183e95
+            <li><a href="{{ url('email') }}">Contact Us</a></li>
+
             <li class="dropdown"><a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">News</a>
               <ul class="dropdown-menu">
                 <li><a href="blog-left-sidebar.html">Blog Left Sidebar</a></li>
