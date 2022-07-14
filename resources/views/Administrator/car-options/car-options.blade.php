@@ -1,6 +1,6 @@
 @extends('Administrator.layouts.sidebar')
 
-@section('content')
+@section('contentDashboard')
 
 
     <div class="app-content pt-3 p-md-3 p-lg-4">
@@ -58,7 +58,7 @@
                     <div class="modal fade" id="carMakerModal" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
                         <div class="modal-dialog modal-dialog-centered">
                             <div class="modal-content">
-                                <form id="login-form" method="POST" action="{{ route('CarOptions') }} "enctype="multipart/form-data" >
+                                <form id="login-form" method="POST" action="{{ route('Setting') }} "enctype="multipart/form-data" >
                                     @csrf
                                     <div class="modal-header">
                                         <h5 class="modal-title" id="exampleModalToggleLabel2">Add New Car Maker</h5>
@@ -126,7 +126,7 @@
                     <div class="modal fade" id="carModelModal" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
                         <div class="modal-dialog modal-dialog-centered">
                             <div class="modal-content">
-                                <form id="login-form" method="POST" action="{{ route('CarOptions') }}">
+                                <form id="login-form" method="POST" action="{{ route('Setting') }}">
                                     @csrf
                                     <div class="modal-header">
                                         <h5 class="modal-title" id="exampleModalToggleLabel2">Add New Car Model</h5>
@@ -196,7 +196,7 @@
                     <div class="modal fade" id="BodyTypeModal" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
                         <div class="modal-dialog modal-dialog-centered">
                             <div class="modal-content">
-                                <form id="login-form" method="POST" action="{{ route('CarOptions') }}">
+                                <form id="login-form" method="POST" action="{{ route('Setting') }}">
                                     @csrf
                                     <div class="modal-header">
                                         <h5 class="modal-title" id="exampleModalToggleLabel2">Add New Body Type</h5>
@@ -259,7 +259,7 @@
                     <div class="modal fade" id="transmissioneModal" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
                         <div class="modal-dialog modal-dialog-centered">
                             <div class="modal-content">
-                                <form id="login-form" method="POST" action="{{ route('CarOptions') }}">
+                                <form id="login-form" method="POST" action="{{ route('Setting') }}">
                                     @csrf
                                     <div class="modal-header">
                                         <h5 class="modal-title" id="exampleModalToggleLabel2">Add New Transmission</h5>
@@ -321,7 +321,7 @@
                     <div class="modal fade" id="FuelTypeModal" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
                         <div class="modal-dialog modal-dialog-centered">
                             <div class="modal-content">
-                                <form id="login-form" method="POST" action="{{ route('CarOptions') }}">
+                                <form id="login-form" method="POST" action="{{ route('Setting') }}">
                                     @csrf
                                     <div class="modal-header">
                                         <h5 class="modal-title" id="exampleModalToggleLabel2">Add New Fuel Type</h5>

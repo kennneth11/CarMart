@@ -26,6 +26,33 @@
     <link rel="stylesheet" href="{{ asset('administrator/css/style.css') }}">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,700,700i,600,600i">
 
+
+
+	<!-- Start Forum Link -->
+	<!-- Feather icons (https://github.com/feathericons/feather) -->
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+
+    <!-- Vue (https://github.com/vuejs/vue) -->
+    @if (config('app.debug'))
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    @else
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14"></script>
+    @endif
+
+    <!-- Axios (https://github.com/axios/axios) -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+    <!-- Pickr (https://github.com/Simonwep/pickr) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/themes/classic.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/pickr.min.js"></script>
+
+    <!-- Sortable (https://github.com/SortableJS/Sortable) -->
+    <script src="//cdn.jsdelivr.net/npm/sortablejs@1.10.1/Sortable.min.js"></script>
+    <!-- Vue.Draggable (https://github.com/SortableJS/Vue.Draggable) -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/Vue.Draggable/2.23.2/vuedraggable.umd.min.js"></script>
+
+	<!-- end Forum Links -->
+
 </head>
 
 <body class="app">   	
@@ -91,7 +118,7 @@
 
 					    <li class="nav-item">
 					        <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
-					        <a class="nav-link @if(str_contains(URL::current(), 'CarOptions')) active @endif" href="{{ route('CarOptions') }}">
+					        <a class="nav-link @if(str_contains(URL::current(), 'Setting')) active @endif" href="{{ route('Setting') }}">
 						        <span class="nav-icon">
 									<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-folder" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
 										<path d="M9.828 4a3 3 0 0 1-2.12-.879l-.83-.828A1 1 0 0 0 6.173 2H2.5a1 1 0 0 0-1 .981L1.546 4h-1L.5 3a2 2 0 0 1 2-2h3.672a2 2 0 0 1 1.414.586l.828.828A2 2 0 0 0 9.828 3v1z"/>
@@ -100,6 +127,37 @@
 						         </span>
 		                         <span class="nav-link-text">Car Options</span>
 					        </a><!--//nav-link-->
+					    </li><!--//nav-item-->
+
+                        <li class="nav-item has-submenu">
+					        <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
+					        <a class="nav-link submenu-toggle @if(str_contains(URL::current(), 'forum')) active @endif" href="#" data-bs-toggle="collapse" data-bs-target="#submenu-1" aria-expanded="true" aria-controls="submenu-1">
+						        <span class="nav-icon">
+						        <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
+						        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-files" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" d="M4 2h7a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2zm0 1a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h7a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1H4z"/>
+                                    <path d="M6 0h7a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2v-1a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H6a1 1 0 0 0-1 1H4a2 2 0 0 1 2-2z"/>
+                                </svg>
+						         </span>
+		                         <span class="nav-link-text">Forum</span>
+		                         <span class="submenu-arrow">
+		                             <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-down" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+                                    </svg>
+	                             </span><!--//submenu-arrow-->
+					        </a><!--//nav-link-->
+					        <div id="submenu-1" class="collapse submenu submenu-1 show" data-bs-parent="#menu-accordion">
+						        <ul class="submenu-list list-unstyled">
+									<li class="submenu-item"><a style="text-decoration:none;" class="submenu-link @if(str_contains(URL::current(), 'forum')) active @endif" href="{{ url(config('forum.web.router.prefix')) }}">{{ trans('forum::general.index') }}</a></li>
+									<li class="submenu-item"><a style="text-decoration:none;" class="submenu-link @if(str_contains(URL::current(), 'recent')) active @endif" href="{{ route('forum.recent') }}">{{ trans('forum::threads.recent') }}</a></li>
+									@auth
+										<li class="submenu-item"><a style="text-decoration:none;" class="submenu-link @if(str_contains(URL::current(), 'unread')) active @endif" href="{{ route('forum.unread') }}">{{ trans('forum::threads.unread_updated') }}</a></li>
+									@endauth
+									@can ('moveCategories')
+										<li class="submenu-item"><a style="text-decoration:none;" class="submenu-link @if(str_contains(URL::current(), 'manage')) active @endif" href="{{ route('forum.category.manage') }}">{{ trans('forum::general.manage') }}</a></li>
+									@endcan
+						        </ul>
+					        </div>
 					    </li><!--//nav-item-->
 
                         
@@ -113,7 +171,7 @@
     
     <div class="app-wrapper">
 	   
-        @yield('content')
+        @yield('contentDashboard')
 	    
 	    <footer class="app-footer">
 		    <div class="container text-center py-3">
@@ -139,5 +197,159 @@
     
     <!-- Page Specific JS -->
     <script src="{{ asset('assets2/js/app.js') }}"></script> 
+
+	<script>
+    new Vue({
+        el: '.v-navbar',
+        name: 'Navbar',
+        data: {
+            isCollapsed: true,
+            isUserDropdownCollapsed: true
+        },
+        methods: {
+            onWindowClick (event) {
+                const ignore = ['navbar-toggler', 'navbar-toggler-icon', 'dropdown-toggle'];
+                if (ignore.some(className => event.target.classList.contains(className))) return;
+                if (! this.isCollapsed) this.isCollapsed = true;
+                if (! this.isUserDropdownCollapsed) this.isUserDropdownCollapsed = true;
+            }
+        },
+        created: function () {
+            window.addEventListener('click', this.onWindowClick);
+        }
+    });
+
+    const mask = document.querySelector('.mask');
+
+    function findModal (key)
+    {
+        const modal = document.querySelector(`[data-modal=${key}]`);
+
+        if (! modal) throw `Attempted to open modal '${key}' but no such modal found.`;
+
+        return modal;
+    }
+
+    function openModal (modal)
+    {
+        modal.style.display = 'block';
+        mask.style.display = 'block';
+        setTimeout(function()
+        {
+            modal.classList.add('show');
+            mask.classList.add('show');
+        }, 200);
+    }
+
+    document.querySelectorAll('[data-open-modal]').forEach(item =>
+    {
+        item.addEventListener('click', event =>
+        {
+            event.preventDefault();
+
+            openModal(findModal(event.currentTarget.dataset.openModal));
+        });
+    });
+
+    document.querySelectorAll('[data-modal]').forEach(modal =>
+    {
+        modal.addEventListener('click', event =>
+        {
+            if (! event.target.hasAttribute('data-close-modal')) return;
+
+            modal.classList.remove('show');
+            mask.classList.remove('show');
+            setTimeout(function()
+            {
+                modal.style.display = 'none';
+                mask.style.display = 'none';
+            }, 200);
+        });
+    });
+
+    document.querySelectorAll('[data-dismiss]').forEach(item =>
+    {
+        item.addEventListener('click', event => event.currentTarget.parentElement.style.display = 'none');
+    });
+
+    document.addEventListener('DOMContentLoaded', event =>
+    {
+        const hash = window.location.hash.substr(1);
+        if (hash.startsWith('modal='))
+        {
+            openModal(findModal(hash.replace('modal=','')));
+        }
+
+        feather.replace();
+
+        const input = document.querySelector('input[name=color]');
+
+        if (! input) return;
+
+        const pickr = Pickr.create({
+            el: '.pickr',
+            theme: 'classic',
+            default: input.value || null,
+
+            swatches: [
+                '{{ config('forum.web.default_category_color') }}',
+                '#f44336',
+                '#e91e63',
+                '#9c27b0',
+                '#673ab7',
+                '#3f51b5',
+                '#2196f3',
+                '#03a9f4',
+                '#00bcd4',
+                '#009688',
+                '#4caf50',
+                '#8bc34a',
+                '#cddc39',
+                '#ffeb3b',
+                '#ffc107'
+            ],
+
+            components: {
+                preview: true,
+                hue: true,
+                interaction: {
+                    input: true,
+                    save: true
+                }
+            },
+
+            strings: {
+                save: 'Apply'
+            }
+        });
+
+        pickr
+            .on('save', instance => pickr.hide())
+            .on('clear', instance =>
+            {
+                input.value = '';
+                input.dispatchEvent(new Event('change'));
+            })
+            .on('cancel', instance =>
+            {
+                const selectedColor = instance
+                    .getSelectedColor()
+                    .toHEXA()
+                    .toString();
+
+                input.value = selectedColor;
+                input.dispatchEvent(new Event('change'));
+            })
+            .on('change', (color, instance) =>
+            {
+                const selectedColor = color
+                    .toHEXA()
+                    .toString();
+
+                input.value = selectedColor;
+                input.dispatchEvent(new Event('change'));
+            });
+    });
+    </script>
 </body>
 </html>

@@ -157,8 +157,11 @@ class CarController extends Controller
         return redirect()->route('Post-Car');
     }
 
+    
+
     public function viewCar(Request $request)
     {
+
         $myCar = Car::join('car_makers', 'car_makers.car_maker_id', '=', 'cars.car_maker_id')
             ->join('car_models', 'car_models.car_model_id', '=', 'cars.car_model_id')
             ->join('car_body_types', 'car_body_types.body_type_id', '=', 'cars.body_type_id')
@@ -170,6 +173,7 @@ class CarController extends Controller
 
         $bannerImage = CarImage::where('car_id', '=', $request->key)->orderBy('car_id', 'ASC')->first();
         $images = CarImage::where('car_id', '=', $request->key)->orderBy('car_id', 'ASC')->get();
+
 
         $cars = Car::join('car_makers', 'car_makers.car_maker_id', '=', 'cars.car_maker_id')
             ->join('car_models', 'car_models.car_model_id', '=', 'cars.car_model_id')
@@ -183,7 +187,7 @@ class CarController extends Controller
             ->orWhere('users.id','=', $myCar->seller_id)
             ->take(4)
             ->get();
-
+        
         foreach($cars as $car){
             if(str_contains($car->city, 'CITY')){
                 $new = str_replace("CITY OF", '', $car->city) ;
@@ -201,7 +205,8 @@ class CarController extends Controller
             $car->car_image = $image->file_path;
         }
 
-         $brands = CarMaker::take(7)->get();
+        $brands = CarMaker::take(7)->get();
+
 
         return view('car')
             ->with(['imageBanner'=>$bannerImage])

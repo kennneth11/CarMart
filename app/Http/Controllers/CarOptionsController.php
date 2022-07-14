@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Storage;
 
 class CarOptionsController extends Controller
 {
-    public function index()
+    public function carOptions()
     {
         $carMakerData = CarMaker::paginate(5, ['*'], 'carMakers');
         $carModelData = CarModel::join('car_makers', 'car_makers.car_maker_id', '=', 'car_models.car_maker_id')

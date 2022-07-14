@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CarOptionsController;
+use App\Http\Controllers\CarController;
 use App\Http\Controllers\FrontEndController;
 use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\User\AvatarController;
@@ -66,8 +67,8 @@ Route::group(['middleware' => ['auth']], function() {
 
 //superadministrator ---------------Start Line--------------------------------
 Route::group(['middleware' => ['auth', 'role:superadministrator']], function() {
-    Route::get('/CarOptions', 'App\Http\Controllers\CarOptionsController@index')->name('CarOptions');
-    Route::post('CarOptions', [CarOptionsController::class, 'store']);
+    Route::get('/Setting', 'App\Http\Controllers\CarOptionsController@carOptions')->name('Setting');
+    Route::post('/Setting', [CarOptionsController::class, 'store']);
 });
 //superadministrator ---------------End Line--------------------------------
 
