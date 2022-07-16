@@ -9,7 +9,7 @@
         <div class="modal-body">
           <div class="row">
             <div class="signup_wrap">
-              <div class="col-md-6 col-sm-6">
+              <div class="col-md-12 col-sm-12">
                 <form method="POST" action="{{ route('register') }}">
                     @csrf
 

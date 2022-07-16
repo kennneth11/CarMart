@@ -18,5 +18,10 @@ class CarModel extends Model
         'email_verified_at' => 'datetime',
     ];
 
-
+    public function getMaker(){
+        return $this->hasOne(CarMaker::class);
+    }
+    public function carss(){
+        return $this->hasMany(Car::class);
+    }
 }

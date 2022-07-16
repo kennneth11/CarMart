@@ -126,7 +126,8 @@
             <div class="sidebar_filter">
               <form action="{{route('searchCar')}}" method="get">
                 <div class="form-group select">
-                  <select class="form-control" name="city" id="city">
+                    <input type="hidden"  name="cities"/>
+                  <select class="form-control" id="cities">
                     <option>Select Location</option>
                   </select>
                 </div>

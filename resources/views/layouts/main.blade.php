@@ -63,13 +63,7 @@
             <div class="header_widgets">
               <div class="circle_icon"> <i class="fa fa-envelope" aria-hidden="true"></i> </div>
               <p class="uppercase_text">For Support Mail us : </p>
-              <a href="mailto:info@example.com">business.carmart@gmail.com</a>
-            </div>
-
-            <div class="header_widgets">
-              <div class="circle_icon"> <i class="fa fa-phone" aria-hidden="true"></i> </div>
-              <p class="uppercase_text">Service Helpline Call Us: </p>
-              <a href="tel:61-1234-5678-09">+63-9531548869</a>
+              <a href="mailto:info@example.com">carmartbuk.business@gmail.com</a>
             </div>
           </div>
 
@@ -112,7 +106,7 @@
           <div class="header_search">
             <div id="search_toggle"><i class="fa fa-search" aria-hidden="true"></i></div>
             <form action="{{route('searchCar')}}" method="GET" id="header-search-form">
-              <input type="text" placeholder="Search..." class="form-control" name="search">
+              <input type="text" placeholder="Search Car" class="form-control" name="search">
               <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
             </form>
           </div>
@@ -126,7 +120,7 @@
 
             <li><a href="{{ route('sellers') }}">Seller</a></li>
 
-            <li><a href="{{ url('email') }}">Contact Us</a></li>
+            <li><a href="{{ url('contact') }}">Contact Us</a></li>
 
             <li class="dropdown"><a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">News</a>
               <ul class="dropdown-menu">
@@ -252,6 +246,22 @@
 
                 $('#city').ph_locations('fetch_list', [{"province_code": 1013}]);
             });
+</script>
+<script type="text/javascript">
+    var my_handlers = {
+            fill_cities: function(){
+
+                var province_code = $(this).val();
+                $('#cities').ph_locations( 'fetch_list', [{"province_code": 1013}]);
+            },
+        };
+
+        $(function(){
+
+            $('#cities').on('change', my_handlers.fill_barangays);
+            $('#cities').ph_locations({'location_type': 'cities'});
+            $('#cities').ph_locations('fetch_list', [{"province_code": 1013}]);
+        });
 </script>
 
 

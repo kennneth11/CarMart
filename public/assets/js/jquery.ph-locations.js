@@ -16,7 +16,9 @@
                 location_type : "city", // what data this control supposed to display? regions, provinces, cities or barangays?,
 				api_base_url: 'https://ph-locations-api.buonzz.com/',
 				order: "name asc",
-				filter: {}
+				filter: {
+                    options: 'string'
+                }
             };
 
 		// plugin constructor
@@ -33,7 +35,7 @@
 			init: function() {
 				return this
             },
-            
+
 			fetch_list: function (filter) {
 
 				this.settings.filter = filter;
@@ -68,14 +70,13 @@
 				var shtml = "";
 
 				for(var i=0; i<params.data.length;i++){
-					shtml += '<option value="' + params.data[i].id + '">';
+					shtml += '<option id="' +  params.data[i].id + '" value="' + params.data[i].id + '">';
 					shtml +=  params.data[i].name ;
 					shtml += '</option>';
 				}
-
 				return shtml
 			}
-            
+
 		} );
 
 
@@ -86,7 +87,7 @@
 					var pluginOptions = (typeof options === 'object') ? options : {};
 					$plugin = $.data( this, "plugin_" + pluginName, new Plugin( this, pluginOptions ) );
 				}
-				
+
 				if (typeof options === 'string') {
 					if (typeof $plugin[options] === 'function') {
 						if (typeof args !== 'object') args = [args];
@@ -97,3 +98,4 @@
 		};
 
 } )( jQuery, window, document );
+

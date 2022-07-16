@@ -94,12 +94,11 @@ class FrontEndController extends Controller
             ->join('users','users.id', '=', 'cars.seller_id')
             // ->select('car_makers.car_maker_name', 'car_models.car_model_name', 'car_transmissions.transmission_name',
             // 'car_fuel_types.fuel_type_name',)
-            ->orWhere('car_makers.car_maker_name', 'LIKE', "%{$r}%")
-            ->orWhere('car_models.car_model_name', 'LIKE', "%{$r}%")->get();
+            ->where('car_model_name', 'LIKE', "%{$r}%")
+            ->orWhere('car_maker_name','LIKE', "%{$r}%" )->get();
             // dd($cars);
         }
         else{
-
             $cars = Car::where('status', '=', 'Active')
             ->join('car_makers', 'car_makers.car_maker_id', '=', 'cars.car_maker_id')
             ->join('car_models', 'car_models.car_model_id', '=', 'cars.car_model_id')
@@ -109,14 +108,16 @@ class FrontEndController extends Controller
             ->join('users','users.id', '=', 'cars.seller_id')
             // ->select('car_makers.car_maker_name', 'car_models.car_model_name', 'car_transmissions.transmission_name',
             // 'car_fuel_types.fuel_type_name',)
-            ->orWhere('car_makers.car_maker_name', 'LIKE', "%{$brand}%")
-            ->orWhere('car_models.car_model_name', 'LIKE', "%{$model}%")
-            ->orWhere('users.city', 'LIKE', "%{$city}%")
-            ->orWhere('car_fuel_types.fuel_type_name', 'LIKE', "%{$fuel}%")
-            ->orWhere('car_transmissions.transmission_name', 'LIKE', "%{$transmission}%")
-            ->orWhere('cars.year_manufactured', 'LIKE', "%{$year}%")
-            ->orWhere('cars.New_car', 'LIKE', "%{$type}%");
-            dd($cars);
+            ->where('car_maker_name', 'LIKE', "%{$brand}%")
+            ->orWhere('car_model_name', 'LIKE', "%{$model}%")
+            ->orWhere('city', 'LIKE', "%{$city}%")
+            ->orWhere('fuel_type_name', 'LIKE', "%{$fuel}%")
+            ->orWhere('transmission_name', 'LIKE', "%{$transmission}%")
+            ->orWhere('year_manufactured', 'LIKE', "%{$year}%")
+            ->orWhere('New_car', 'LIKE', "%{$type}%")->get();
+            // dd($cars);
+
+            $result = $brand . $model . $city . $fuel . $transmission. $year. $type;
         }
 
 
@@ -129,6 +130,7 @@ class FrontEndController extends Controller
         return view('searchedCars')
             ->with(['cars'=>$cars])
             ->with(['search'=>$r])
+            ->with(['result'=>$result])
             ->with(['carModels'=>$carModelData])
             ->with(['carBodyTypes'=>$carBodyTypeData])
             ->with(['carFuelTypes'=>$carFuelTypeData])
