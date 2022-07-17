@@ -69,8 +69,14 @@
               </div>
           </div>
 
-
-          <h5>Listings related to "{{$search}}"</h1>
+        @if(count($cars) < 0)
+          <h5>No results found for "{{$search}}"</h1>
+        @else
+            @if ($search)
+            <h5>Listings related to "{{$search}}"</h1>
+                @else
+                {{-- <h5>Listings related to "{{$result}}"</h1> --}}
+            @endif
           <div class="row">
 
             <!--Start Card-->
@@ -105,7 +111,7 @@
             </div>
             @endforeach
             <!--End Card-->
-
+        @endif
           </div>
           <div class="pagination">
             <ul>

@@ -113,7 +113,7 @@
     </div>
   </div>
 </section>
-<!-- /Filter-Form --> 
+<!-- /Filter-Form -->
 
 <!--Listing-detail-->
 <section class="listing-detail">
@@ -123,18 +123,18 @@
         <div class="listing_images">
           <div id="listing_images_slider" class="sidebar_widget listing_images_slider">
 
-          
+
             <!-- <div><img src="assets/images/900x560.jpg" alt="image"></div> -->
 
             @foreach($images as $image)
                 <div id="my-img1" class="slected-img-custom my-img"><img src="{{ asset('CarsImages/'.$image->file_path) }}" alt="image"></div>
             @endforeach
 
-            
+
           </div>
           <div id="listing_images_slider_nav" class="listing_images_slider_nav">
 
-          
+
             <!-- <div><img src="assets/images/900x560.jpg" alt="image"></div> -->
 
             @foreach($images as $image)
@@ -146,7 +146,7 @@
           </div>
         </div>
 
-        
+
 
         <div  class="main_features  ">
           <ul >
@@ -181,25 +181,25 @@
           </ul>
         </div>
 
-        
+
         <div class="listing_more_info">
-          <div class="listing_detail_wrap"> 
+          <div class="listing_detail_wrap">
             <!-- Nav tabs -->
             <ul class="nav nav-tabs gray-bg" role="tablist">
               <li role="presentation" class="active"><a href="#vehicle-overview " aria-controls="vehicle-overview" role="tab" data-toggle="tab">Vehicle Overview </a></li>
               <li role="presentation"><a href="#accessories" aria-controls="accessories" role="tab" data-toggle="tab">Accessories</a></li>
             </ul>
-            
+
             <!-- Tab panes -->
-            <div class="tab-content"> 
+            <div class="tab-content">
               <!-- vehicle-overview -->
               <div role="tabpanel" class="tab-pane active" id="vehicle-overview">
                 <h4>Description</h4>
                 <p>{{ $myCar->description }}</p>
               </div>
-              
+
               <!-- Accessories -->
-              <div role="tabpanel" class="tab-pane" id="accessories"> 
+              <div role="tabpanel" class="tab-pane" id="accessories">
                 <!--Accessories-->
                 <table>
                   <thead>
@@ -276,11 +276,11 @@
                 </table>
               </div>
             </div>
-          </div>       
+          </div>
         </div>
 
       </div>
-      
+
       <!--Side-Bar-->
       <aside class="col-md-3">
         @if(Auth::check())
@@ -316,12 +316,12 @@
           </form>
         </div>
       </aside>
-      <!--/Side-Bar--> 
-      
+      <!--/Side-Bar-->
+
     </div>
     <div class="space-20"></div>
     <div class="divider"></div>
-    
+
     <!--Similar-Cars-->
     <div class="similar_cars">
         <h3>Similar Cars</h3>
@@ -335,7 +335,7 @@
                 @else
                     <div class="label_icon">Used</div>
                 @endif
-                
+
                 </div>
                 <div class="product-listing-content">
                 <h5><a href="{{ route('Car',$car->car_id) }}">{{  ucfirst($car->car_maker_name) .' '.ucfirst($car->car_model_name)}}</a></h5>
@@ -351,14 +351,14 @@
             </div>
             </div>
             @endforeach
-        
+
         </div>
       </div>
-    <!--/Similar-Cars--> 
-    
+    <!--/Similar-Cars-->
+
   </div>
 </section>
-<!--/Listing-detail--> 
+<!--/Listing-detail-->
 
 <!--Brands-->
 <section class="brand-section gray-bg">
@@ -371,11 +371,11 @@
         @foreach($brands as $brand)
             <div class="brand"><a href="#"><img src="{{ asset($brand->file_path_picture) }}" class="img-responsive" alt="image"></a></div>
         @endforeach
-            
-        
+
+
       </div>
     </div>
   </div>
 </section>
-<!-- /Brands--> 
+<!-- /Brands-->
 @endsection

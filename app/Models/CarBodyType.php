@@ -14,5 +14,7 @@ class CarBodyType extends Model
     ];
 
 
-
+    public function cars(){
+        return $this->belongsTo(Car::class);
+    }
 }

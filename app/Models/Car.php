@@ -32,10 +32,6 @@ class Car extends Model
         'New_car',
     ];
 
-    public function transmission()
-    {
-        return $this->hasOne(CarTransmission::class, 'transmission_id', 'transmission_id');
-    }
 
     public function carImage()
     {
@@ -43,7 +39,22 @@ class Car extends Model
     }
     public function carTransmission()
     {
-        return $this->hasOne(CarTransmission::class, 'transmission_id', 'id');
+        return $this->hasOne(CarTransmission::class);
     }
-
+    public function bodyType()
+    {
+        return $this->hasOne(CarBodyType::class);
+    }
+    public function fuelType()
+    {
+        return $this->hasOne(CarFuelType::class);
+    }
+    public function carModel()
+    {
+        return $this->hasOne(CarModel::class);
+    }
+    public function carMaker()
+    {
+        return $this->hasOne(CarMaker::class);
+    }
 }

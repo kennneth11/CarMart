@@ -13,7 +13,7 @@ class CarTransmission extends Model
         'transmission_name',
     ];
 
-    public function car()
+    public function carssss()
     {
         return $this->belongsTo(Car::class);
     }
