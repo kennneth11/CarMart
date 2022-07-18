@@ -76,7 +76,7 @@ class FrontEndController extends Controller
         $carTransmissionData = CarTransmission::get();
 
         $r = $request->search;
-        $city = $request->city;
+        $city = $request->cities;
         $brand = $request->brand;
         $transmission = $request->transmission;
         $fuel = $request->fuel;
@@ -130,7 +130,7 @@ class FrontEndController extends Controller
         return view('searchedCars')
             ->with(['cars'=>$cars])
             ->with(['search'=>$r])
-            ->with(['result'=>$result])
+            // ->with(['result'=>$result])
             ->with(['carModels'=>$carModelData])
             ->with(['carBodyTypes'=>$carBodyTypeData])
             ->with(['carFuelTypes'=>$carFuelTypeData])
