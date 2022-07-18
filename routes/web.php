@@ -37,7 +37,8 @@ Route::get('/contact', [EmailController::class, 'create'])->name('contact');
 Route::get('/Car{key}', 'App\Http\Controllers\CarController@viewCar')->name('Car');
 Route::get('/searchCar', [FrontEndController::class, 'searchCar'])->name('searchCar');
 Route::get('/seller', 'App\Http\Controllers\User\SellerUserController@viewSellers')->name('sellers');
-
+Route::get('/Forums', 'App\Http\Controllers\ForumController@index')->name('forums.index');
+Route::get('/Forums{key}', 'App\Http\Controllers\ForumController@viewThread')->name('forums.thread');
 //Visitors Route ---------------End Line--------------------------------
 
 
@@ -53,6 +54,8 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('/changeAddress', 'App\Http\Controllers\User\MoreSettingController@changeAddress')->name('changeAddress');
     Route::post('/updateAddress', 'App\Http\Controllers\User\MoreSettingController@updateAddress')->name('updateAddress');
     Route::get('/dealer{key}', 'App\Http\Controllers\User\SellerUserController@viewSeller')->name('dealer');
+
+    Route::post('/Forums/store', 'App\Http\Controllers\ForumController@postComment')->name('forums.store');
 });
 //both---------------End Line--------------------------------
 

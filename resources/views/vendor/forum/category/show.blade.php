@@ -10,9 +10,10 @@
 <div class="app-card app-card-notification shadow-sm mb-4">
     <div class="app-card-header px-4 py-3">
         <div class="row g-3 align-items-center">
+            
             <div class="col-12 col-lg-10 text-center text-lg-start">
                 <h2 class="notification-title mb-2">{{ $category->title }}</h2>
-                <div style="color:black; class="notification-content">{{ $category->description }}</div>
+                <div style="color:black;" class="notification-content">{{ $category->description }}</div>
                 <ul class="notification-meta list-inline mb-0">
                     <li class="list-inline-item"><div class="notification-type mb-2"><span class="badge bg-info"> {{ trans_choice('forum::threads.thread', 2) }}: {{ $category->thread_count }}</span></div></li>
                     <li class="list-inline-item"><div class="notification-type mb-2"><span class="badge bg-info"> {{ trans_choice('forum::posts.post', 2) }}: {{ $category->post_count }}</span></div></li>

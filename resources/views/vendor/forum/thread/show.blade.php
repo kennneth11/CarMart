@@ -3,7 +3,20 @@
 @section ('content')
     <div id="thread" class="v-thread">
         <div class="d-flex flex-column flex-md-row justify-content-between">
-            <h2 class="flex-grow-1">{{ $thread->title }}</h2>
+            <div class="flex-grow-1">
+                <h3 class="app-page-title">{{ $thread->title }}</h3>
+                <div class="thread-badges">
+                    @if ($thread->trashed())
+                        <span  class="badge bg-danger">{{ trans('forum::general.deleted') }}</span>
+                    @endif
+                    @if ($thread->pinned)
+                        <span  class="badge bg-info">{{ trans('forum::threads.pinned') }}</span>
+                    @endif
+                    @if ($thread->locked)
+                        <span  class="badge bg-warning">{{ trans('forum::threads.locked') }}</span>
+                    @endif
+                </div>
+            </div>
 
             <div>
                 @if (Gate::allows('deleteThreads', $thread->category) && Gate::allows('delete', $thread))
@@ -67,120 +80,111 @@
             </div>
         </div>
 
-
-        <div class="thread-badges">
-            @if ($thread->trashed())
-                <span class="badge rounded-pill bg-danger">{{ trans('forum::general.deleted') }}</span>
-            @endif
-            @if ($thread->pinned)
-                <span class="badge rounded-pill bg-info">{{ trans('forum::threads.pinned') }}</span>
-            @endif
-            @if ($thread->locked)
-                <span class="badge rounded-pill bg-warning">{{ trans('forum::threads.locked') }}</span>
-            @endif
-        </div>
-
-        <hr>
-
-        @if ((count($posts) > 1 || $posts->currentPage() > 1) && (Gate::allows('deletePosts', $thread) || Gate::allows('restorePosts', $thread)) && count($selectablePosts) > 0)
-            <form :action="postActions[selectedPostAction]" method="POST">
-                @csrf
-                <input type="hidden" name="_method" :value="postActionMethods[selectedPostAction]" />
-        @endif
-
-        <div class="row mb-3">
-            <div class="col col-xs-8">
-                {{ $posts->links('forum::pagination') }}
-            </div>
-            <div class="col-md-auto text-end">
-                @if (! $thread->trashed())
-                    @can ('reply', $thread)
-                        <div class="btn-group" role="group">
-                            <a href="{{ Forum::route('post.create', $thread) }}" class="btn btn-primary">
-                                {{ trans('forum::general.new_reply') }}
-                            </a>
-                            <a href="#quick-reply" class="btn btn-primary">
-                                {{ trans('forum::general.quick_reply') }}
-                            </a>
-                        </div>
-                    @endcan
-                @endif
-            </div>
-        </div>
-
-        @if ((count($posts) > 1 || $posts->currentPage() > 1) && (Gate::allows('deletePosts', $thread) || Gate::allows('restorePosts', $thread)) && count($selectablePosts) > 0)
-            <div class="text-end pb-1">
-                <div class="form-check">
-                    <label for="selectAllPosts">
-                        {{ trans('forum::posts.select_all') }}
-                    </label>
-                    <input type="checkbox" value="" id="selectAllPosts" class="align-middle" @click="toggleAll" :checked="selectedPosts.length == posts.data.length">
-                </div>
-            </div>
-        @endif
-
-        @foreach ($posts as $post)
-            @include ('forum::post.partials.list', compact('post'))
-        @endforeach
-
-        @if ((count($posts) > 1 || $posts->currentPage() > 1) && (Gate::allows('deletePosts', $thread) || Gate::allows('restorePosts', $thread)) && count($selectablePosts) > 0)
-                <div class="fixed-bottom-right pb-xs-0 pr-xs-0 pb-sm-3 pr-sm-3">
-                    <transition name="fade">
-                        <div class="card text-white bg-secondary shadow-sm" v-if="selectedPosts.length">
-                            <div class="card-header text-center">
-                                {{ trans('forum::general.with_selection') }}
-                            </div>
-                            <div class="card-body">
-                                <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                        <label class="input-group-text" for="bulk-actions">{{ trans_choice('forum::general.actions', 1) }}</label>
-                                    </div>
-                                    <select class="custom-select" id="bulk-actions" v-model="selectedPostAction">
-                                        <option value="delete">{{ trans('forum::general.delete') }}</option>
-                                        <option value="restore">{{ trans('forum::general.restore') }}</option>
-                                    </select>
+        <div class="row gy-4">
+            
+            <div class="col-12 col-lg-12">
+                <div class="app-card app-card-account shadow-sm d-flex flex-column align-items-start">
+                    
+                    <div class="app-card-body px-4 w-100">
+                        @if ((count($posts) > 1 || $posts->currentPage() > 1) && (Gate::allows('deletePosts', $thread) || Gate::allows('restorePosts', $thread)) && count($selectablePosts) > 0)
+                            <form :action="postActions[selectedPostAction]" method="POST">
+                                @csrf
+                                <input type="hidden" name="_method" :value="postActionMethods[selectedPostAction]" />
+                        @endif
+                        
+                        <div class="item py-3">
+                            <div class="row mb-3">
+                                <div class="col col-xs-8">
+                                
                                 </div>
-
-                                @if (config('forum.general.soft_deletes'))
-                                    <div class="form-check mb-3" v-if="selectedPostAction == 'delete'">
-                                        <input class="form-check-input" type="checkbox" name="permadelete" value="1" id="permadelete">
-                                        <label class="form-check-label" for="permadelete">
-                                            {{ trans('forum::general.perma_delete') }}
-                                        </label>
-                                    </div>
-                                @endif
-
-                                <div class="text-end">
-                                    <button type="submit" class="btn btn-primary" @click="submitPosts">{{ trans('forum::general.proceed') }}</button>
+                                <div class="col-md-auto text-end">
+                                    @if (! $thread->trashed())
+                                        @can ('reply', $thread)
+                                            <div class="btn-group" role="group">
+                                                <a href="{{ Forum::route('post.create', $thread) }}" class="btn btn-primary">
+                                                    {{ trans('forum::general.new_reply') }}
+                                                </a>
+                                                <a href="#quick-reply" class="btn btn-primary">
+                                                    {{ trans('forum::general.quick_reply') }}
+                                                </a>
+                                            </div>
+                                        @endcan
+                                    @endif
                                 </div>
                             </div>
-                        </div>
-                    </transition>
-                </div>
-            </form>
-        @endif
+                        </div><!--//item-->
+                        @if ((count($posts) > 1 || $posts->currentPage() > 1) && (Gate::allows('deletePosts', $thread) || Gate::allows('restorePosts', $thread)) && count($selectablePosts) > 0)
+                            <div class="text-end pb-1">
+                                <div class="form-check">
+                                    <label for="selectAllPosts">
+                                        {{ trans('forum::posts.select_all') }}
+                                    </label>
+                                    <input type="checkbox" value="" id="selectAllPosts" class="align-middle" @click="toggleAll" :checked="selectedPosts.length == posts.data.length">
+                                </div>
+                            </div>
+                        @endif
+                        <div class="item  py-3 w-100">
+                            @foreach ($posts as $post)
+                                @include ('forum::post.partials.list', compact('post'))
+                            @endforeach
+                        </div><!--//item-->
 
-        {{ $posts->links('forum::pagination') }}
+                    
+
+
+                    </div><!--//app-card-body-->
+
+                    <div class="app-card-footer p-4 mt-auto text-center w-100">
+                        {{ $posts->links('forum::pagination') }}
+                    </div><!--//app-card-footer-->
+                    
+                </div><!--//app-card-->
+            </div><!--//col-->
+        </div>
+        <br>
+
 
         @if (! $thread->trashed())
             @can ('reply', $thread)
-                <h3>{{ trans('forum::general.quick_reply') }}</h3>
-                <div id="quick-reply">
-                    <form method="POST" action="{{ Forum::route('post.store', $thread) }}">
-                        @csrf
+            <div class="row gy-4">
+                <div class="col-12 col-lg-12">
+                    <div class="app-card app-card-account shadow-sm d-flex flex-column align-items-start">
+                        <div class="app-card-body px-4 w-100">
 
-                        <div class="mb-3">
-                            <textarea name="content" class="form-control">{{ old('content') }}</textarea>
-                        </div>
+                            <div class="item  py-3 w-100">
 
-                        <div class="text-end">
-                            <button type="submit" class="btn btn-primary px-5">{{ trans('forum::general.reply') }}</button>
-                        </div>
-                    </form>
-                </div>
+
+                                    <h3 class="app-page-title">{{ trans('forum::general.quick_reply') }}</h3>
+                                    <div id="quick-reply">
+                                        <form method="POST" action="{{ Forum::route('post.store', $thread) }}">
+                                            @csrf
+                                            <div class="mb-3">
+                                                <textarea style="height:10vh;" name="content" class="form-control">{{ old('content') }}</textarea>
+                                            </div>
+
+                                            <div class="text-end">
+                                                <button type="submit" class="btn btn-primary px-5">{{ trans('forum::general.reply') }}</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                
+                            </div><!--//item-->
+
+                        </div><!--//app-card-body-->
+                        <div class="app-card-footer p-4 mt-auto text-end w-100">
+                            
+                        </div><!--//app-card-footer-->
+                        
+                    </div><!--//app-card-->
+                </div><!--//col-->
+            </div>
             @endcan
         @endif
+
     </div>
+
+     
+
 
     @if ($thread->trashed() && Gate::allows('restoreThreads', $thread->category) && Gate::allows('restore', $thread))
         @component('forum::modal-form')
@@ -343,55 +347,55 @@
     @endif
 
     <style>
-    .thread-badges .badge
-    {
-        font-size: 100%;
-    }
+        .thread-badges .badge
+        {
+            font-size: 100%;
+        }
     </style>
 
     <script>
-    new Vue({
-        el: '.v-thread',
-        name: 'Thread',
-        data: {
-            posts: @json($posts),
-            selectablePosts: @json($selectablePosts),
-            postActions: {
-                'delete': "{{ Forum::route('bulk.post.delete') }}",
-                'restore': "{{ Forum::route('bulk.post.restore') }}"
+        new Vue({
+            el: '.v-thread',
+            name: 'Thread',
+            data: {
+                posts: @json($posts),
+                selectablePosts: @json($selectablePosts),
+                postActions: {
+                    'delete': "{{ Forum::route('bulk.post.delete') }}",
+                    'restore': "{{ Forum::route('bulk.post.restore') }}"
+                },
+                postActionMethods: {
+                    'delete': 'DELETE',
+                    'restore': 'POST'
+                },
+                selectedPostAction: 'delete',
+                selectedPosts: [],
+                selectedThreadAction: null
             },
-            postActionMethods: {
-                'delete': 'DELETE',
-                'restore': 'POST'
-            },
-            selectedPostAction: 'delete',
-            selectedPosts: [],
-            selectedThreadAction: null
-        },
-        created ()
-        {
-            this.posts.data = this.posts.data.filter(post => post.sequence != 1);
-        },
-        methods: {
-            toggleAll ()
+            created ()
             {
-                this.selectedPosts = (this.selectedPosts.length < this.selectablePosts.length) ? this.selectablePosts : [];
+                this.posts.data = this.posts.data.filter(post => post.sequence != 1);
             },
-            submitThread (event)
-            {
-                if (this.threadActionMethods[this.selectedThreadAction] === 'DELETE' && ! confirm("{{ trans('forum::general.generic_confirm') }}"))
+            methods: {
+                toggleAll ()
                 {
-                    event.preventDefault();
-                }
-            },
-            submitPosts (event)
-            {
-                if (this.postActionMethods[this.selectedPostAction] === 'DELETE' && ! confirm("{{ trans('forum::general.generic_confirm') }}"))
+                    this.selectedPosts = (this.selectedPosts.length < this.selectablePosts.length) ? this.selectablePosts : [];
+                },
+                submitThread (event)
                 {
-                    event.preventDefault();
+                    if (this.threadActionMethods[this.selectedThreadAction] === 'DELETE' && ! confirm("{{ trans('forum::general.generic_confirm') }}"))
+                    {
+                        event.preventDefault();
+                    }
+                },
+                submitPosts (event)
+                {
+                    if (this.postActionMethods[this.selectedPostAction] === 'DELETE' && ! confirm("{{ trans('forum::general.generic_confirm') }}"))
+                    {
+                        event.preventDefault();
+                    }
                 }
             }
-        }
-    });
+        });
     </script>
 @stop

@@ -1,0 +1,213 @@
+<div id="thread" class="v-thread">
+        <div class="d-flex flex-column flex-md-row justify-content-between">
+            <h2 class="flex-grow-1">{{ $thread->title }}</h2>
+
+            <div>
+                @if (Gate::allows('deleteThreads', $thread->category) && Gate::allows('delete', $thread))
+                    @if ($thread->trashed())
+                        <a href="#" class="btn btn-danger mr-3 mb-2" data-open-modal="perma-delete-thread">
+                            <i data-feather="trash"></i> {{ trans('forum::general.perma_delete') }}
+                        </a>
+                    @else
+                        <a href="#" class="btn btn-danger mr-3 mb-2" data-open-modal="delete-thread">
+                            <i data-feather="trash"></i> {{ trans('forum::general.delete') }}
+                        </a>
+                    @endif
+                @endif
+                @if ($thread->trashed() && Gate::allows('restoreThreads', $thread->category) && Gate::allows('restore', $thread))
+                    <a href="#" class="btn btn-secondary mb-2" data-open-modal="restore-thread">
+                        <i data-feather="refresh-cw"></i> {{ trans('forum::general.restore') }}
+                    </a>
+                @endif
+
+                @if (Gate::allows('lockThreads', $category)
+                    || Gate::allows('pinThreads', $category)
+                    || Gate::allows('rename', $thread)
+                    || Gate::allows('moveThreadsFrom', $category))
+                    <div class="btn-group mb-2" role="group">
+                        @if (! $thread->trashed())
+                            @can ('lockThreads', $category)
+                                @if ($thread->locked)
+                                    <a href="#" class="btn btn-secondary" data-open-modal="unlock-thread">
+                                        <i data-feather="unlock"></i> {{ trans('forum::threads.unlock') }}
+                                    </a>
+                                @else
+                                    <a href="#" class="btn btn-secondary" data-open-modal="lock-thread">
+                                        <i data-feather="lock"></i> {{ trans('forum::threads.lock') }}
+                                    </a>
+                                @endif
+                            @endcan
+                            @can ('pinThreads', $category)
+                                @if ($thread->pinned)
+                                    <a href="#" class="btn btn-secondary" data-open-modal="unpin-thread">
+                                        <i data-feather="arrow-down"></i> {{ trans('forum::threads.unpin') }}
+                                    </a>
+                                @else
+                                    <a href="#" class="btn btn-secondary" data-open-modal="pin-thread">
+                                        <i data-feather="arrow-up"></i> {{ trans('forum::threads.pin') }}
+                                    </a>
+                                @endif
+                            @endcan
+                            @can ('rename', $thread)
+                                <a href="#" class="btn btn-secondary" data-open-modal="rename-thread">
+                                    <i data-feather="edit-2"></i> {{ trans('forum::general.rename') }}
+                                </a>
+                            @endcan
+                            @can ('moveThreadsFrom', $category)
+                                <a href="#" class="btn btn-secondary" data-open-modal="move-thread">
+                                    <i data-feather="corner-up-right"></i> {{ trans('forum::general.move') }}
+                                </a>
+                            @endcan
+                        @endif
+                    </div>
+                @endcan
+            </div>
+        </div>
+
+        <div class="item  py-3 w-100">
+            <div class="row mb-3">
+                <div class="col col-xs-8">
+                    {{ $posts->links('forum::pagination') }}
+                </div>
+                <div class="col-md-auto text-end">
+                    @if (! $thread->trashed())
+                        @can ('reply', $thread)
+                            <div class="btn-group" role="group">
+                                <a href="{{ Forum::route('post.create', $thread) }}" class="btn btn-primary">
+                                    {{ trans('forum::general.new_reply') }}
+                                </a>
+                                <a href="#quick-reply" class="btn btn-primary">
+                                    {{ trans('forum::general.quick_reply') }}
+                                </a>
+                            </div>
+                        @endcan
+                    @endif
+                </div>
+            </div>
+            @if ((count($posts) > 1 || $posts->currentPage() > 1) && (Gate::allows('deletePosts', $thread) || Gate::allows('restorePosts', $thread)) && count($selectablePosts) > 0)
+                <div class="text-end pb-1">
+                    <div class="form-check">
+                        <label for="selectAllPosts">
+                            {{ trans('forum::posts.select_all') }}
+                        </label>
+                        <input type="checkbox" value="" id="selectAllPosts" class="align-middle" @click="toggleAll" :checked="selectedPosts.length == posts.data.length">
+                    </div>
+                </div>
+            @endif
+        </div>//item
+        <div class="thread-badges">
+            @if ($thread->trashed())
+                <span class="badge rounded-pill bg-danger">{{ trans('forum::general.deleted') }}</span>
+            @endif
+            @if ($thread->pinned)
+                <span class="badge rounded-pill bg-info">{{ trans('forum::threads.pinned') }}</span>
+            @endif
+            @if ($thread->locked)
+                <span class="badge rounded-pill bg-warning">{{ trans('forum::threads.locked') }}</span>
+            @endif
+        </div>
+
+        <hr>
+
+        @if ((count($posts) > 1 || $posts->currentPage() > 1) && (Gate::allows('deletePosts', $thread) || Gate::allows('restorePosts', $thread)) && count($selectablePosts) > 0)
+            <form :action="postActions[selectedPostAction]" method="POST">
+                @csrf
+                <input type="hidden" name="_method" :value="postActionMethods[selectedPostAction]" />
+        @endif
+
+        <div class="row mb-3">
+            <div class="col col-xs-8">
+                {{ $posts->links('forum::pagination') }}
+            </div>
+            <div class="col-md-auto text-end">
+                @if (! $thread->trashed())
+                    @can ('reply', $thread)
+                        <div class="btn-group" role="group">
+                            <a href="{{ Forum::route('post.create', $thread) }}" class="btn btn-primary">
+                                {{ trans('forum::general.new_reply') }}
+                            </a>
+                            <a href="#quick-reply" class="btn btn-primary">
+                                {{ trans('forum::general.quick_reply') }}
+                            </a>
+                        </div>
+                    @endcan
+                @endif
+            </div>
+        </div>
+
+        @if ((count($posts) > 1 || $posts->currentPage() > 1) && (Gate::allows('deletePosts', $thread) || Gate::allows('restorePosts', $thread)) && count($selectablePosts) > 0)
+            <div class="text-end pb-1">
+                <div class="form-check">
+                    <label for="selectAllPosts">
+                        {{ trans('forum::posts.select_all') }}
+                    </label>
+                    <input type="checkbox" value="" id="selectAllPosts" class="align-middle" @click="toggleAll" :checked="selectedPosts.length == posts.data.length">
+                </div>
+            </div>
+        @endif
+
+
+
+        
+        @foreach ($posts as $post)
+            @include ('forum::post.partials.list', compact('post'))
+        @endforeach 
+
+        @if ((count($posts) > 1 || $posts->currentPage() > 1) && (Gate::allows('deletePosts', $thread) || Gate::allows('restorePosts', $thread)) && count($selectablePosts) > 0)
+                <div class="fixed-bottom-right pb-xs-0 pr-xs-0 pb-sm-3 pr-sm-3">
+                    <transition name="fade">
+                        <div class="card text-white bg-secondary shadow-sm" v-if="selectedPosts.length">
+                            <div class="card-header text-center">
+                                {{ trans('forum::general.with_selection') }}
+                            </div>
+                            <div class="card-body">
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <label class="input-group-text" for="bulk-actions">{{ trans_choice('forum::general.actions', 1) }}</label>
+                                    </div>
+                                    <select class="custom-select" id="bulk-actions" v-model="selectedPostAction">
+                                        <option value="delete">{{ trans('forum::general.delete') }}</option>
+                                        <option value="restore">{{ trans('forum::general.restore') }}</option>
+                                    </select>
+                                </div>
+
+                                @if (config('forum.general.soft_deletes'))
+                                    <div class="form-check mb-3" v-if="selectedPostAction == 'delete'">
+                                        <input class="form-check-input" type="checkbox" name="permadelete" value="1" id="permadelete">
+                                        <label class="form-check-label" for="permadelete">
+                                            {{ trans('forum::general.perma_delete') }}
+                                        </label>
+                                    </div>
+                                @endif
+
+                                <div class="text-end">
+                                    <button type="submit" class="btn btn-primary" @click="submitPosts">{{ trans('forum::general.proceed') }}</button>
+                                </div>
+                            </div>
+                        </div>
+                    </transition>
+                </div>
+            </form>
+        @endif
+
+        {{ $posts->links('forum::pagination') }}
+
+         @if (! $thread->trashed())
+            @can ('reply', $thread)
+                <h3>{{ trans('forum::general.quick_reply') }}</h3>
+                <div id="quick-reply">
+                    <form method="POST" action="{{ Forum::route('post.store', $thread) }}">
+                        @csrf
+
+                        <div class="mb-3">
+                            <textarea name="content" class="form-control">{{ old('content') }}</textarea>
+                        </div>
+
+                        <div class="text-end">
+                            <button type="submit" class="btn btn-primary px-5">{{ trans('forum::general.reply') }}</button>
+                        </div>
+                    </form>
+                </div>
+            @endcan
+        @endif
+    </div>
