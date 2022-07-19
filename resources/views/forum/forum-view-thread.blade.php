@@ -244,7 +244,7 @@
 
 
 
-
+@auth
 <!-- Modal -->
 <div class="modal fade" id="reply" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -255,7 +255,7 @@
             <div class="comment-respond">
 
                 <h5>Leave A Comment</h5>
-                <form action="{{ route('forums.store') }}" method="post" class="comment-form" enctype="multipart/form-data">
+                <form action="" method="post" class="comment-form" enctype="multipart/form-data">
                 @csrf
                     <div style="display:none;" class="form-group">
                         <input class="form-control" name="author_id" value="{{ Auth::user()->id }}">
@@ -280,6 +280,7 @@
         </div>
     </div>
 </div>
+@endauth
 
 
 @endsection
