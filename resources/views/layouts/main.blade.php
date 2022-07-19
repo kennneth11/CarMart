@@ -45,35 +45,6 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
-
-
-	<!-- Start Forum Link -->
-
-	<!-- Feather icons (https://github.com/feathericons/feather) -->
-  <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
-
-  <!-- Vue (https://github.com/vuejs/vue) -->
-  @if (config('app.debug'))
-      <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
-  @else
-      <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14"></script>
-  @endif
-
-  <!-- Axios (https://github.com/axios/axios) -->
-  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-
-  <!-- Pickr (https://github.com/Simonwep/pickr) -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/themes/classic.min.css">
-  <script src="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/pickr.min.js"></script>
-
-  <!-- Sortable (https://github.com/SortableJS/Sortable) -->
-  <script src="//cdn.jsdelivr.net/npm/sortablejs@1.10.1/Sortable.min.js"></script>
-  <!-- Vue.Draggable (https://github.com/SortableJS/Vue.Draggable) -->
-  <script src="//cdnjs.cloudflare.com/ajax/libs/Vue.Draggable/2.23.2/vuedraggable.umd.min.js"></script>
-
-  <!-- end Forum Links -->
-
-
 </head>
 
 <body>
@@ -115,6 +86,7 @@
               <li class="dropdown"> <a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user-circle" aria-hidden="true"></i> {{ Auth::user()->first_name }} {{ Auth::user()->last_name }} <i class="fa fa-angle-down" aria-hidden="true"></i></a>
                 <ul class="dropdown-menu">
                 <li><a href="{{ route('profile.show', Auth::id()) }}">Profile Settings</a></li>
+                <li><a href="{{ route('messages')}}">Messages</a></li>
 
                   @if (Auth::user()->hasRole('seller'))
                   <li><a href="{{ route('My-Cars') }}">My Vehicles</a></li>
@@ -150,24 +122,14 @@
             <li><a href="{{ route('sellers') }}">Seller</a></li>
 
             <li><a href="{{ url('contact') }}">Contact Us</a></li>
-            <li><a href="{{ route('forums.index') }}">Forums</a></li>
 
-
-            <!-- <li class="dropdown"><a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Forum</a>
-
+            <li class="dropdown"><a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">News</a>
               <ul class="dropdown-menu">
-									<li ><a style="text-decoration:none;" class="submenu-link @if(str_contains(URL::current(), 'forum')) active @endif" href="{{ url(config('forum.web.router.prefix')) }}">{{ trans('forum::general.index') }}</a></li>
-									<li ><a style="text-decoration:none;" class="submenu-link @if(str_contains(URL::current(), 'recent')) active @endif" href="{{ route('forum.recent') }}">{{ trans('forum::threads.recent') }}</a></li>
-									@auth
-										<li ><a style="text-decoration:none;" class="submenu-link @if(str_contains(URL::current(), 'unread')) active @endif" href="{{ route('forum.unread') }}">{{ trans('forum::threads.unread_updated') }}</a></li>
-									@endauth
-									@can ('moveCategories')
-										<li ><a style="text-decoration:none;" class="submenu-link @if(str_contains(URL::current(), 'manage')) active @endif" href="{{ route('forum.category.manage') }}">{{ trans('forum::general.manage') }}</a></li>
-									@endcan
-						  </ul>
-            </li> -->
-
-
+                <li><a href="blog-left-sidebar.html">Blog Left Sidebar</a></li>
+                <li><a href="blog-right-sidebar.html">Blog Right Sidebar</a></li>
+                <li><a href="blog-detail.html">Blog Detail</a></li>
+              </ul>
+            </li>
           </ul>
         </div>
       </div>
@@ -177,14 +139,11 @@
   </header>
   <!-- /Header -->
 
+
+
     <!--Insert Banner on the index.blade.php  -->
 
-  @if(str_contains(URL::current(), 'forum'))
-    @yield('contentDashboard')
-  @else
-    @yield('content')
-  @endif
-
+@yield('content')
 
   <!--Footer -->
   <footer>
@@ -266,6 +225,7 @@
 <script src="{{ asset('assets/js/owl.carousel.min.js') }}"></script>
 <script src="{{ asset('assets/js/jquery.ph-locations.js') }}"></script>
 
+
 <script type="text/javascript">
         var my_handlers = {
                 fill_cities: function(){
@@ -289,183 +249,8 @@
                 $('#city').ph_locations('fetch_list', [{"province_code": 1013}]);
             });
 </script>
-<script type="text/javascript">
-    var my_handlers = {
-            fill_cities: function(){
-                var province_code = $(this).val();
-                $('#cities').ph_locations( 'fetch_list', [{"province_code": 1013}]);
-            },
-
-            fill_barangays: function(){
-            var city_code = $(this).val();
-            $('#barangay').ph_locations('fetch_list', [{"city_code": city_code}]);
-            }
-        };
-
-        $(function(){
-            $('#cities').on('change', my_handlers.fill_barangays);
-            $('#cities').ph_locations({'location_type': 'cities'});
-            $('#cities').ph_locations('fetch_list', [{"province_code": 1013}]);
-        });
-</script>
-<<<<<<< HEAD
-=======
-
-<script>
-    new Vue({
-        el: '.v-navbar',
-        name: 'Navbar',
-        data: {
-            isCollapsed: true,
-            isUserDropdownCollapsed: true
-        },
-        methods: {
-            onWindowClick (event) {
-                const ignore = ['navbar-toggler', 'navbar-toggler-icon', 'dropdown-toggle'];
-                if (ignore.some(className => event.target.classList.contains(className))) return;
-                if (! this.isCollapsed) this.isCollapsed = true;
-                if (! this.isUserDropdownCollapsed) this.isUserDropdownCollapsed = true;
-            }
-        },
-        created: function () {
-            window.addEventListener('click', this.onWindowClick);
-        }
-    });
-
-    const mask = document.querySelector('.mask');
-
-    function findModal (key)
-    {
-        const modal = document.querySelector(`[data-modal=${key}]`);
-
-        if (! modal) throw `Attempted to open modal '${key}' but no such modal found.`;
-
-        return modal;
-    }
-
-    function openModal (modal)
-    {
-        modal.style.display = 'block';
-        mask.style.display = 'block';
-        setTimeout(function()
-        {
-            modal.classList.add('show');
-            mask.classList.add('show');
-        }, 200);
-    }
-
-    document.querySelectorAll('[data-open-modal]').forEach(item =>
-    {
-        item.addEventListener('click', event =>
-        {
-            event.preventDefault();
-
-            openModal(findModal(event.currentTarget.dataset.openModal));
-        });
-    });
-
-    document.querySelectorAll('[data-modal]').forEach(modal =>
-    {
-        modal.addEventListener('click', event =>
-        {
-            if (! event.target.hasAttribute('data-close-modal')) return;
-
-            modal.classList.remove('show');
-            mask.classList.remove('show');
-            setTimeout(function()
-            {
-                modal.style.display = 'none';
-                mask.style.display = 'none';
-            }, 200);
-        });
-    });
-
-    document.querySelectorAll('[data-dismiss]').forEach(item =>
-    {
-        item.addEventListener('click', event => event.currentTarget.parentElement.style.display = 'none');
-    });
-
-    document.addEventListener('DOMContentLoaded', event =>
-    {
-        const hash = window.location.hash.substr(1);
-        if (hash.startsWith('modal='))
-        {
-            openModal(findModal(hash.replace('modal=','')));
-        }
-
-        feather.replace();
-
-        const input = document.querySelector('input[name=color]');
-
-        if (! input) return;
-
-        const pickr = Pickr.create({
-            el: '.pickr',
-            theme: 'classic',
-            default: input.value || null,
-
-            swatches: [
-                '{{ config('forum.web.default_category_color') }}',
-                '#f44336',
-                '#e91e63',
-                '#9c27b0',
-                '#673ab7',
-                '#3f51b5',
-                '#2196f3',
-                '#03a9f4',
-                '#00bcd4',
-                '#009688',
-                '#4caf50',
-                '#8bc34a',
-                '#cddc39',
-                '#ffeb3b',
-                '#ffc107'
-            ],
-
-            components: {
-                preview: true,
-                hue: true,
-                interaction: {
-                    input: true,
-                    save: true
-                }
-            },
-
-            strings: {
-                save: 'Apply'
-            }
-        });
-
-        pickr
-            .on('save', instance => pickr.hide())
-            .on('clear', instance =>
-            {
-                input.value = '';
-                input.dispatchEvent(new Event('change'));
-            })
-            .on('cancel', instance =>
-            {
-                const selectedColor = instance
-                    .getSelectedColor()
-                    .toHEXA()
-                    .toString();
-
-                input.value = selectedColor;
-                input.dispatchEvent(new Event('change'));
-            })
-            .on('change', (color, instance) =>
-            {
-                const selectedColor = color
-                    .toHEXA()
-                    .toString();
-
-                input.value = selectedColor;
-                input.dispatchEvent(new Event('change'));
-            });
-    });
-    </script>
 
 
->>>>>>> 2b4f39e0647696f9b2c6284002f7cdff14862cc3
+
 </body>
 </html>
