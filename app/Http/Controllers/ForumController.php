@@ -21,6 +21,7 @@ class ForumController extends Controller
             ->get();
 
         $categories = Category::get();
+        $popularThreads = Thread::orderBy('reply_count', 'DESC')->take(4)->get();
 
 
         foreach($threads as $thread){
@@ -37,6 +38,8 @@ class ForumController extends Controller
  
         return view('forum/forum-index')
             ->with(['brands'=>$brands])
+            ->with(['popularThreads'=>$popularThreads])
+            ->with(['categories'=>$categories])
             ->with(['threads'=>$threads]);
     }
 
@@ -138,4 +141,38 @@ class ForumController extends Controller
         Alert::success('Success');
         return redirect()->route('forums.thread', $request->thread_id);
     }
+
+
+
+
+        public function searchThread(Request $request)
+        {
+            $threads = Thread::join('users', 'users.id', '=', 'forum_threads.author_id')
+            ->join('forum_posts', 'forum_posts.thread_id', '=', 'forum_threads.id')
+            ->where('forum_posts.sequence', '=', '1')
+            ->where('forum_threads.title', 'like',  '%' . $request->thread_title .'%')
+            ->get();
+
+        $categories = Category::get();
+        $popularThreads = Thread::orderBy('reply_count', 'DESC')->take(4)->get();
+
+
+        foreach($threads as $thread){
+            foreach($categories as $category){
+                if($thread->category_id == $category->id){
+                    $thread->category_name = $category->title;
+                }
+            }
+
+        }
+
+        $brands = CarMaker::take(7)->get();
+
+ 
+        return view('forum/forum-index')
+            ->with(['brands'=>$brands])
+            ->with(['popularThreads'=>$popularThreads])
+            ->with(['categories'=>$categories])
+            ->with(['threads'=>$threads]);
+        }
 }

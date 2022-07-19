@@ -50,7 +50,6 @@
                 <h5>{{$postsCount - 1}} Comments</h5>
                 <ul class="commentlist">
                     @foreach($posts as $post)
-                       
                         @if($post->sequence != '1')
                         <li class="comment">
                             <div class="comment-body">
@@ -81,7 +80,10 @@
                             @endif
 
                             <p> {!! str_replace("\n", '<br>' ,$post->content)  !!} </p>
-                            <div class="reply"> <a href="#" class="btn btn-primary btn-xs outline"><i class="fa fa-reply" aria-hidden="true"></i> Reply</a> </div>
+                                @auth
+                                    <div class="reply"> <a href="#reply" class="btn btn-primary btn-xs outline" data-toggle="modal"><i class="fa fa-reply" aria-hidden="true"></i> Reply</a> </div>
+                                    
+                                @endauth
                             </div>
                         </li>
                         @endif
@@ -110,25 +112,25 @@
             </div>
             
             @auth
-            <!--Comments-Form-->
-            <div class="comment-respond">
-                <h5>Leave A Comment</h5>
-                <form action="{{ route('forums.store') }}" method="post" class="comment-form" enctype="multipart/form-data">
-                @csrf
-                    <div style="display:none;" class="form-group">
-                        <input class="form-control" name="author_id" value="{{ Auth::user()->id }}">
-                    </div>
-                    <div style="display:none;" class="form-group">
-                        <input class="form-control" name="thread_id" value=" {{ $thread->id }}">
-                    </div>
-                    <div class="form-group">
-                    <textarea class="form-control" name="content" rows="5" placeholder="Comment"></textarea>
-                    </div>
-                    <div class="form-group">
-                    <button class="btn" type="submit">Post Comment<span class="angle_arrow"><i class="fa fa-angle-right" aria-hidden="true"></i></span></button>
-                    </div>
-                </form>
-            </div>
+                <!--Comments-Form-->
+                <div class="comment-respond">
+                    <h5>Leave A Comment</h5>
+                    <form action="{{ route('forums.store') }}" method="post" class="comment-form" enctype="multipart/form-data">
+                    @csrf
+                        <div style="display:none;" class="form-group">
+                            <input class="form-control" name="author_id" value="{{ Auth::user()->id }}">
+                        </div>
+                        <div style="display:none;" class="form-group">
+                            <input class="form-control" name="thread_id" value=" {{ $thread->id }}">
+                        </div>
+                        <div class="form-group">
+                        <textarea class="form-control" name="content" rows="5" placeholder="Comment"></textarea>
+                        </div>
+                        <div class="form-group">
+                        <button class="btn" type="submit">Post Comment<span class="angle_arrow"><i class="fa fa-angle-right" aria-hidden="true"></i></span></button>
+                        </div>
+                    </form>
+                </div>
             @endauth
 
         </div>
@@ -137,11 +139,12 @@
         <aside class="col-lg-3 col-md-4">
             <div class="sidebar_widget">
             <div class="widget_heading">
-                <h5>Search Blog</h5>
+                <h5>Search</h5>
             </div>
             <div class="blog_search">
-                <form action="#" method="get">
-                <input class="form-control" name="search" type="text" placeholder="Search...">
+                <form  action="{{ route('forums.search') }}" method="post" class="comment-form" enctype="multipart/form-data">
+                @csrf
+                <input class="form-control" name="thread_title" type="text" placeholder="Search...">
                 <button type="submit" class="search_btn"><i class="fa fa-search" aria-hidden="true"></i></button>
                 </form>
             </div>
@@ -221,22 +224,62 @@
     <!-- /Our-Blog--> 
 
     <!--Brands-->
-    <section class="brand-section gray-bg">
-    <div class="container">
-        <div class="brand-hadding">
-        <h5>Popular Brands</h5>
-        </div>
-        <div class="brand-logo-list">
-        <div id="popular_brands">
-            @foreach($brands as $brand)
-                <div class="brand"><a href="#"><img src="{{ asset($brand->file_path_picture) }}" class="img-responsive" alt="image"></a></div>
-            @endforeach
+        <section class="brand-section gray-bg">
+            <div class="container">
+                <div class="brand-hadding">
+                <h5>Popular Brands</h5>
+                </div>
+                <div class="brand-logo-list">
+                <div id="popular_brands">
+                    @foreach($brands as $brand)
+                        <div class="brand"><a href="#"><img src="{{ asset($brand->file_path_picture) }}" class="img-responsive" alt="image"></a></div>
+                    @endforeach
 
 
-        </div>
+                </div>
+                </div>
+            </div>
+        </section>
+    <!-- /Brands-->
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="reply" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+
+          
+
+            <div class="comment-respond">
+
+                <h5>Leave A Comment</h5>
+                <form action="{{ route('forums.store') }}" method="post" class="comment-form" enctype="multipart/form-data">
+                @csrf
+                    <div style="display:none;" class="form-group">
+                        <input class="form-control" name="author_id" value="{{ Auth::user()->id }}">
+                    </div>
+                    <div style="display:none;" class="form-group">
+                        <input class="form-control" name="thread_id" value=" {{ $thread->id }}">
+                    </div>
+                    <div class="form-group">
+                    <textarea class="form-control" name="content" rows="5" placeholder="Comment"></textarea>
+                    </div>
+                    <div class="form-group">
+                    <button class="btn" type="submit">Post Comment<span class="angle_arrow"><i class="fa fa-angle-right" aria-hidden="true"></i></span></button>
+                    
+                    </div>
+                </form>
+            </div>
+
+            <div>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+            
         </div>
     </div>
-    </section>
-    <!-- /Brands-->
+</div>
+
 
 @endsection
