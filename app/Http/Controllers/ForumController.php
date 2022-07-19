@@ -124,13 +124,11 @@ class ForumController extends Controller
     public function postComment(Request $request){
 
         $thread = Thread::where('id', '=', $request->thread_id)->first();
-
-
-
         $post= new Post();
         $post->thread_id= $request->thread_id;
         $post->author_id= $request->author_id;
         $post->content= $request->content;
+        $post->post_id= $request->post_id;
         $post->sequence= ($thread->reply_count + 2);
         $post->save();
 

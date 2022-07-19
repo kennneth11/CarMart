@@ -236,6 +236,7 @@
 <script src="{{ asset('assets/js/bootstrap-slider.min.js') }}"></script>
 <!--Slider-JS-->
 <script src="{{ asset('js/posting-car.js') }}"></script>
+<script src="{{ asset('js/seller.js') }}"></script>
 
 <script src="{{ asset('assets/js/slick.min.js') }}"></script>
 <script src="{{ asset('assets/js/owl.carousel.min.js') }}"></script>

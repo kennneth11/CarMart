@@ -2,7 +2,7 @@
 
 @section('content')
 <!--Page Header-->
-<section class="page-header blog_page">
+<section class="page-header profile_page">
   <div class="container">
     <div class="page-header_wrap">
       <div class="page-heading">

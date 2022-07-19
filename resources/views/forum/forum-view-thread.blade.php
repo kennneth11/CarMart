@@ -64,7 +64,7 @@
 
                             @if(!is_null($post->post_id))
                                 <br>
-                                    <div class="">
+                                    <div class="post-comment-reply" >
                                         <div class="comment-author"> <img class="avatar" src="{{ asset('userProfiles/'.$post->replied_avatar) }}" alt="image"> 
                                         @if($post->first_name == 'ADMIN')
                                             <span class="fn">{{ $post->replied_first_name }}</span>
@@ -76,13 +76,13 @@
                                         <p>{{$post->replied_content}}</p>
                                     </div>
                                 <br>
-                                <br>
                             @endif
 
                             <p> {!! str_replace("\n", '<br>' ,$post->content)  !!} </p>
                                 @auth
-                                    <div class="reply"> <a href="#reply" class="btn btn-primary btn-xs outline" data-toggle="modal"><i class="fa fa-reply" aria-hidden="true"></i> Reply</a> </div>
-                                    
+                                    <div class="reply"> <a href="#reply" onclick="passPostid({{$post->id}})" class="btn btn-primary btn-xs outline" data-toggle="modal"><i class="fa fa-reply" aria-hidden="true"></i> Reply</a> </div>
+
+                                
                                 @endauth
                             </div>
                         </li>
@@ -124,7 +124,7 @@
                             <input class="form-control" name="thread_id" value=" {{ $thread->id }}">
                         </div>
                         <div class="form-group">
-                        <textarea class="form-control" name="content" rows="5" placeholder="Comment"></textarea>
+                        <textarea class="form-control" name="content" rows="5" placeholder="Comment" required></textarea>
                         </div>
                         <div class="form-group">
                         <button class="btn" type="submit">Post Comment<span class="angle_arrow"><i class="fa fa-angle-right" aria-hidden="true"></i></span></button>
@@ -242,45 +242,47 @@
         </section>
     <!-- /Brands-->
 
-
-
-@auth
-<!-- Modal -->
-<div class="modal fade" id="reply" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-
-          
-
-            <div class="comment-respond">
-
-                <h5>Leave A Comment</h5>
-                <form action="" method="post" class="comment-form" enctype="multipart/form-data">
-                @csrf
-                    <div style="display:none;" class="form-group">
-                        <input class="form-control" name="author_id" value="{{ Auth::user()->id }}">
-                    </div>
-                    <div style="display:none;" class="form-group">
-                        <input class="form-control" name="thread_id" value=" {{ $thread->id }}">
-                    </div>
-                    <div class="form-group">
-                    <textarea class="form-control" name="content" rows="5" placeholder="Comment"></textarea>
-                    </div>
-                    <div class="form-group">
-                    <button class="btn" type="submit">Post Comment<span class="angle_arrow"><i class="fa fa-angle-right" aria-hidden="true"></i></span></button>
+    @auth
+        <div class="modal fade" id="reply">
+            <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Reply</h4>
+                </div>
+                <form action="{{ route('forums.store') }}" method="post" class="comment-form" enctype="multipart/form-data">
+                    @csrf
+                    <div >
+                        
+                        <div style="display:none;" class="form-group">
+                            <input class="form-control" name="author_id" value="{{ Auth::user()->id }}">
+                        </div>
+                        <div style="display:none;"  class="form-group">
+                            <input class="form-control" name="thread_id" value=" {{ $thread->id }}">
+                        </div>
+                        <div style="display:none;"  class="form-group">
+                            <input class="form-control" id="post_id" name="post_id" value="">
+                        </div>
+                        
+                        <textarea class="form-control" name="content" rows="5" placeholder="Comment"></textarea>
+                        
+                        
                     
+                    </div>
+                    <div>
+                        <br>
+                        <div class="form-group">
+                            <button class="btn" type="submit">Post Comment<span class="angle_arrow"><i class="fa fa-angle-right" aria-hidden="true"></i></span></button>
+                        </div>
                     </div>
                 </form>
             </div>
-
-            <div>
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             </div>
-            
         </div>
-    </div>
-</div>
-@endauth
+
+    @endauth
+
+
 
 
 @endsection
