@@ -36,13 +36,13 @@
                   <li><i class="fa fa-user-circle-o" aria-hidden="true"></i> {{ $thread->first_name }}</li>
                   <li><i class="fa fa-calendar-check-o" aria-hidden="true"></i> {{date_format($thread->created_at,"d M Y")  }} </li>
                   <li><i class="fa fa-tags" aria-hidden="true"></i> {{$thread->category_name}}</li>
-                  <li><i class="fa fa-comment" aria-hidden="true"></i> <a href="#">{{$thread->reply_count}} Comments</a></li>
+                  <li><i class="fa fa-comment" aria-hidden="true"></i> <a href="{{ route('forums.thread', $thread->id) }}">{{$thread->reply_count}} Comments</a></li>
                 </ul>
               </div>
             </div>
           </div>
           <div class="article_info">
-            <p>{{$thread->content}}</p>
+            <p> {!! str_replace("\n", '<br>' ,$thread->content)  !!} </p>
             <a href="{{ route('forums.thread', $thread->id) }}" class="btn">More <span class="angle_arrow"><i class="fa fa-angle-right" aria-hidden="true"></i></span></a> </div>
         </article>
         @endforeach
@@ -62,85 +62,47 @@
       </div>
       
       <!--Side-bar-->
-      <aside class="col-lg-3 col-md-4">
+    <aside class="col-lg-3 col-md-4">
         <div class="sidebar_widget">
-          <div class="widget_heading">
-            <h5>Search Blog</h5>
-          </div>
-          <div class="blog_search">
-            <form action="#" method="get">
-              <input class="form-control" name="#" type="text" placeholder="Search...">
+        <div class="widget_heading">
+            <h5>Search</h5>
+        </div>
+        <div class="blog_search">
+            <form  action="{{ route('forums.search') }}" method="post" class="comment-form" enctype="multipart/form-data">
+              @csrf
+              <input class="form-control" name="thread_title" type="text" placeholder="Search...">
               <button type="submit" class="search_btn"><i class="fa fa-search" aria-hidden="true"></i></button>
             </form>
-          </div>
+        </div>
         </div>
         <div class="sidebar_widget">
-          <div class="widget_heading">
+        <div class="widget_heading">
             <h5>Popular Posts</h5>
-          </div>
-          <div class="popular_post">
+        </div>
+        <div class="popular_post">
             <ul>
-              <li>
-                <div class="popular_post_img"> <a href="#"><img src="assets/images/200x200.jpg" alt="image"></a> </div>
-                <div class="popular_post_title"> <a href="#">At vero eos et accusamus et iusto odio dignissimos.</a> </div>
-              </li>
-              <li>
-                <div class="popular_post_img"> <a href="#"><img src="assets/images/200x200.jpg" alt="image"></a> </div>
-                <div class="popular_post_title"> <a href="#">On the other hand, we denounce with righteous.</a> </div>
-              </li>
-              <li>
-                <div class="popular_post_img"> <a href="#"><img src="assets/images/200x200.jpg" alt="image"></a> </div>
-                <div class="popular_post_title"> <a href="#">But I must explain to you how all this mistaken idea.</a> </div>
-              </li>
-              <li>
-                <div class="popular_post_img"> <a href="#"><img src="assets/images/200x200.jpg" alt="image"></a> </div>
-                <div class="popular_post_title"> <a href="#">Nor again is there anyone who loves or pursues.</a> </div>
-              </li>
+                @foreach($popularThreads as $popularThread)
+                <li>
+                    <div class="popular_post_img"> <a href="#"><img src="assets/images/200x200.jpg" alt="image"></a> </div>
+                    <div class="popular_post_title"> <a href="#">{{$popularThread->title}}</a> </div>
+                </li>
+                @endforeach
             </ul>
-          </div>
+        </div>
         </div>
         <div class="sidebar_widget">
-          <div class="widget_heading">
+        <div class="widget_heading">
             <h5>Categories</h5>
-          </div>
-          <div class="categories_list">
-            <ul>
-              <li><a href="#">Trends</a></li>
-              <li><a href="#">The Works</a></li>
-              <li><a href="#">Hand Wash</a></li>
-              <li><a href="#">General</a></li>
-              <li><a href="#">Business</a></li>
-              <li><a href="#">Auto Detail</a></li>
-              <li><a href="#">Motorbikes</a></li>
-              <li><a href="#">Compacts</a></li>
-              <li><a href="#">Vans & Trucks</a></li>
-              <li><a href="#">Buy a car</a></li>
-              <li><a href="#">Sell your Car</a></li>
-              <li><a href="#">Car Land</a></li>
-              <li><a href="#">Car Showrooms</a></li>
-            </ul>
-          </div>
         </div>
-        <div class="sidebar_widget">
-          <div class="widget_heading">
-            <h5>Tag Widget</h5>
-          </div>
-          <div class="tag_list">
+        <div class="categories_list">
             <ul>
-              <li><a href="#">Trends</a></li>
-              <li><a href="#">The Works</a></li>
-              <li><a href="#">Auto Detail</a></li>
-              <li><a href="#">Motorbikes</a></li>
-              <li><a href="#">Compacts</a></li>
-              <li><a href="#">Buy a car</a></li>
-              <li><a href="#">Vans & Trucks</a></li>
-              <li><a href="#">Car Land</a></li>
-              <li><a href="#">Sell your Car</a></li>
-              <li><a href="#">Sedans</a></li>
+            @foreach($categories as $categorie)
+                <li><a href="#">{{$categorie->title}}</a></li>
+            @endforeach
             </ul>
-          </div>
         </div>
-      </aside>
+        </div>
+    </aside>
       <!--/Side-bar--> 
       
     </div>
@@ -166,4 +128,9 @@
   </div>
 </section>
 <!-- /Brands-->
+
+
+
+
+
 @endsection

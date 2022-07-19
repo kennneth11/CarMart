@@ -244,11 +244,30 @@
             $(function(){
 
                 $('#city').on('change', my_handlers.fill_barangays);
+
                 $('#city').ph_locations({'location_type': 'cities'});
                 $('#barangay').ph_locations({'location_type': 'barangays'});
+
                 $('#city').ph_locations('fetch_list', [{"province_code": 1013}]);
             });
 </script>
+<script type="text/javascript">
+    var my_handlers = {
+            fill_cities: function(){
+
+                var province_code = $(this).val();
+                $('#cities').ph_locations( 'fetch_list', [{"province_code": 1013}]);
+            },
+        };
+
+        $(function(){
+
+            $('#cities').on('change', my_handlers.fill_barangays);
+            $('#cities').ph_locations({'location_type': 'cities'});
+            $('#cities').ph_locations('fetch_list', [{"province_code": 1013}]);
+        });
+</script>
+
 
 
 

@@ -39,6 +39,7 @@ Route::get('/searchCar', [FrontEndController::class, 'searchCar'])->name('search
 Route::get('/seller', 'App\Http\Controllers\User\SellerUserController@viewSellers')->name('sellers');
 Route::get('/Forums', 'App\Http\Controllers\ForumController@index')->name('forums.index');
 Route::get('/Forums{key}', 'App\Http\Controllers\ForumController@viewThread')->name('forums.thread');
+Route::post('/Forums/search', 'App\Http\Controllers\ForumController@searchThread')->name('forums.search');
 //Visitors Route ---------------End Line--------------------------------
 
 
