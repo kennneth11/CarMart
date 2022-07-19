@@ -45,10 +45,6 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
-
-
-	
-
 </head>
 
 <body>
@@ -90,6 +86,7 @@
               <li class="dropdown"> <a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user-circle" aria-hidden="true"></i> {{ Auth::user()->first_name }} {{ Auth::user()->last_name }} <i class="fa fa-angle-down" aria-hidden="true"></i></a>
                 <ul class="dropdown-menu">
                 <li><a href="{{ route('profile.show', Auth::id()) }}">Profile Settings</a></li>
+                <li><a href="{{ route('messages')}}">Messages</a></li>
 
                   @if (Auth::user()->hasRole('seller'))
                   <li><a href="{{ route('My-Cars') }}">My Vehicles</a></li>
@@ -125,24 +122,14 @@
             <li><a href="{{ route('sellers') }}">Seller</a></li>
 
             <li><a href="{{ url('contact') }}">Contact Us</a></li>
-            <li><a href="{{ route('forums.index') }}">Forums</a></li>
 
-
-            <!-- <li class="dropdown"><a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Forum</a>
-
+            <li class="dropdown"><a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">News</a>
               <ul class="dropdown-menu">
-									<li ><a style="text-decoration:none;" class="submenu-link @if(str_contains(URL::current(), 'forum')) active @endif" href="{{ url(config('forum.web.router.prefix')) }}">{{ trans('forum::general.index') }}</a></li>
-									<li ><a style="text-decoration:none;" class="submenu-link @if(str_contains(URL::current(), 'recent')) active @endif" href="{{ route('forum.recent') }}">{{ trans('forum::threads.recent') }}</a></li>
-									@auth
-										<li ><a style="text-decoration:none;" class="submenu-link @if(str_contains(URL::current(), 'unread')) active @endif" href="{{ route('forum.unread') }}">{{ trans('forum::threads.unread_updated') }}</a></li>
-									@endauth
-									@can ('moveCategories')
-										<li ><a style="text-decoration:none;" class="submenu-link @if(str_contains(URL::current(), 'manage')) active @endif" href="{{ route('forum.category.manage') }}">{{ trans('forum::general.manage') }}</a></li>
-									@endcan
-						  </ul>
-            </li> -->
-
-
+                <li><a href="blog-left-sidebar.html">Blog Left Sidebar</a></li>
+                <li><a href="blog-right-sidebar.html">Blog Right Sidebar</a></li>
+                <li><a href="blog-detail.html">Blog Detail</a></li>
+              </ul>
+            </li>
           </ul>
         </div>
       </div>
@@ -152,14 +139,11 @@
   </header>
   <!-- /Header -->
 
+
+
     <!--Insert Banner on the index.blade.php  -->
 
-  @if(str_contains(URL::current(), 'forum'))
-    @yield('contentDashboard')
-  @else
-    @yield('content')
-  @endif
-
+@yield('content')
 
   <!--Footer -->
   <footer>
@@ -241,6 +225,7 @@
 <script src="{{ asset('assets/js/slick.min.js') }}"></script>
 <script src="{{ asset('assets/js/owl.carousel.min.js') }}"></script>
 <script src="{{ asset('assets/js/jquery.ph-locations.js') }}"></script>
+
 
 <script type="text/javascript">
         var my_handlers = {

@@ -55,7 +55,6 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('/changeAddress', 'App\Http\Controllers\User\MoreSettingController@changeAddress')->name('changeAddress');
     Route::post('/updateAddress', 'App\Http\Controllers\User\MoreSettingController@updateAddress')->name('updateAddress');
     Route::get('/dealer{key}', 'App\Http\Controllers\User\SellerUserController@viewSeller')->name('dealer');
-
     Route::post('/Forums/store', 'App\Http\Controllers\ForumController@postComment')->name('forums.store');
 });
 //both---------------End Line--------------------------------
@@ -87,3 +86,6 @@ Route::group(['middleware' => ['auth', 'role:customer']], function() {
 //customer ---------------End Line--------------------------------
 
 require __DIR__.'/auth.php';
+
+
+
