@@ -122,14 +122,9 @@
             <li><a href="{{ route('sellers') }}">Seller</a></li>
 
             <li><a href="{{ url('contact') }}">Contact Us</a></li>
+            <li><a href="{{ route('forums.index') }}">Furom</a></li>
 
-            <li class="dropdown"><a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">News</a>
-              <ul class="dropdown-menu">
-                <li><a href="blog-left-sidebar.html">Blog Left Sidebar</a></li>
-                <li><a href="blog-right-sidebar.html">Blog Right Sidebar</a></li>
-                <li><a href="blog-detail.html">Blog Detail</a></li>
-              </ul>
-            </li>
+            
           </ul>
         </div>
       </div>
