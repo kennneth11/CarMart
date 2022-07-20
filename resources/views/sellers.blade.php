@@ -49,11 +49,13 @@
                                 {{$seller->city}}</p>
                         </div>
                     </div>
+                  
                     <div class="col-sm-3 col-xs-12">
                         <div class="view_profile"> <a href="{{ route('dealer',$seller->id) }}" class="btn btn-xs outline">View Profile</a>
                         <p>({{$seller->num_car}} Cars)</p>
                         </div>
                     </div>
+
                 </div>
             </div>
         </div>

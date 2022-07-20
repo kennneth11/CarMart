@@ -10,6 +10,9 @@ use App\Models\CarTransmission;
 use App\Models\CarFuelType;
 use App\Models\Car;
 use App\Models\CarImage;
+use TeamTeaTime\Forum\Models\Thread;
+use TeamTeaTime\Forum\Models\Category;
+use TeamTeaTime\Forum\Models\Post;
 use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -35,6 +38,23 @@ class FrontEndController extends Controller
          ->get();
         //  dd($cars);
 
+        $recentCars = Car::join('car_makers', 'car_makers.car_maker_id', '=', 'cars.car_maker_id')
+         ->join('car_models', 'car_models.car_model_id', '=', 'cars.car_model_id')
+         ->join('car_body_types', 'car_body_types.body_type_id', '=', 'cars.body_type_id')
+         ->join('car_transmissions', 'car_transmissions.transmission_id', '=', 'cars.transmission_id')
+         ->join('car_fuel_types', 'car_fuel_types.fuel_type_id', '=', 'cars.fuel_type_id')
+         ->join('users','users.id', '=', 'cars.seller_id')
+         ->where('status', '=', 'Active')
+         ->orderBy('cars.created_at', 'ASC')
+         ->take(5)
+         ->get();
+
+         foreach($recentCars as $recentCar){
+            $carID = $recentCar->car_id;
+                $image = CarImage::where('car_id', '=', $carID)->orderBy('car_id', 'ASC')->first();
+                $recentCar->car_image = $image->file_path;
+            }
+
          foreach($cars as $car){
             if(str_contains($car->city, 'CITY')){
                 $new = str_replace("CITY OF", '', $car->city) ;
@@ -54,7 +74,42 @@ class FrontEndController extends Controller
              $car->car_image = $image->file_path;
          }
 
+
+        $posts = Post::get();
+        $categories = Category::get();
+
+        $threads = Thread::join('users', 'users.id', '=', 'forum_threads.author_id')
+            ->select('forum_threads.id',
+                'forum_threads.category_id',
+                'forum_threads.author_id',
+                'forum_threads.title',
+                'forum_threads.created_at',
+                'forum_threads.first_post_id',
+                'forum_threads.updated_at',
+                'users.first_name',
+                'users.last_name',
+                'users.username',
+                'users.avatar')
+            ->take(3)
+            ->get();
+
+        foreach($threads as $thread){
+            foreach($categories as $category){
+                if($thread->category_id == $category->id){
+                    $thread->category_name = $category->title;
+                }
+            }
+            foreach($posts as $post){
+                if($thread->first_post_id == $post->id){
+                    $thread->content = $post->content;
+                }
+            }
+            $thread->content = mb_strimwidth($thread->content, 0, 200, "...");
+        }
+
         return view('index')
+            ->with(['recentCars'=>$recentCars])
+            ->with(['threads'=>$threads])
             ->with(['cars'=>$cars])
             ->with(['carModels'=>$carModelData])
             ->with(['carBodyTypes'=>$carBodyTypeData])

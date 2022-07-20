@@ -118,11 +118,12 @@
 
             </li>
             <li><a href="{{ route('about') }}">About Us</a></li>
-
+            @auth
             <li><a href="{{ route('sellers') }}">Seller</a></li>
+            @endauth
 
             <li><a href="{{ url('contact') }}">Contact Us</a></li>
-            <li><a href="{{ route('forums.index') }}">Furom</a></li>
+            <li><a href="{{ route('forums.index') }}">Forum</a></li>
 
             
           </ul>

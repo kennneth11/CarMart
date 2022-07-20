@@ -32,12 +32,7 @@
           <h4> {{$seller->first_name . ' ' .$seller->last_name}}</h4>
           <p>{{$seller->purok . ' ' . $seller->barangay}}<br>
             {{$seller->city}}</p>
-          <ul class="dealer_social_links">
-            <li class="facebook-icon"><a href="#"><i class="fa fa-facebook-square" aria-hidden="true"></i></a></li>
-            <li class="twitter-icon"><a href="#"><i class="fa fa-twitter-square" aria-hidden="true"></i></a></li>
-            <li class="linkedin-icon"><a href="#"><i class="fa fa-linkedin-square" aria-hidden="true"></i></a></li>
-            <li class="google-plus-icon"><a href="#"><i class="fa fa-google-plus-square" aria-hidden="true"></i></a></li>
-          </ul>
+          
         </div>
       </div>
       <div class="col-md-3 col-sm-4 col-xs-12">

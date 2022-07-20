@@ -136,87 +136,48 @@
         </div>
         
         <!--Side-bar-->
-        <aside class="col-lg-3 col-md-4">
-            <div class="sidebar_widget">
-            <div class="widget_heading">
-                <h5>Search</h5>
-            </div>
-            <div class="blog_search">
-                <form  action="{{ route('forums.search') }}" method="post" class="comment-form" enctype="multipart/form-data">
-                @csrf
-                <input class="form-control" name="thread_title" type="text" placeholder="Search...">
-                <button type="submit" class="search_btn"><i class="fa fa-search" aria-hidden="true"></i></button>
-                </form>
-            </div>
-            </div>
-            <div class="sidebar_widget">
-            <div class="widget_heading">
-                <h5>Popular Posts</h5>
-            </div>
-            <div class="popular_post">
-                <ul>
+    <aside class="col-lg-3 col-md-4">
+        <div class="sidebar_widget">
+        <div class="widget_heading">
+            <h5>Search</h5>
+        </div>
+        <div class="blog_search">
+            <form  action="{{ route('forums.search') }}" method="post" class="comment-form" enctype="multipart/form-data">
+              @csrf
+              <input class="form-control" name="thread_title" type="text" placeholder="Search...">
+              <button type="submit" class="search_btn"><i class="fa fa-search" aria-hidden="true"></i></button>
+            </form>
+        </div>
+        </div>
+        <div class="sidebar_widget">
+        <div class="widget_heading">
+            <h5>Popular Posts</h5>
+        </div>
+        <div class="popular_post">
+            <ul>
+                @foreach($popularThreads as $popularThread)
                 <li>
-                    <div class="popular_post_img"> <a href="#"><img src="assets/images/200x200.jpg" alt="image"></a> </div>
-                    <div class="popular_post_title"> <a href="#">At vero eos et accusamus et iusto odio dignissimos.</a> </div>
+                    <div class="popular_post_img"> <a href="{{ route('forums.thread', $popularThread->id) }}"><img src="assets/images/200x200.jpg" alt="image"></a> </div>
+                    <div class="popular_post_title"> <a href="{{ route('forums.thread', $popularThread->id) }}">{{$popularThread->title}}</a> </div>
                 </li>
-                <li>
-                    <div class="popular_post_img"> <a href="#"><img src="assets/images/200x200.jpg" alt="image"></a> </div>
-                    <div class="popular_post_title"> <a href="#">On the other hand, we denounce with righteous.</a> </div>
-                </li>
-                <li>
-                    <div class="popular_post_img"> <a href="#"><img src="assets/images/200x200.jpg" alt="image"></a> </div>
-                    <div class="popular_post_title"> <a href="#">But I must explain to you how all this mistaken idea.</a> </div>
-                </li>
-                <li>
-                    <div class="popular_post_img"> <a href="#"><img src="assets/images/200x200.jpg" alt="image"></a> </div>
-                    <div class="popular_post_title"> <a href="#">Nor again is there anyone who loves or pursues.</a> </div>
-                </li>
-                </ul>
-            </div>
-            </div>
-            <div class="sidebar_widget">
-            <div class="widget_heading">
-                <h5>Categories</h5>
-            </div>
-            <div class="categories_list">
-                <ul>
-                <li><a href="#">Trends</a></li>
-                <li><a href="#">The Works</a></li>
-                <li><a href="#">Hand Wash</a></li>
-                <li><a href="#">General</a></li>
-                <li><a href="#">Business</a></li>
-                <li><a href="#">Auto Detail</a></li>
-                <li><a href="#">Motorbikes</a></li>
-                <li><a href="#">Compacts</a></li>
-                <li><a href="#">Vans & Trucks</a></li>
-                <li><a href="#">Buy a car</a></li>
-                <li><a href="#">Sell your Car</a></li>
-                <li><a href="#">Car Land</a></li>
-                <li><a href="#">Car Showrooms</a></li>
-                </ul>
-            </div>
-            </div>
-            <div class="sidebar_widget">
-            <div class="widget_heading">
-                <h5>Tag Widget</h5>
-            </div>
-            <div class="tag_list">
-                <ul>
-                <li><a href="#">Trends</a></li>
-                <li><a href="#">The Works</a></li>
-                <li><a href="#">Auto Detail</a></li>
-                <li><a href="#">Motorbikes</a></li>
-                <li><a href="#">Compacts</a></li>
-                <li><a href="#">Buy a car</a></li>
-                <li><a href="#">Vans & Trucks</a></li>
-                <li><a href="#">Car Land</a></li>
-                <li><a href="#">Sell your Car</a></li>
-                <li><a href="#">Sedans</a></li>
-                </ul>
-            </div>
-            </div>
-        </aside>
-        <!--/Side-bar--> 
+                @endforeach
+            </ul>
+        </div>
+        </div>
+        <div class="sidebar_widget">
+        <div class="widget_heading">
+            <h5>Categories</h5>
+        </div>
+        <div class="categories_list">
+            <ul>
+            @foreach($categories as $categorie)
+                <li><a href="{{ route('forums.category', $categorie->id) }}">{{$categorie->title}}</a></li>
+            @endforeach
+            </ul>
+        </div>
+        </div>
+    </aside>
+      <!--/Side-bar--> 
         
         </div>
     </div>

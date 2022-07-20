@@ -11,30 +11,18 @@
     </div>
     <div class="recent_addedcars">
       <ul>
+        @foreach($recentCars as $recentCar)
         <li class="gray-bg">
-          <div class="recent_post_img"> <a href="#"><img src="assets/images/200x200.jpg" alt="image"></a> </div>
-          <div class="recent_post_title"> <a href="#">Recently Listed Car Name</a>
-            <p class="widget_price">₱92,000</p>
+          <div class="recent_post_img recent-img-container"> 
+            <a href="{{ route('Car',$recentCar->car_id) }}">
+              <img src="{{ asset('CarsImages/'.$recentCar->car_image) }}" alt="image">
+            </a> 
+          </div>
+          <div class="recent_post_title"> <a href="{{ route('Car',$recentCar->car_id) }}">{{ ucfirst($recentCar->car_maker_name) .' '.ucfirst($recentCar->car_model_name) }}</a>
+            <p class="widget_price"><strong>₱</strong>{{$recentCar->price}}</p>
           </div>
         </li>
-        <li class="gray-bg">
-          <div class="recent_post_img"> <a href="#"><img src="assets/images/200x200.jpg" alt="image"></a> </div>
-          <div class="recent_post_title"> <a href="#">Recently Listed Car Name</a>
-            <p class="widget_price">₱92,000</p>
-          </div>
-        </li>
-        <li class="gray-bg">
-          <div class="recent_post_img"> <a href="#"><img src="assets/images/200x200.jpg" alt="image"></a> </div>
-          <div class="recent_post_title"> <a href="#">Recently Listed Car Name </a>
-            <p class="widget_price">₱92,000</p>
-          </div>
-        </li>
-        <li class="gray-bg">
-          <div class="recent_post_img"> <a href="#"><img src="assets/images/200x200.jpg" alt="image"></a> </div>
-          <div class="recent_post_title"> <a href="#">Recently Listed Car Name</a>
-            <p class="widget_price">₱92,000</p>
-          </div>
-        </li>
+        @endforeach
       </ul>
     </div>
   </div>

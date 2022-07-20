@@ -42,7 +42,7 @@
             </div>
           </div>
           <div class="article_info">
-            <p> {!! str_replace("\n", '<br>' ,$thread->content)  !!} </p>
+            <p> {!!  str_replace("\n", '<br>' ,$thread->content)  !!} </p>
             <a href="{{ route('forums.thread', $thread->id) }}" class="btn">More <span class="angle_arrow"><i class="fa fa-angle-right" aria-hidden="true"></i></span></a> </div>
         </article>
         @endforeach
@@ -83,8 +83,8 @@
             <ul>
                 @foreach($popularThreads as $popularThread)
                 <li>
-                    <div class="popular_post_img"> <a href="#"><img src="assets/images/200x200.jpg" alt="image"></a> </div>
-                    <div class="popular_post_title"> <a href="#">{{$popularThread->title}}</a> </div>
+                    <div class="popular_post_img"> <a href="{{ route('forums.thread', $popularThread->id) }}"><img src="assets/images/200x200.jpg" alt="image"></a> </div>
+                    <div class="popular_post_title"> <a href="{{ route('forums.thread', $popularThread->id) }}">{{$popularThread->title}}</a> </div>
                 </li>
                 @endforeach
             </ul>
@@ -97,7 +97,7 @@
         <div class="categories_list">
             <ul>
             @foreach($categories as $categorie)
-                <li><a href="#">{{$categorie->title}}</a></li>
+                <li><a href="{{ route('forums.category', $categorie->id) }}">{{$categorie->title}}</a></li>
             @endforeach
             </ul>
         </div>
