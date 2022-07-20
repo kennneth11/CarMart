@@ -167,29 +167,30 @@ class ForumController extends Controller
         ->join('forum_posts', 'forum_posts.thread_id', '=', 'forum_threads.id')
         ->where('forum_posts.sequence', '=', '1')
         ->where('forum_threads.title', 'like',  '%' . $request->thread_title .'%')
+        ->orWhere('forum_posts.content', 'like',  '%' . $request->thread_title .'%')
         ->get();
 
-    $categories = Category::get();
-    $popularThreads = Thread::orderBy('reply_count', 'DESC')->take(4)->get();
+        $categories = Category::get();
+        $popularThreads = Thread::orderBy('reply_count', 'DESC')->take(4)->get();
 
 
-    foreach($threads as $thread){
-        foreach($categories as $category){
-            if($thread->category_id == $category->id){
-                $thread->category_name = $category->title;
+        foreach($threads as $thread){
+            foreach($categories as $category){
+                if($thread->category_id == $category->id){
+                    $thread->category_name = $category->title;
+                }
             }
+            $thread->content = mb_strimwidth($thread->content, 0, 200, "...");
         }
-        $thread->content = mb_strimwidth($thread->content, 0, 200, "...");
-    }
 
-    $brands = CarMaker::take(7)->get();
+        $brands = CarMaker::take(7)->get();
 
 
-    return view('forum/forum-index')
-        ->with(['brands'=>$brands])
-        ->with(['popularThreads'=>$popularThreads])
-        ->with(['categories'=>$categories])
-        ->with(['threads'=>$threads]);
+        return view('forum/forum-index')
+            ->with(['brands'=>$brands])
+            ->with(['popularThreads'=>$popularThreads])
+            ->with(['categories'=>$categories])
+            ->with(['threads'=>$threads]);
     }
 
     public function showThreadsByCategory(Request $request)

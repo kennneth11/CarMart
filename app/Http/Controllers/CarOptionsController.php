@@ -55,7 +55,7 @@ class CarOptionsController extends Controller
             $CarMaker->file_path_picture = 'Images/brands/'.$idPictureName;
             $CarMaker->save();
 
-            return redirect()->route('CarOptions')
+            return redirect()->route('Setting')
                             ->with('success','Car Maker created successfully.');
         }
 
@@ -69,7 +69,7 @@ class CarOptionsController extends Controller
 
             CarModel::create($request->all());
 
-            return redirect()->route('CarOptions')
+            return redirect()->route('Setting')
                             ->with('success','Car Model created successfully.');
         }
 
@@ -82,7 +82,7 @@ class CarOptionsController extends Controller
 
             CarBodyType::create($request->all());
 
-            return redirect()->route('CarOptions')
+            return redirect()->route('Setting')
                             ->with('success','Body Type created successfully.');
         }
 
@@ -95,7 +95,7 @@ class CarOptionsController extends Controller
 
             CarTransmission::create($request->all());
 
-            return redirect()->route('CarOptions')
+            return redirect()->route('Setting')
                             ->with('success','Transmission created successfully.');
         }
 
@@ -108,7 +108,7 @@ class CarOptionsController extends Controller
 
             CarFuelType::create($request->all());
 
-            return redirect()->route('CarOptions')
+            return redirect()->route('Setting')
                             ->with('success','Fuel Type created successfully.');
         }
 
