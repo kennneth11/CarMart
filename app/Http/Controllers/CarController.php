@@ -214,5 +214,24 @@ class CarController extends Controller
             ->with(['myCar'=>$myCar]);
     }
 
+    public function deactiveCar(Request $request)
+    {
+        Car::where("car_id",  $request->key)->update(
+            ["status" => "Deactive"]);
+
+        Alert::success('Successfully','The Car is Deactivated');
+        return redirect()->route('My-Cars');
+    }
+
+
+    public function activeCar(Request $request)
+    {
+        Car::where("car_id",  $request->key)->update(
+            ["status" => "Active"]);
+
+        Alert::success('Successfully','The Car is Activated');
+        return redirect()->route('My-Cars');
+    }
+
 
 }

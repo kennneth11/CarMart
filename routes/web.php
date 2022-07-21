@@ -83,6 +83,8 @@ Route::group(['middleware' => ['auth', 'role:seller']], function() {
     Route::get('/Post-Car', 'App\Http\Controllers\CarController@viewPostCar')->name('Post-Car');
     Route::post('/Post-Car', 'App\Http\Controllers\CarController@store')->name('Stor-Car');
     Route::get('/My-Car{key}', 'App\Http\Controllers\CarController@destroy')->name('Destroy-Car');
+    Route::get('/My-Car/active{key}', 'App\Http\Controllers\CarController@activeCar')->name('Active-Car');
+    Route::get('/My-Car/deactive{key}', 'App\Http\Controllers\CarController@deactiveCar')->name('Deactive-Car');
 });
 //seller ---------------End Line--------------------------------
 
