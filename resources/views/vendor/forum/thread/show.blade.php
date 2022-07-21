@@ -129,8 +129,7 @@
                             @endforeach
                         </div><!--//item-->
 
-                    
-
+                
 
                     </div><!--//app-card-body-->
 
@@ -143,6 +142,43 @@
         </div>
         <br>
 
+
+        @if (! $thread->trashed())
+            @can ('reply', $thread)
+            <div style="display:none;" class="row gy-4">
+                <div class="col-12 col-lg-12">
+                    <div class="app-card app-card-account shadow-sm d-flex flex-column align-items-start">
+                        <div class="app-card-body px-4 w-100">
+
+                            <div class="item  py-3 w-100">
+
+
+                                    <h3 class="app-page-title">{{ trans('forum::general.quick_reply') }}</h3>
+                                    <div id="quick-reply">
+                                        <form method="POST" action="{{ Forum::route('post.store', $thread) }}">
+                                            @csrf
+                                            <div class="mb-3">
+                                                <textarea style="height:10vh;" name="content" class="form-control">{{ old('content') }}</textarea>
+                                            </div>
+
+                                            <div class="text-end">
+                                                <button type="submit" class="btn btn-primary px-5">{{ trans('forum::general.reply') }}</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                
+                            </div><!--//item-->
+
+                        </div><!--//app-card-body-->
+                        <div class="app-card-footer p-4 mt-auto text-end w-100">
+                            
+                        </div><!--//app-card-footer-->
+                        
+                    </div><!--//app-card-->
+                </div><!--//col-->
+            </div>
+            @endcan
+        @endif
 
         @if (! $thread->trashed())
             @can ('reply', $thread)

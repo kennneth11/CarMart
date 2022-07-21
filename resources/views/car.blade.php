@@ -318,7 +318,7 @@
             @foreach($cars as $car)
             <div class="col-md-3 grid_listing">
             <div class="product-listing-m gray-bg">
-                <div class="product-listing-img embed-responsive embed-responsive-4by3 "> <a href="{{ route('Car',$car->car_id) }}"><img src="{{ asset('CarsImages/'.$car->car_image) }}" class="img-responsive" alt="image" /> </a>
+                <div class="product-listing-img img-container-card-car "> <a href="{{ route('Car',$car->car_id) }}"><img src="{{ asset('CarsImages/'.$car->car_image) }}" class="img-responsive" alt="image" /> </a>
                 @if($car->New_car)
                     <div class="label_icon">New</div>
                 @else
