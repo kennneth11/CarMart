@@ -13,10 +13,10 @@
       <ul>
         @foreach($recentCars as $recentCar)
         <li class="gray-bg">
-          <div class="recent_post_img recent-img-container"> 
+          <div class="recent_post_img recent-img-container">
             <a href="{{ route('Car',$recentCar->car_id) }}">
               <img src="{{ asset('CarsImages/'.$recentCar->car_image) }}" alt="image">
-            </a> 
+            </a>
           </div>
           <div class="recent_post_title"> <a href="{{ route('Car',$recentCar->car_id) }}">{{ ucfirst($recentCar->car_maker_name) .' '.ucfirst($recentCar->car_model_name) }}</a>
             <p class="widget_price"><strong>₱</strong>{{$recentCar->price}}</p>

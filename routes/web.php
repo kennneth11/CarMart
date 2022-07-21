@@ -8,6 +8,9 @@ use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\User\AvatarController;
 use App\Http\Controllers\EmailController;
 use App\Http\Controllers\User\MoreSettingController;
+use App\Http\Controllers\SendMessageController;
+use Illuminate\Auth\Events\Verified;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -45,7 +48,7 @@ Route::post('/Forums/search', 'App\Http\Controllers\ForumController@searchThread
 
 
 //both---------------Start Line--------------------------------
-Route::group(['middleware' => ['auth']], function() {
+Route::group(['middleware' => ['auth', 'verified']], function() {
     Route::get('/dashboard', 'App\Http\Controllers\DashboardController@index')->name('dashboard');
     Route::resource('/profile', UserController::class);
     Route::post('/email', [EmailController::class, 'sendEmail'])->name('send.email');
@@ -57,6 +60,8 @@ Route::group(['middleware' => ['auth']], function() {
     Route::post('/updateAddress', 'App\Http\Controllers\User\MoreSettingController@updateAddress')->name('updateAddress');
     Route::get('/dealer{key}', 'App\Http\Controllers\User\SellerUserController@viewSeller')->name('dealer');
     Route::post('/Forums/store', 'App\Http\Controllers\ForumController@postComment')->name('forums.store');
+    Route::post('/sendSeller', [SendMessageController::class, 'sendSeller'])->name('send.to.seller');
+
 });
 //both---------------End Line--------------------------------
 
@@ -81,7 +86,6 @@ Route::group(['middleware' => ['auth', 'role:seller']], function() {
 
 //customer ---------------Start Line--------------------------------
 Route::group(['middleware' => ['auth', 'role:customer']], function() {
-
 
 });
 //customer ---------------End Line--------------------------------

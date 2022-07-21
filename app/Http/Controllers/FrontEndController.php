@@ -16,6 +16,10 @@ use TeamTeaTime\Forum\Models\Post;
 use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
 
+
+
+
+
 class FrontEndController extends Controller
 {
     //Welcome Page
@@ -192,7 +196,4 @@ class FrontEndController extends Controller
             ->with(['carTransmissions'=>$carTransmissionData])
             ->with(['carMakers'=>$carMakerData]);
     }
-
-
-
 }

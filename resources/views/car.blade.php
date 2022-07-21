@@ -10,20 +10,11 @@
         <img style="display:none;" id="banner-source" src="{{ asset('CarsImages/'.$imageBanner->file_path) }}">
         <h2>{{ ucfirst($myCar->car_maker_name) . ' ' . ucfirst($myCar->car_model_name) }}</h2>
         <div class="car-location"><span><i class="fa fa-map-marker" aria-hidden="true"></i> {{ $myCar->city . ', ' . $myCar->barangay . ', ' . $myCar->purok}} </span></div>
-        <div class="add_compare">
-          <div class="checkbox">
-            <input value="" id="compare14" type="checkbox">
-            <label for="compare14">Add to Compare</label>
-          </div>
-          <div class="share_vehicle">
-            <p>Share: <a href="#"><i class="fa fa-facebook-square" aria-hidden="true"></i></a> <a href="#"><i class="fa fa-twitter-square" aria-hidden="true"></i></a> <a href="#"><i class="fa fa-linkedin-square" aria-hidden="true"></i></a> <a href="#"><i class="fa fa-google-plus-square" aria-hidden="true"></i></a> </p>
-          </div>
-        </div>
       </div>
       <div class="col-md-3">
         <div class="price_info">
           <p>₱ {{ $myCar->price }}</p>
-          <p class="old_price">$95,000</p>
+          {{-- <p class="old_price">$95,000</p> --}}
         </div>
       </div>
     </div>
@@ -284,6 +275,7 @@
       <!--Side-Bar-->
       <aside class="col-md-3">
         @if(Auth::check())
+            @if (Auth::user()->hasRole('customer'))
         <div class="sidebar_widget">
           <div class="widget_heading">
             <h5><i class="fa fa-address-card-o" aria-hidden="true"></i> Dealer Contact </h5>
@@ -294,27 +286,27 @@
             <p><span>Phone:</span> {{$myCar->mobile_num}}</p>
             <a href="{{ route('dealer',$myCar->seller_id) }}" class="btn btn-xs">View Profile</a> </div>
         </div>
+            @endif
         @endif
 
+        @if(Auth::check())
+        @if (Auth::user()->hasRole('customer'))
         <div class="sidebar_widget">
           <div class="widget_heading">
-            <h5><i class="fa fa-envelope" aria-hidden="true"></i> Message to Dealer</h5>
+            <h5><i class="fa fa-envelope" aria-hidden="true"></i> Message to Seller</h5>
           </div>
-          <form action="#">
-            <div class="form-group">
-              <input type="text" class="form-control" placeholder="Name">
-            </div>
-            <div class="form-group">
-              <input type="email" class="form-control" placeholder="Email">
-            </div>
-            <div class="form-group">
-              <textarea rows="4" class="form-control" placeholder="Message"></textarea>
+          <form action="{{route('send.message')}}" method="POST">
+            <input type="hidden" name="seller_id" value="{{$myCar->id}}">
+            <div class="form-group" >
+              <textarea rows="4" name="message" class="form-control" placeholder="Type your message.." required></textarea>
             </div>
             <div class="form-group">
               <input type="submit" value="Send Message" class="btn btn-block">
             </div>
           </form>
         </div>
+        @endif
+        @endif
       </aside>
       <!--/Side-Bar-->
 
@@ -324,12 +316,12 @@
 
     <!--Similar-Cars-->
     <div class="similar_cars">
-        <h3>Similar Cars</h3>
+        <h3>Similar Listings</h3>
         <div class="row">
             @foreach($cars as $car)
             <div class="col-md-3 grid_listing">
             <div class="product-listing-m gray-bg">
-                <div class="product-listing-img"> <a href="{{ route('Car',$car->car_id) }}"><img src="{{ asset('CarsImages/'.$car->car_image) }}" class="img-responsive" alt="image" /> </a>
+                <div class="product-listing-img embed-responsive embed-responsive-4by3 "> <a href="{{ route('Car',$car->car_id) }}"><img src="{{ asset('CarsImages/'.$car->car_image) }}" class="img-responsive" alt="image" /> </a>
                 @if($car->New_car)
                     <div class="label_icon">New</div>
                 @else

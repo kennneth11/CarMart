@@ -18,7 +18,7 @@
   <!-- Dark Overlay-->
   <div class="dark-overlay"></div>
 </section>
-<!-- /Page Header--> 
+<!-- /Page Header-->
 
 <!--Dealers-list-->
 <section class="inner_pages">
@@ -34,11 +34,11 @@
             <div class="dealers_listing">
                 <div class="row">
                     <div class="col-sm-3 col-xs-4">
-                        <div class="dealer_logo "> 
-                            <div class="sellerProfile "> 
+                        <div class="dealer_logo ">
+                            <div class="sellerProfile ">
                                 <a href="{{ route('dealer',$seller->id) }}">
                                     <img src="{{ asset('userProfiles/'. $seller->avatar) }}" alt="image">
-                                </a> 
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -49,7 +49,7 @@
                                 {{$seller->city}}</p>
                         </div>
                     </div>
-                  
+
                     <div class="col-sm-3 col-xs-12">
                         <div class="view_profile"> <a href="{{ route('dealer',$seller->id) }}" class="btn btn-xs outline">View Profile</a>
                         <p>({{$seller->num_car}} Cars)</p>
@@ -72,7 +72,7 @@
         </div>
     </div>
 </section>
-<!--/Dealers-list--> 
+<!--/Dealers-list-->
 
 <!--Brands-->
 <section class="brand-section gray-bg">
@@ -85,11 +85,11 @@
         @foreach($brands as $brand)
             <div class="brand"><a href="#"><img src="{{ asset($brand->file_path_picture) }}" class="img-responsive" alt="image"></a></div>
         @endforeach
-            
-        
+
+
       </div>
     </div>
   </div>
 </section>
-<!-- /Brands--> 
+<!-- /Brands-->
 @endsection
