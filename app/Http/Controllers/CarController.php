@@ -161,7 +161,6 @@ class CarController extends Controller
 
     public function viewCar(Request $request)
     {
-
         $myCar = Car::join('car_makers', 'car_makers.car_maker_id', '=', 'cars.car_maker_id')
             ->join('car_models', 'car_models.car_model_id', '=', 'cars.car_model_id')
             ->join('car_body_types', 'car_body_types.body_type_id', '=', 'cars.body_type_id')
@@ -206,7 +205,6 @@ class CarController extends Controller
         }
 
         $brands = CarMaker::take(7)->get();
-
 
         return view('car')
             ->with(['imageBanner'=>$bannerImage])

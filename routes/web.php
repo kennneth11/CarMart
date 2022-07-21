@@ -56,7 +56,9 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('/changeAddress', 'App\Http\Controllers\User\MoreSettingController@changeAddress')->name('changeAddress');
     Route::post('/updateAddress', 'App\Http\Controllers\User\MoreSettingController@updateAddress')->name('updateAddress');
     Route::get('/dealer{key}', 'App\Http\Controllers\User\SellerUserController@viewSeller')->name('dealer');
-    Route::post('/Forums/store', 'App\Http\Controllers\ForumController@postComment')->name('forums.store');
+    Route::post('/Forums/Comment/store', 'App\Http\Controllers\ForumController@postComment')->name('forums.store');
+    Route::post('/Forums/thread/store', 'App\Http\Controllers\ForumController@postThread')->name('forums.thread.store');
+    Route::post('/Forums/thread/update', 'App\Http\Controllers\ForumController@updateThread')->name('forums.thread.update');
 });
 //both---------------End Line--------------------------------
 
@@ -65,6 +67,12 @@ Route::group(['middleware' => ['auth']], function() {
 Route::group(['middleware' => ['auth', 'role:superadministrator']], function() {
     Route::get('/Setting', 'App\Http\Controllers\CarOptionsController@carOptions')->name('Setting');
     Route::post('/Setting', [CarOptionsController::class, 'store']);
+    Route::get('/Admin-Cars', 'App\Http\Controllers\DashboardController@adminCar')->name('admin.cars');
+    Route::post('/Admin-Cars/Search', 'App\Http\Controllers\DashboardController@adminSearchCar')->name('admin.cars.search');
+    Route::get('/Admin-Cars/ViewCar{key}', 'App\Http\Controllers\DashboardController@adminViewCar')->name('admin.view.car');
+    Route::get('/Admin-Users', 'App\Http\Controllers\DashboardController@adminUsers')->name('admin.users');
+    Route::post('/Admin-Users/Search', 'App\Http\Controllers\DashboardController@adminSearchUser')->name('admin.users.search');
+    Route::get('/Admin-Users/ViewUser{key}', 'App\Http\Controllers\DashboardController@adminViewhUser')->name('admin.view.user');
 });
 //superadministrator ---------------End Line--------------------------------
 

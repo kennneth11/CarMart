@@ -37,9 +37,6 @@
       </div>
       <div class="col-md-3 col-sm-4 col-xs-12">
         <div class="dealer_contact_info gray-bg">
-          <h6><i class="fa fa-globe" aria-hidden="true"></i> Website</h6>
-          <a href="#">www.example.com</a> </div>
-        <div class="dealer_contact_info gray-bg">
           <h6><i class="fa fa-envelope" aria-hidden="true"></i> Email Address</h6>
           <a href="mailto:contact@example.com"> {{$seller->email}}</a> </div>
         <div class="dealer_contact_info gray-bg">
@@ -52,8 +49,7 @@
       <div class="col-md-9">
         <div class="dealer_more_info">
           <h5 class="gray-bg info_title"> About Autospot Used Cars Center</h5>
-          <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. </p>
-          <div class="dealer_map">
+           <div class="dealer_map">
             <iframe src="https://maps.google.com/maps?q=bukidnon&t=&z=9&ie=UTF8&iwloc=&output=embed" width="100%" frameborder="0" style="border:0" allowfullscreen></iframe>
           </div>
           <div class="dealer_listings">
@@ -62,7 +58,7 @@
                 @foreach($cars as $car)
                 <div class="col-md-4 grid_listing">
                     <div class="product-listing-m gray-bg">
-                    <div class="product-listing-img"> <a href="{{ route('Car',$car->car_id) }}"><img src="{{ asset('CarsImages/'.$car->car_image) }}" class="img-responsive" alt="image" /> </a>
+                    <div class="product-listing-img img-container-card-car"> <a href="{{ route('Car',$car->car_id) }}"><img src="{{ asset('CarsImages/'.$car->car_image) }}" class="img-responsive" alt="image" /> </a>
                         @if($car->New_car)
                             <div class="label_icon">New</div>
                         @else

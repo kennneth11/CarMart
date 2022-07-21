@@ -23,7 +23,6 @@
       <div class="col-md-3">
         <div class="price_info">
           <p>₱ {{ $myCar->price }}</p>
-          <p class="old_price">$95,000</p>
         </div>
       </div>
     </div>
@@ -326,7 +325,7 @@
             @foreach($cars as $car)
             <div class="col-md-3 grid_listing">
             <div class="product-listing-m gray-bg">
-                <div class="product-listing-img"> <a href="{{ route('Car',$car->car_id) }}"><img src="{{ asset('CarsImages/'.$car->car_image) }}" class="img-responsive" alt="image" /> </a>
+                <div class="product-listing-img img-container-card-car"> <a href="{{ route('Car',$car->car_id) }}"><img src="{{ asset('CarsImages/'.$car->car_image) }}" class="img-responsive" alt="image" /> </a>
                 @if($car->New_car)
                     <div class="label_icon">New</div>
                 @else
