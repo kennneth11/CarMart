@@ -213,7 +213,7 @@
 
 
                         <div  class="form-group">
-                            <input class="form-control" id="post_id" name="post_id" value="" placeholder="Title">
+                            <input class="form-control" id="post_id" name="Title" value="" placeholder="Title">
                         </div>
                         <div  class="form-group">
                             <select class="form-control" name="category_id" id="cars" placeholder="Title">
