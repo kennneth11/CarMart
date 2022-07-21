@@ -140,3 +140,28 @@ input[type=number] {
 
 
 
+.img-container-card-car img {
+  height: 20vh;
+  object-fit: cover;
+  margin-left: auto;
+  margin-right: auto;
+}
+@media only screen and (min-width: 768px) {
+  .img-container-card-car img {
+    height: 30vh;
+    object-fit: cover;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  .img-container-card-car img {
+    height: 20vh;
+    object-fit: cover;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+

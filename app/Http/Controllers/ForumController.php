@@ -30,6 +30,7 @@ class ForumController extends Controller
                 'forum_threads.created_at',
                 'forum_threads.first_post_id',
                 'forum_threads.updated_at',
+                'forum_threads.reply_count',
                 'users.first_name',
                 'users.last_name',
                 'users.username',
@@ -49,6 +50,7 @@ class ForumController extends Controller
             }
             $thread->content = mb_strimwidth($thread->content, 0, 200, "...");
         }
+        
 
         return view('forum/forum-index')
             ->with(['brands'=>$brands])
@@ -66,6 +68,22 @@ class ForumController extends Controller
             ->join('forum_posts', 'forum_posts.thread_id', '=', 'forum_threads.id')
             ->where('forum_posts.sequence', '=', '1')
             ->where('forum_threads.id', '=', $request->key)
+            ->select('forum_threads.id',
+                'forum_threads.category_id',
+                'forum_threads.author_id',
+                'forum_threads.title',
+                'forum_threads.first_post_id',
+                'forum_threads.last_post_id',
+                'forum_threads.reply_count',
+                'forum_threads.created_at',
+                'forum_posts.thread_id',
+                'forum_posts.content',
+                'users.first_name',
+                'users.last_name',
+                'users.username',
+                'users.mobile_num',
+                'users.email',
+                'users.avatar')
             ->get();
 
         foreach($threads as $thread){
@@ -76,6 +94,8 @@ class ForumController extends Controller
             }
 
         }
+
+
 
         $allPosts = Post::join('users', 'users.id', '=', 'forum_posts.author_id')
             ->select('forum_posts.id',
@@ -139,20 +159,83 @@ class ForumController extends Controller
     }
 
     public function postComment(Request $request){
+        
 
         $thread = Thread::where('id', '=', $request->thread_id)->first();
+
         $post= new Post();
         $post->thread_id= $request->thread_id;
         $post->author_id= $request->author_id;
         $post->content= $request->content;
         $post->post_id= $request->post_id;
-        $post->sequence= ($thread->reply_count + 2);
+
+        if(is_null($thread->reply_count))
+        {
+            $post->sequence= 2;
+        }
+        else 
+            $post->sequence= ($thread->reply_count + 2);
         $post->save();
 
         $newThread=  Thread::findOrFail($request->thread_id);
-        $newThread->reply_count= ($thread->reply_count +1);
+        
+        if(is_null($thread->reply_count)){
+            $newThread->reply_count= 1;
+        }
+        else 
+            $newThread->reply_count= ($thread->reply_count +1);
+        $post->save();
         $newThread->last_post_id=  $post->id;
         $newThread->save();
+
+        Alert::success('Success');
+        return redirect()->route('forums.thread', $request->thread_id);
+    }
+
+    public function postThread(Request $request){
+
+        $thread= new Thread();
+        $thread->category_id= $request->category_id;
+        $thread->author_id= $request->author_id;
+        $thread->title= $request->Title;
+        $thread->first_post_id= 0;
+        $thread->last_post_id= 0;
+        $thread->pinned= 0;
+        $thread->locked= 0;
+        $thread->reply_count= 0;
+        $thread->save();
+
+        $post= new Post();
+        $post->thread_id= $thread->id;
+        $post->author_id= $request->author_id;
+        $post->content= $request->content;
+        $post->sequence= 1;
+        $post->save();
+
+        Thread::where("id", '=', $thread->id)
+            ->update(["first_post_id" =>  $post->id,
+            "last_post_id" => $post->id,
+        ]);
+
+        Alert::success('Success');
+        return redirect()->route('forums.thread', $thread->id);
+    }
+
+
+    public function updateThread(Request $request){
+
+
+        Thread::where("id", '=', $request->thread_id)
+            ->update([
+                "category_id" => $request->category_id,
+                "author_id" => $request->author_id,
+                "title" => $request->title,
+        ]);
+
+        Post::where("id", '=', $request->first_post_id)
+            ->update([
+                "content" => $request->content,
+        ]);
 
         Alert::success('Success');
         return redirect()->route('forums.thread', $request->thread_id);
@@ -167,29 +250,30 @@ class ForumController extends Controller
         ->join('forum_posts', 'forum_posts.thread_id', '=', 'forum_threads.id')
         ->where('forum_posts.sequence', '=', '1')
         ->where('forum_threads.title', 'like',  '%' . $request->thread_title .'%')
+        ->orWhere('forum_posts.content', 'like',  '%' . $request->thread_title .'%')
         ->get();
 
-    $categories = Category::get();
-    $popularThreads = Thread::orderBy('reply_count', 'DESC')->take(4)->get();
+        $categories = Category::get();
+        $popularThreads = Thread::orderBy('reply_count', 'DESC')->take(4)->get();
 
 
-    foreach($threads as $thread){
-        foreach($categories as $category){
-            if($thread->category_id == $category->id){
-                $thread->category_name = $category->title;
+        foreach($threads as $thread){
+            foreach($categories as $category){
+                if($thread->category_id == $category->id){
+                    $thread->category_name = $category->title;
+                }
             }
+            $thread->content = mb_strimwidth($thread->content, 0, 200, "...");
         }
-        $thread->content = mb_strimwidth($thread->content, 0, 200, "...");
-    }
 
-    $brands = CarMaker::take(7)->get();
+        $brands = CarMaker::take(7)->get();
 
 
-    return view('forum/forum-index')
-        ->with(['brands'=>$brands])
-        ->with(['popularThreads'=>$popularThreads])
-        ->with(['categories'=>$categories])
-        ->with(['threads'=>$threads]);
+        return view('forum/forum-index')
+            ->with(['brands'=>$brands])
+            ->with(['popularThreads'=>$popularThreads])
+            ->with(['categories'=>$categories])
+            ->with(['threads'=>$threads]);
     }
 
     public function showThreadsByCategory(Request $request)

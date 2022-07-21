@@ -114,13 +114,10 @@
         <div class="listing_images">
           <div id="listing_images_slider" class="sidebar_widget listing_images_slider">
 
-
             <!-- <div><img src="assets/images/900x560.jpg" alt="image"></div> -->
-
             @foreach($images as $image)
                 <div id="my-img1" class="slected-img-custom my-img"><img src="{{ asset('CarsImages/'.$image->file_path) }}" alt="image"></div>
             @endforeach
-
 
           </div>
           <div id="listing_images_slider_nav" class="listing_images_slider_nav">

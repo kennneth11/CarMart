@@ -35,3 +35,32 @@
     border-width: 1px;
     background-color: #FA2837;
 }
+
+.wrapper {
+    display: inline-block;
+    width: 100%;
+    height: 50vh;
+  }
+  
+  .wrapper img {
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .wrapper1 {
+    display: inline-block;
+    width: 100%;
+    height: 30vh;
+    
+  }
+  
+  .wrapper1 img {
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+    margin-left: auto;
+    margin-right: auto;
+  }

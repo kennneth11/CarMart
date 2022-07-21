@@ -18,9 +18,10 @@
                 <li><i class="fa fa-calendar" aria-hidden="true"></i>{{date_format($thread->created_at,"d M Y")  }}</li>
                 <li><a href="{{ route('forums.thread', $thread->id) }}"><i class="fa fa-comment-o" aria-hidden="true"></i>{{$thread->reply_count}} Comments</a></li>
               </ul>
-            </div>
+              </div>
               <p> {!!  str_replace("\n", '<br>' ,$thread->content)  !!}</p>
-              <a href="{{ route('forums.thread', $thread->id) }}" class="btn-link">Read More <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a> </div>
+              <a href="{{ route('forums.thread', $thread->id) }}" class="btn-link">Read More <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a> 
+            </div>
           </article>
         </div>
         @endforeach

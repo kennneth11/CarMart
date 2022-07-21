@@ -161,7 +161,6 @@ class CarController extends Controller
 
     public function viewCar(Request $request)
     {
-
         $myCar = Car::join('car_makers', 'car_makers.car_maker_id', '=', 'cars.car_maker_id')
             ->join('car_models', 'car_models.car_model_id', '=', 'cars.car_model_id')
             ->join('car_body_types', 'car_body_types.body_type_id', '=', 'cars.body_type_id')
@@ -207,13 +206,31 @@ class CarController extends Controller
 
         $brands = CarMaker::take(7)->get();
 
-
         return view('car')
             ->with(['imageBanner'=>$bannerImage])
             ->with(['brands'=>$brands])
             ->with(['cars'=>$cars])
             ->with(['images'=>$images])
             ->with(['myCar'=>$myCar]);
+    }
+
+    public function deactiveCar(Request $request)
+    {
+        Car::where("car_id",  $request->key)->update(
+            ["status" => "Deactive"]);
+
+        Alert::success('Successfully','The Car is Deactivated');
+        return redirect()->route('My-Cars');
+    }
+
+
+    public function activeCar(Request $request)
+    {
+        Car::where("car_id",  $request->key)->update(
+            ["status" => "Active"]);
+
+        Alert::success('Successfully','The Car is Activated');
+        return redirect()->route('My-Cars');
     }
 
 

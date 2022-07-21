@@ -25,6 +25,66 @@
             <div class="article_info">
                 
                 <p>{!! str_replace("\n", '<br>' ,$thread->content)  !!}</p>
+                @if(Auth::user()->id == $thread->author_id)
+                    <div style="display: inline;" class="col-sm">
+                    <a  href="#editThread" onclick="" class="btn " data-toggle="modal">Edit</a>
+                    </div>
+                    
+
+                    <div class="modal fade" id="editThread">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                        <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">Update Topic or Questions </h4>
+                        </div>
+                        <form action="{{ route('forums.thread.update') }}" method="post" class="comment-form" enctype="multipart/form-data">
+                            @csrf
+                            <div >
+                                
+                                <div style="display:none;" class="form-group">
+                                    <input class="form-control" name="author_id" value="{{ Auth::user()->id }}">
+                                </div>
+
+                                <div style="display:none;" class="form-group">
+                                    <input class="form-control" name="thread_id" value="{{ $thread->id }}">
+                                </div>
+
+                                <div style="display:none;" class="form-group">
+                                    <input class="form-control" name="first_post_id" value="{{ $thread->first_post_id }}">
+                                </div>
+
+                                <div  class="form-group">
+                                    <input class="form-control" name="title" value="{{$thread->title}}" placeholder="Title">
+                                </div>
+
+                                <div  class="form-group">
+                                    <select class="form-control" name="category_id" id="cars" placeholder="Category">
+                                        @foreach($categories as $categorie)
+                                        <option value="{{$categorie->id}}">{{$categorie->title}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                
+                                <textarea class="form-control" name="content" rows="5" placeholder="Description">{{$thread->content}}</textarea>
+                                
+                                
+                            
+                            </div>
+                            <div>
+                                <br>
+                                <div class="form-group">
+                                    <button class="btn" type="submit">Update<span class="angle_arrow"><i class="fa fa-angle-right" aria-hidden="true"></i></span></button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    </div>
+                    </div>
+                    <br/>
+                    <br/>
+                @endif
+
             </div>
             <div class="article_tag gray-bg">
                 <div class="row">
@@ -157,7 +217,7 @@
             <ul>
                 @foreach($popularThreads as $popularThread)
                 <li>
-                    <div class="popular_post_img"> <a href="{{ route('forums.thread', $popularThread->id) }}"><img src="assets/images/200x200.jpg" alt="image"></a> </div>
+                    <div class="popular_post_img"> <a href="{{ route('forums.thread', $popularThread->id) }}"><img src="assets/images/thread.png" alt="image"></a> </div>
                     <div class="popular_post_title"> <a href="{{ route('forums.thread', $popularThread->id) }}">{{$popularThread->title}}</a> </div>
                 </li>
                 @endforeach

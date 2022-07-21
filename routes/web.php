@@ -62,6 +62,9 @@ Route::group(['middleware' => ['auth', 'verified']], function() {
     Route::post('/Forums/store', 'App\Http\Controllers\ForumController@postComment')->name('forums.store');
     Route::post('/sendSeller', [SendMessageController::class, 'sendSeller'])->name('send.to.seller');
 
+    Route::post('/Forums/Comment/store', 'App\Http\Controllers\ForumController@postComment')->name('forums.store');
+    Route::post('/Forums/thread/store', 'App\Http\Controllers\ForumController@postThread')->name('forums.thread.store');
+    Route::post('/Forums/thread/update', 'App\Http\Controllers\ForumController@updateThread')->name('forums.thread.update');
 });
 //both---------------End Line--------------------------------
 
@@ -70,6 +73,12 @@ Route::group(['middleware' => ['auth', 'verified']], function() {
 Route::group(['middleware' => ['auth', 'role:superadministrator']], function() {
     Route::get('/Setting', 'App\Http\Controllers\CarOptionsController@carOptions')->name('Setting');
     Route::post('/Setting', [CarOptionsController::class, 'store']);
+    Route::get('/Admin-Cars', 'App\Http\Controllers\DashboardController@adminCar')->name('admin.cars');
+    Route::post('/Admin-Cars/Search', 'App\Http\Controllers\DashboardController@adminSearchCar')->name('admin.cars.search');
+    Route::get('/Admin-Cars/ViewCar{key}', 'App\Http\Controllers\DashboardController@adminViewCar')->name('admin.view.car');
+    Route::get('/Admin-Users', 'App\Http\Controllers\DashboardController@adminUsers')->name('admin.users');
+    Route::post('/Admin-Users/Search', 'App\Http\Controllers\DashboardController@adminSearchUser')->name('admin.users.search');
+    Route::get('/Admin-Users/ViewUser{key}', 'App\Http\Controllers\DashboardController@adminViewhUser')->name('admin.view.user');
 });
 //superadministrator ---------------End Line--------------------------------
 
@@ -80,6 +89,8 @@ Route::group(['middleware' => ['auth', 'role:seller']], function() {
     Route::get('/Post-Car', 'App\Http\Controllers\CarController@viewPostCar')->name('Post-Car');
     Route::post('/Post-Car', 'App\Http\Controllers\CarController@store')->name('Stor-Car');
     Route::get('/My-Car{key}', 'App\Http\Controllers\CarController@destroy')->name('Destroy-Car');
+    Route::get('/My-Car/active{key}', 'App\Http\Controllers\CarController@activeCar')->name('Active-Car');
+    Route::get('/My-Car/deactive{key}', 'App\Http\Controllers\CarController@deactiveCar')->name('Deactive-Car');
 });
 //seller ---------------End Line--------------------------------
 

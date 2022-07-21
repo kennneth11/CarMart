@@ -16,19 +16,19 @@
                 @endif
                 
                     <div class="vehicle_img wrapper seller-car-img">
-                        <a href="#"><img src="{{ asset('CarsImages/'.$myCar->car_image) }}" alt="image"></a>
+                        <a href="{{ route('Car',$myCar->car_id) }}"><img src="{{ asset('CarsImages/'.$myCar->car_image) }}" alt="image"></a>
                     </div>
                     <div class="vehicle_title">
-                    <h6><a href="#">{{  ucfirst($myCar->car_maker_name) .' '.ucfirst($myCar->car_model_name) .' '.  $myCar->year_manufactured}}</a></h6>
+                    <h6><a href="{{ route('Car',$myCar->car_id) }}">{{  ucfirst($myCar->car_maker_name) .' '.ucfirst($myCar->car_model_name) .' '.  $myCar->year_manufactured}}</a></h6>
                     </div>
                     @if($myCar->status == "Active")
-                    <div class="vehicle_status"> <a href="#" class="btn outline btn-xs active-btn">Active</a>
+                    <div class="vehicle_status"> <a href="{{ route('Deactive-Car',$myCar->car_id) }}" class="btn outline btn-xs active-btn">Active</a>
                     <div class="clearfix"></div>
                     <a href="#"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a> <a href="{{ route('Destroy-Car',$myCar->car_id) }}"><i class="fa fa-trash" aria-hidden="true"></i></a> </div>
                     @else($myCar->status == "Deactive")
-                    <div class="vehicle_status"> <a href="#" class="btn outline btn-xs">Deactive</a>
+                    <div class="vehicle_status"> <a href="{{ route('Active-Car',$myCar->car_id) }}" class="btn outline btn-xs">Deactive</a>
                     <div class="clearfix"></div>
-                    <a href="#"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a> <a href="#"><i class="fa fa-trash" aria-hidden="true"></i></a> </div>
+                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i><i class="fa fa-trash" aria-hidden="true"></i> </div>
                     @endif
                 </li>
                 @endforeach
