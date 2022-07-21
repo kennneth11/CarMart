@@ -4,7 +4,7 @@
 @section('content')
 @include('banner')
 <!--Listing-grid-view-->
-<section class="listing-page">
+<section class="listing-page" id="listing-page">
     <div class="container">
       <div class="row">
         <div class="col-md-9 col-md-push-3">
@@ -47,7 +47,7 @@
 
 
           </div>
-          <div class="pagination">
+          {{-- <div class="pagination">
             <ul>
               <li class="current">1</li>
               <li><a href="#">2</a></li>
@@ -55,7 +55,7 @@
               <li><a href="#">4</a></li>
               <li><a href="#">5</a></li>
             </ul>
-          </div>
+          </div> --}}
         </div>
 
         <!--Side-Bar-->
