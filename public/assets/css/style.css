@@ -89,6 +89,10 @@ Version:1.0
 	1. General code
 ==========================*/
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
 	font-family: 'Lato', sans-serif;
 	margin:0px;

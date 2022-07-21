@@ -10,7 +10,7 @@
                 <br>
                 <br>
               <p>We have different cars for you to choose. </p>
-              <a href="#" class="btn">Read More <span class="angle_arrow"><i class="fa fa-angle-right" aria-hidden="true"></i></span></a> </div>
+              <a href="#listing-page" class="btn">Let me see <span class="angle_arrow"><i class="fa fa-angle-right" aria-hidden="true"></i></span></a> </div>
           </div>
         </div>
       </div>

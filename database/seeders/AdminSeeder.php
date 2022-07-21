@@ -27,6 +27,7 @@ class AdminSeeder extends Seeder
             'city' => 'CITY OF VALENCIA',
             'barangay' => 'Poblacion',
             'purok' => 'CENTRO',
+            'email_verified_at' => '2022-07-20 18:20:55',
         ]);
 
         DB::table('role_user')->insert([
