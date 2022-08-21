@@ -91,6 +91,7 @@ Route::group(['middleware' => ['auth', 'role:seller']], function() {
     Route::get('/My-Car{key}', 'App\Http\Controllers\CarController@destroy')->name('Destroy-Car');
     Route::get('/My-Car/active{key}', 'App\Http\Controllers\CarController@activeCar')->name('Active-Car');
     Route::get('/My-Car/deactive{key}', 'App\Http\Controllers\CarController@deactiveCar')->name('Deactive-Car');
+    Route::get('/Update-Car{key}', 'App\Http\Controllers\CarController@updateCar')->name('Update-Car');
 });
 //seller ---------------End Line--------------------------------
 

@@ -24,7 +24,8 @@
                     @if($myCar->status == "Active")
                     <div class="vehicle_status"> <a href="{{ route('Deactive-Car',$myCar->car_id) }}" class="btn outline btn-xs active-btn">Active</a>
                     <div class="clearfix"></div>
-                    <a href="#"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a> <a href="{{ route('Destroy-Car',$myCar->car_id) }}"><i class="fa fa-trash" aria-hidden="true"></i></a> </div>
+                    <a href="{{ route('Update-Car',$myCar->car_id) }}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                    <a href="{{ route('Destroy-Car',$myCar->car_id) }}"><i class="fa fa-trash" aria-hidden="true"></i></a> </div>
                     @else($myCar->status == "Deactive")
                     <div class="vehicle_status"> <a href="{{ route('Active-Car',$myCar->car_id) }}" class="btn outline btn-xs">Deactive</a>
                     <div class="clearfix"></div>
@@ -32,8 +33,6 @@
                     @endif
                 </li>
                 @endforeach
-
-               
 
                 
                 </ul>

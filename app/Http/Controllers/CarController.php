@@ -173,7 +173,6 @@ class CarController extends Controller
         $bannerImage = CarImage::where('car_id', '=', $request->key)->orderBy('car_id', 'ASC')->first();
         $images = CarImage::where('car_id', '=', $request->key)->orderBy('car_id', 'ASC')->get();
 
-
         $cars = Car::join('car_makers', 'car_makers.car_maker_id', '=', 'cars.car_maker_id')
             ->join('car_models', 'car_models.car_model_id', '=', 'cars.car_model_id')
             ->join('car_body_types', 'car_body_types.body_type_id', '=', 'cars.body_type_id')
@@ -233,5 +232,29 @@ class CarController extends Controller
         return redirect()->route('My-Cars');
     }
 
+    public function updateCar(Request $request){
+
+        $carMakerData = CarMaker::get();
+        $carModelData = CarModel::get();
+        $carBodyTypeData = CarBodyType::get();
+        $carFuelTypeData = CarFuelType::get();
+        $carTransmissionData = CarTransmission::get();
+
+
+        $car = Car::where('car_id', '=', $request->key)
+        ->first();
+
+
+        return view('seller/car/update-car')
+            ->with(['car'=>$car])
+            ->with(['carModels'=>$carModelData])
+            ->with(['carBodyTypes'=>$carBodyTypeData])
+            ->with(['carFuelTypes'=>$carFuelTypeData])
+            ->with(['carTransmissions'=>$carTransmissionData])
+            ->with(['carMakers'=>$carMakerData]);
+
+    }
+
+   
 
 }
